@@ -8,4 +8,4 @@ app.get("/",(req,res) =>{
   res.end();
 
 });
-  app.listen(8888);
+  app.listen(process.env.PORT);
