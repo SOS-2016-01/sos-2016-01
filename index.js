@@ -18,7 +18,7 @@ app.get("/", (req, res) => {
       res.write("===============================\n");
       res.write("Francisco Javier Fernandez Rodriguez \n");
       res.write("Gonzalo Romero Castillo \n");
-      res.write("Angel Suares Mora \n");
+      res.write("Angel Suarez Mora \n");
 
       res.end();
     });
