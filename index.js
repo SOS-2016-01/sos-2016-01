@@ -9,30 +9,4 @@ app.get("/", (req, res) => {
     res.end();
   });
 
-  app.get("/about", (req, res) => {
-
-      res.write("thematic: co2, diesel & gasoil y electrical consume\n");
-      res.write("===============================\n");
-
-      res.write("authors: \n");
-      res.write("===============================\n");
-      res.write("Francisco Javier Fernandez Rodriguez \n");
-      res.write("Gonzalo Romero Castillo \n");
-      res.write("Angel Suarez Mora \n");
-
-      res.end();
-    });
-
-    app.get("/about/oil", (req, res) => {
-
-        res.write("thematic: oil\n");
-        res.write("===============================\n");
-
-        res.write("author: \n");
-        res.write("===============================\n");
-        res.write("Francisco Javier Fernandez Rodriguez \n");
-
-        res.end();
-      });
-
   app.listen(process.env.PORT);
