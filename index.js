@@ -4,7 +4,13 @@ var app = express();
 
 app.get("/about", (req, res) => {
 
-    res.write("Hello world");
+  res.write("Tematica: co2, diesel & gasoil y electrical consume\n");
+  res.write("===============================\n");
+
+  res.write("Autores \n");
+  res.write("Francisco Javier Fernandez Rodriguez \n");
+  res.write("Gonzalo Romero Castillo \n");
+  res.write("Angel Suares Mora \n");
 
     res.end();
   });
