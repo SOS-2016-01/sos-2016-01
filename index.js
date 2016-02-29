@@ -37,7 +37,7 @@ var express = require("express");
 
         app.get("/about/co2", (req, res) => {
 
-            res.write("thematic: oil\n");
+            res.write("thematic: co2\n");
             res.write("===============================\n");
 
             res.write("author: \n");
