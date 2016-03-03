@@ -20,6 +20,10 @@ var express = require("express");
         res.write("Gonzalo Romero Castillo \n");
         res.write("Angel Suarez Mora \n");
 
+        res.write("===============================\n");
+        res.write("We are the number one group. ¡¡¡¡¡Poner alguna descripcion del "+
+        "grupo en inglés no se me ocurre na jaja\n");
+
         res.end();
       });
 
