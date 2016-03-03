@@ -11,7 +11,7 @@ var express = require("express");
 
     app.get("/about", (req, res) => {
 
-        res.write("thematic: co2, diesel & gasoil y electrical consume\n");
+        res.write("Thematic: co2, diesel & gasoil y electrical consume\n");
         res.write("===============================\n");
 
         res.write("authors: \n");
