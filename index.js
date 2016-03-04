@@ -11,7 +11,7 @@ var express = require("express");
 
     app.get("/about", (req, res) => {
 
-        res.write("thematic: co2, diesel & gasoil y electrical consume\n");
+        res.write("Thematic: co2, diesel & gasoil y electrical consume\n");
         res.write("===============================\n");
 
         res.write("authors: \n");
@@ -19,6 +19,10 @@ var express = require("express");
         res.write("Francisco Javier Fernandez Rodriguez \n");
         res.write("Gonzalo Romero Castillo \n");
         res.write("Angel Suarez Mora \n");
+
+        res.write("===============================\n");
+        res.write("We are the number one group. ¡¡¡¡¡Poner alguna descripcion del "+
+        "grupo en inglés no se me ocurre na jaja\n");
 
         res.end();
       });
