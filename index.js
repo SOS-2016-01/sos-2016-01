@@ -12,6 +12,15 @@ var express = require("express");
       console.log("New request to HELLO arrived!!")
     });
 
+  app.get("/time",(req,res)=>{
+    var date = new Date();
+    res.write("<html><header><title>Time</title></header>");
+    res.write("<body><h1>It is "+date+"</h1></body></html>");
+    res.end();
+    console.log("New request to TIME arrived!!")
+  });
+
+
 //Esto no sirve para nada, borradlo cuando hagais el html
 /*
       app.get("/about/oil", (req, res) => {
