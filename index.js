@@ -7,7 +7,7 @@ var express = require("express");
 
   app.get("/", (req, res) => {
       res.write("<html><header><title>Hello World</title></header>");
-      res.write("<body><h1>CO2 Presentation</h1></body></html>")
+      res.write("<body><h1>Hello World!</h1></body></html>")
       res.end();
       console.log("New request to HELLO arrived!!")
     });
