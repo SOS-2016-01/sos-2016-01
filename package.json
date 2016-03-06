@@ -1,11 +1,9 @@
 {
   "name": "holamundoheroku",
   "version": "1.0.0",
-<<<<<<< HEAD
   "main": "holaMundo.js",
   "scripts": {
     "start": "node holaMundo.js",
-=======
   "description": "",
   "main": "index.js",
   "dependencies": {
@@ -14,18 +12,14 @@
   "devDependencies": {},
   "scripts": {
     "start" : "node index.js",
->>>>>>> ea85217ceab3b77696ef2afd4d8dd1aeb0ef6c32
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-<<<<<<< HEAD
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/SOS-2016-01/sos-2016-01/issues"
   },
   "homepage": "https://github.com/SOS-2016-01/sos-2016-01#readme",
-  "description": ""
-=======
+  "description": "",
   "license": "ISC"
->>>>>>> ea85217ceab3b77696ef2afd4d8dd1aeb0ef6c32
 }
