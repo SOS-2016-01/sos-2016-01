@@ -1,32 +1,19 @@
 var express = require("express");
 
   var app = express();
+  var port = process.env.PORT || 8081;
+
+  app.use("/about",express.static(__dirname + '/static/about'));
 
   app.get("/", (req, res) => {
-
-      res.write("Hello world");
-
+      res.write("<html><header><title>Hello World</title></header>");
+      res.write("<body><h1>CO2 Presentation</h1></body></html>")
       res.end();
+      console.log("New request to HELLO arrived!!")
     });
 
-    app.get("/about", (req, res) => {
-
-        res.write("Thematic: co2, diesel & gasoil y electrical consume\n");
-        res.write("===============================\n");
-
-        res.write("authors: \n");
-        res.write("===============================\n");
-        res.write("Francisco Javier Fernandez Rodriguez \n");
-        res.write("Gonzalo Romero Castillo \n");
-        res.write("Angel Suarez Mora \n");
-
-        res.write("===============================\n");
-        res.write("We are the number one group. ¡¡¡¡¡Poner alguna descripcion del "+
-        "grupo en inglés no se me ocurre na jaja\n");
-
-        res.end();
-      });
-
+//Esto no sirve para nada, borradlo cuando hagais el html
+/*
       app.get("/about/oil", (req, res) => {
 
           res.write("thematic: oil\n");
@@ -39,18 +26,6 @@ var express = require("express");
           res.end();
         });
 
-        app.get("/about/co2", (req, res) => {
-
-            res.write("thematic: co2\n");
-            res.write("===============================\n");
-
-            res.write("author: \n");
-            res.write("===============================\n");
-            res.write("Gonzalo Romero Castillo\n");
-
-            res.end();
-          });
-
           app.get("/about/electrical-consume", (req, res) => {
 
               res.write("thematic: electrical consume\n");
@@ -62,5 +37,8 @@ var express = require("express");
 
               res.end();
             });
+*/
 
-    app.listen(process.env.PORT);
+    app.listen(port,()=>{
+      console.log("Listening on port: " + port);
+    });

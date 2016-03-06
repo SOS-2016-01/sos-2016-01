@@ -1,10 +1,9 @@
 {
   "name": "sos-2016-01",
   "version": "1.0.0",
-  "description": "",
   "main": "holaMundo.js",
   "scripts": {
-    "start":"node holaMundo.js",
+    "start": "node holaMundo.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -16,5 +15,6 @@
   "bugs": {
     "url": "https://github.com/SOS-2016-01/sos-2016-01/issues"
   },
-  "homepage": "https://github.com/SOS-2016-01/sos-2016-01#readme"
+  "homepage": "https://github.com/SOS-2016-01/sos-2016-01#readme",
+  "description": ""
 }
