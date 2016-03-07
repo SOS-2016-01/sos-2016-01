@@ -18,6 +18,7 @@ var express = require("express");
     res.write("<body><h1>It is "+date+"</h1></body></html>");
     res.end();
     console.log("New request to TIME arrived!!")
+    
   });
 
 
