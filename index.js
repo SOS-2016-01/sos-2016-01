@@ -64,6 +64,8 @@ var bodyParser = require("body-parser");
         car.push(cars[i]);
       }
     }
+    if(car.length==0)
+      res.sendStatus(404);
     res.send(JSON.stringify(car));
     console.log("New GET of resource cars of "+name);
   });
