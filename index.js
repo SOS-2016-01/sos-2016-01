@@ -45,6 +45,12 @@ var bodyParser = require("body-parser");
     res.sendStatus(200);
   });
 
+  app.put("/API/sandbox/cars", (req,res)=>{
+    console.log("PUT not allowed");
+    res.send("Method Not Allowed")
+  });
+
+
   app.get("/api-test/cars/loadInitialData",(req,res)=>{
     console.log("New initial cars data charge");
     cars = [{name : "Insignia",
@@ -70,6 +76,11 @@ var bodyParser = require("body-parser");
     else{
       res.send(JSON.stringify(car));
     }
+  });
+
+  app.post("/API/sandbox/cars/:name", (req,res)=>{
+    console.log("POST not allowed");
+    res.send("Method Not Allowed")
   });
 
   app.put("/API/sandbox/cars/:name",(req,res)=>{
