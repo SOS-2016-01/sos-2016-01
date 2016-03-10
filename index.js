@@ -59,6 +59,7 @@ var bodyParser = require("body-parser");
   app.get("/API/sandbox/cars/:name",(req,res)=>{
     var name = req.params.name;
     var car = [];
+    console.log("New GET of resource cars of "+name);
     for(i=0;i<cars.length;i++){
       if(cars[i].name == name){
         car.push(cars[i]);
@@ -66,32 +67,44 @@ var bodyParser = require("body-parser");
     }
     if(car.length==0)
       res.sendStatus(404);
-    res.send(JSON.stringify(car));
-    console.log("New GET of resource cars of "+name);
+    else{
+      res.send(JSON.stringify(car));
+    }
   });
 
   app.put("/API/sandbox/cars/:name",(req,res)=>{
     var name = req.params.name;
+    var updated = 0;
+    console.log("New POST of resource cars of "+name);
     for(i=0;i<cars.length;i++){
       if(cars[i].name == name){
         cars[i]=req.body;
+        updated = 1;
+        break;
       }
     }
-    console.log("New POST of resource cars of "+name);
+    if(updated==0)
+      res.sendStatus(404);
+    else
       res.sendStatus(200);
   });
 
 
   app.delete("/API/sandbox/cars/:name", (req,res)=>{
     var name = req.params.name;
+    var removed = 0;
     console.log("New car DELETE "+name);
     for(i=0;i<cars.length;i++){
       if(cars[i].name == name){
         delete cars[i];
+        removed =1;
         break;
       }
     }
-    res.sendStatus(200);
+    if(removed==0)
+      res.sendStatus(404);
+    else
+      res.sendStatus(200);
   });
 
     app.listen(port,()=>{
