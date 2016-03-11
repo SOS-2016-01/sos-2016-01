@@ -147,8 +147,8 @@ var bodyParser = require("body-parser");
 
 
   app.get("/api-test/smartphones/loadInitialData",(req,res)=>{
-    console.log("New initial cars data charge");
-    cars = [{model : "S6",
+    console.log("New initial smartphone data charge");
+    smartphones = [{model : "S6",
              brand : "Samsung",
              price : "499"},
             {model: "P8",
