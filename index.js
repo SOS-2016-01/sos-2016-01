@@ -136,7 +136,7 @@ var bodyParser = require("body-parser");
 
   app.delete("/API/sandbox/smartphones", (req,res)=>{
     console.log("New SmartPhone DELETE");
-    smartphone = [];
+    smartphones = [];
     res.sendStatus(200);
   });
 
