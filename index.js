@@ -157,12 +157,12 @@ var bodyParser = require("body-parser");
     res.sendStatus(200);
   });
 
-  app.get("/API/sandbox/smartphones/:name",(req,res)=>{
-    var name = req.params.name;
+  app.get("/API/sandbox/smartphones/:model",(req,res)=>{
+    var model = req.params.model;
     var smartphones = [];
     console.log("New GET of resource SmartPhones of "+name);
     for(i=0;i<smartphones.length;i++){
-      if(smartphones[i].name == name){
+      if(smartphones[i].model == model){
         car.push(smartphones[i]);
       }
     }
@@ -173,17 +173,17 @@ var bodyParser = require("body-parser");
     }
   });
 
-  app.post("/API/sandbox/smartphones/:name", (req,res)=>{
+  app.post("/API/sandbox/smartphones/:model", (req,res)=>{
     console.log("POST not allowed");
     res.send("Method Not Allowed")
   });
 
-  app.put("/API/sandbox/smartphones/:name",(req,res)=>{
-    var name = req.params.name;
+  app.put("/API/sandbox/smartphones/:model",(req,res)=>{
+    var model = req.params.model;
     var updated = 0;
-    console.log("New POST of resource SmartPhones of "+name);
+    console.log("New POST of resource SmartPhones of "+model);
     for(i=0;i<smartphones.length;i++){
-      if(smartphones[i].name == name){
+      if(smartphones[i].model == model){
         smartphones[i]=req.body;
         updated = 1;
         break;
@@ -196,12 +196,12 @@ var bodyParser = require("body-parser");
   });
 
 
-  app.delete("/API/sandbox/smartphones/:name", (req,res)=>{
-    var name = req.params.name;
+  app.delete("/API/sandbox/smartphones/:model", (req,res)=>{
+    var model = req.params.model;
     var removed = 0;
-    console.log("New car DELETE "+name);
+    console.log("New car DELETE "+model);
     for(i=0;i<smartphones.length;i++){
-      if(smartphones[i].name == name){
+      if(smartphones[i].model == model){
         delete smartphones[i];
         removed =1;
         break;
