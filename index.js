@@ -120,7 +120,7 @@ var bodyParser = require("body-parser");
   });
 
 
-  //Api SmartPhones
+  //----------------------Api SmartPhones---------------------------------
   app.get("/API/sandbox/smartphones",(req,res)=>{
     console.log("New GET of resource SmartPhones");
     res.send(JSON.stringify(smartphones));
@@ -128,7 +128,7 @@ var bodyParser = require("body-parser");
 
   app.post("/API/sandbox/smartphones",function(req,res){
     var smartphone = req.body;
-    cars.push(smartphone);
+    smartphones.push(smartphone);
     console.log("New SmartPhone POST");
     console.log("Object recived: "+JSON.stringify(req.body));
     res.sendStatus(200);
@@ -159,17 +159,17 @@ var bodyParser = require("body-parser");
 
   app.get("/API/sandbox/smartphones/:model",(req,res)=>{
     var model = req.params.model;
-    var smartphones = [];
-    console.log("New GET of resource SmartPhones of "+name);
+    var smartphone = [];
+    console.log("New GET of resource SmartPhones of "+model);
     for(i=0;i<smartphones.length;i++){
       if(smartphones[i].model == model){
-        car.push(smartphones[i]);
+        smartphone.push(smartphones[i]);
       }
     }
     if(smartphone.length==0)
       res.sendStatus(404);
     else{
-      res.send(JSON.stringify(car));
+      res.send(JSON.stringify(smartphone));
     }
   });
 
@@ -199,7 +199,7 @@ var bodyParser = require("body-parser");
   app.delete("/API/sandbox/smartphones/:model", (req,res)=>{
     var model = req.params.model;
     var removed = 0;
-    console.log("New car DELETE "+model);
+    console.log("New smartphone DELETE "+model);
     for(i=0;i<smartphones.length;i++){
       if(smartphones[i].model == model){
         delete smartphones[i];
