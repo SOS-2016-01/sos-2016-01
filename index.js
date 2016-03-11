@@ -126,8 +126,6 @@ var bodyParser = require("body-parser");
 
 
 
-    
 
-      app.listen(port,()=>{
-        console.log("Listening on port: " + port);
-      });
+
+  
