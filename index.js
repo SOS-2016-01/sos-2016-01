@@ -108,7 +108,8 @@ var bodyParser = require("body-parser");
     console.log("New car DELETE "+name);
     for(i=0;i<cars.length;i++){
       if(cars[i].name == name){
-        delete cars[i];
+        //delete cars[i];
+        cars.splice(i);
         removed =1;
         break;
       }
