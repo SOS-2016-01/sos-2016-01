@@ -8,6 +8,7 @@ var bodyParser = require("body-parser");
 
   var cars = [];
   var smartphones = [];
+  var teams = [];
 
   app.use("/about",express.static(__dirname + '/static/about'));
 
@@ -26,13 +27,106 @@ var bodyParser = require("body-parser");
     console.log("New request to TIME arrived!!");
   });
 
-  //Cars API
-  app.get("/API/sandbox/cars",(req,res)=>{
+  //----------------------Api Teams---------------------------------
+
+  app.get("/api/sandbox/teams",(req,res)=>{
+    console.log("New GET of resource teams");
+    res.send(JSON.stringify(teams));
+  });
+
+  app.post("/api/sandbox/teams",function(req,res){
+    var team = req.body;
+    teams.push(team);
+    console.log("New team POST");
+    console.log("Object recived: "+JSON.stringify(req.body));
+    res.sendStatus(200);
+  });
+
+  app.delete("/api/sandbox/teams", (req,res)=>{
+    console.log("New team DELETE");
+    teams = [];
+    res.sendStatus(200);
+  });
+
+  app.put("/api/sandbox/teams", (req,res)=>{
+    console.log("PUT not allowed");
+    res.send("Method Not Allowed")
+  });
+
+
+  app.get("/api-test/teams/loadInitialData",(req,res)=>{
+    console.log("New initial teams data charge");
+    teams = [{name : "SevillaFC",
+             year : "1905"},
+            {name: "FCBarcelona",
+             year : "1889"}];
+    res.sendStatus(200);
+  });
+
+  app.get("/api/sandbox/teams/:name",(req,res)=>{
+    var name = req.params.name;
+    var team = [];
+    console.log("New GET of resource team of "+name);
+    for(i=0;i<teams.length;i++){
+      if(teams[i].name == name){
+        team.push(teams[i]);
+      }
+    }
+    if(team.length==0)
+      res.sendStatus(404);
+    else{
+      res.send(JSON.stringify(team));
+    }
+  });
+
+  app.post("/api/sandbox/teams/:name", (req,res)=>{
+    console.log("POST not allowed");
+    res.send("Method Not Allowed")
+  });
+
+  app.put("/api/sandbox/teams/:name",(req,res)=>{
+    var name = req.params.name;
+    var updated = 0;
+    console.log("New POST of resource teams of "+name);
+    for(i=0;i<teams.length;i++){
+      if(teams[i].name == name){
+        teams[i]=req.body;
+        updated = 1;
+        break;
+      }
+    }
+    if(updated==0)
+      res.sendStatus(404);
+    else
+      res.sendStatus(200);
+  });
+
+
+  app.delete("/api/sandbox/teams/:name", (req,res)=>{
+    var name = req.params.name;
+    var removed = 0;
+    console.log("New team DELETE "+name);
+    for(i=0;i<teams.length;i++){
+      if(teams[i].name == name){
+        teams.splice(i);
+        removed =1;
+        break;
+      }
+    }
+    if(removed==0)
+      res.sendStatus(404);
+    else
+      res.sendStatus(200);
+  });
+
+
+  //----------------------Api Cars---------------------------------
+  app.get("/api/sandbox/cars",(req,res)=>{
     console.log("New GET of resource cars");
     res.send(JSON.stringify(cars));
   });
 
-  app.post("/API/sandbox/cars",function(req,res){
+  app.post("/api/sandbox/cars",function(req,res){
     var car = req.body;
     cars.push(car);
     console.log("New cars POST");
@@ -40,13 +134,13 @@ var bodyParser = require("body-parser");
     res.sendStatus(200);
   });
 
-  app.delete("/API/sandbox/cars", (req,res)=>{
+  app.delete("/api/sandbox/cars", (req,res)=>{
     console.log("New cars DELETE");
     cars = [];
     res.sendStatus(200);
   });
 
-  app.put("/API/sandbox/cars", (req,res)=>{
+  app.put("/api/sandbox/cars", (req,res)=>{
     console.log("PUT not allowed");
     res.send("Method Not Allowed")
   });
@@ -63,7 +157,7 @@ var bodyParser = require("body-parser");
     res.sendStatus(200);
   });
 
-  app.get("/API/sandbox/cars/:name",(req,res)=>{
+  app.get("/api/sandbox/cars/:name",(req,res)=>{
     var name = req.params.name;
     var car = [];
     console.log("New GET of resource cars of "+name);
@@ -79,12 +173,12 @@ var bodyParser = require("body-parser");
     }
   });
 
-  app.post("/API/sandbox/cars/:name", (req,res)=>{
+  app.post("/api/sandbox/cars/:name", (req,res)=>{
     console.log("POST not allowed");
     res.send("Method Not Allowed")
   });
 
-  app.put("/API/sandbox/cars/:name",(req,res)=>{
+  app.put("/api/sandbox/cars/:name",(req,res)=>{
     var name = req.params.name;
     var updated = 0;
     console.log("New POST of resource cars of "+name);
@@ -102,7 +196,7 @@ var bodyParser = require("body-parser");
   });
 
 
-  app.delete("/API/sandbox/cars/:name", (req,res)=>{
+  app.delete("/api/sandbox/cars/:name", (req,res)=>{
     var name = req.params.name;
     var removed = 0;
     console.log("New car DELETE "+name);
@@ -122,12 +216,12 @@ var bodyParser = require("body-parser");
 
 
   //----------------------Api SmartPhones---------------------------------
-  app.get("/API/sandbox/smartphones",(req,res)=>{
+  app.get("/api/sandbox/smartphones",(req,res)=>{
     console.log("New GET of resource SmartPhones");
     res.send(JSON.stringify(smartphones));
   });
 
-  app.post("/API/sandbox/smartphones",function(req,res){
+  app.post("/api/sandbox/smartphones",function(req,res){
     var smartphone = req.body;
     smartphones.push(smartphone);
     console.log("New SmartPhone POST");
@@ -135,13 +229,13 @@ var bodyParser = require("body-parser");
     res.sendStatus(200);
   });
 
-  app.delete("/API/sandbox/smartphones", (req,res)=>{
+  app.delete("/api/sandbox/smartphones", (req,res)=>{
     console.log("New SmartPhone DELETE");
     smartphones = [];
     res.sendStatus(200);
   });
 
-  app.put("/API/sandbox/smartphones", (req,res)=>{
+  app.put("/api/sandbox/smartphones", (req,res)=>{
     console.log("PUT not allowed");
     res.send("Method Not Allowed")
   });
@@ -158,7 +252,7 @@ var bodyParser = require("body-parser");
     res.sendStatus(200);
   });
 
-  app.get("/API/sandbox/smartphones/:model",(req,res)=>{
+  app.get("/api/sandbox/smartphones/:model",(req,res)=>{
     var model = req.params.model;
     var smartphone = [];
     console.log("New GET of resource SmartPhones of "+model);
@@ -174,12 +268,12 @@ var bodyParser = require("body-parser");
     }
   });
 
-  app.post("/API/sandbox/smartphones/:model", (req,res)=>{
+  app.post("/api/sandbox/smartphones/:model", (req,res)=>{
     console.log("POST not allowed");
     res.send("Method Not Allowed")
   });
 
-  app.put("/API/sandbox/smartphones/:model",(req,res)=>{
+  app.put("/api/sandbox/smartphones/:model",(req,res)=>{
     var model = req.params.model;
     var updated = 0;
     console.log("New POST of resource SmartPhones of "+model);
@@ -197,7 +291,7 @@ var bodyParser = require("body-parser");
   });
 
 
-  app.delete("/API/sandbox/smartphones/:model", (req,res)=>{
+  app.delete("/api/sandbox/smartphones/:model", (req,res)=>{
     var model = req.params.model;
     var removed = 0;
     console.log("New smartphone DELETE "+model);
