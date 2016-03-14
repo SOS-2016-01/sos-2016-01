@@ -202,7 +202,7 @@ var bodyParser = require("body-parser");
     console.log("New smartphone DELETE "+model);
     for(i=0;i<smartphones.length;i++){
       if(smartphones[i].model == model){
-        delete smartphones[i];//smartphones.splice(i)
+        smartphones.splice(i);
         removed =1;
         break;
       }
