@@ -57,9 +57,11 @@ var bodyParser = require("body-parser");
   app.get("/api-test/teams/loadInitialData",(req,res)=>{
     console.log("New initial teams data charge");
     teams = [{name : "SevillaFC",
-             year : "1905"},
+             year : "1905",
+             city: "Sevilla"},
             {name: "FCBarcelona",
-             year : "1889"}];
+             year : "1889",
+             city : "Barcelona"}];
     res.sendStatus(200);
   });
 
@@ -248,10 +250,9 @@ var bodyParser = require("body-parser");
              price : "499"},
             {model: "P8",
              brand : "Huawei",
-             year : "299"}];
+             price : "299"}];
     res.sendStatus(200);
   });
-
   app.get("/api/sandbox/smartphones/:model",(req,res)=>{
     var model = req.params.model;
     var smartphone = [];
