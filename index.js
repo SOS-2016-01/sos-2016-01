@@ -229,6 +229,7 @@ var bodyParser = require("body-parser");
     console.log("New SmartPhone POST");
     console.log("Object recived: "+JSON.stringify(req.body));
     res.sendStatus(200);
+    res.sendStatus(201);
   });
 
   app.delete("/api/sandbox/smartphones", (req,res)=>{
