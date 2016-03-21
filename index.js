@@ -1,12 +1,13 @@
 var express = require("express");
 var bodyParser = require("body-parser");
+var carsControllers = require('./apiControllers/carsControllers.js')
 
   var app = express();
   var port = (process.env.PORT || 8081);
 
   app.use(bodyParser.json());
 
-  var cars = [];
+
   var smartphones = [];
   var teams = [];
 
@@ -123,98 +124,21 @@ var bodyParser = require("body-parser");
 
 
   //----------------------Api Cars---------------------------------
-  app.get("/api/sandbox/cars",(req,res)=>{
-    console.log("New GET of resource cars");
-    res.send(JSON.stringify(cars));
-  });
-
-  app.post("/api/sandbox/cars",function(req,res){
-    var car = req.body;
-    cars.push(car);
-    console.log("New cars POST");
-    console.log("Object recived: "+JSON.stringify(req.body));
-    res.sendStatus(200);
-  });
-
-  app.delete("/api/sandbox/cars", (req,res)=>{
-    console.log("New cars DELETE");
-    cars = [];
-    res.sendStatus(200);
-  });
-
+  app.get("/api/sandbox/cars",carsControllers.getCars);
+  app.post("/api/sandbox/cars",carsControllers.addCar);
+  app.delete("/api/sandbox/cars", carsControllers.delete);
   app.put("/api/sandbox/cars", (req,res)=>{
     console.log("PUT not allowed");
-    res.send("Method Not Allowed")
+    res.sendStatus(405);
   });
-
-
-  app.get("/api-test/cars/loadInitialData",(req,res)=>{
-    console.log("New initial cars data charge");
-    cars = [{name : "Insignia",
-             brand : "Opel",
-             year : "2014"},
-            {name: "207",
-             brand : "Peugeot",
-             year : "2007"}];
-    res.sendStatus(200);
-  });
-
-  app.get("/api/sandbox/cars/:name",(req,res)=>{
-    var name = req.params.name;
-    var car = [];
-    console.log("New GET of resource cars of "+name);
-    for(i=0;i<cars.length;i++){
-      if(cars[i].name == name){
-        car.push(cars[i]);
-      }
-    }
-    if(car.length==0)
-      res.sendStatus(404);
-    else{
-      res.send(JSON.stringify(car));
-    }
-  });
-
+  app.get("/api-test/cars/loadInitialData",carsControllers.initialData);
+  app.get("/api/sandbox/cars/:name",carsControllers.getCar);
   app.post("/api/sandbox/cars/:name", (req,res)=>{
     console.log("POST not allowed");
-    res.send("Method Not Allowed")
+    res.sendStatus(405);
   });
-
-  app.put("/api/sandbox/cars/:name",(req,res)=>{
-    var name = req.params.name;
-    var updated = 0;
-    console.log("New POST of resource cars of "+name);
-    for(i=0;i<cars.length;i++){
-      if(cars[i].name == name){
-        cars[i]=req.body;
-        updated = 1;
-        break;
-      }
-    }
-    if(updated==0)
-      res.sendStatus(404);
-    else
-      res.sendStatus(200);
-  });
-
-
-  app.delete("/api/sandbox/cars/:name", (req,res)=>{
-    var name = req.params.name;
-    var removed = 0;
-    console.log("New car DELETE "+name);
-    for(i=0;i<cars.length;i++){
-      if(cars[i].name == name){
-        //delete cars[i];
-        cars.splice(i);
-        removed =1;
-        break;
-      }
-    }
-    if(removed==0)
-      res.sendStatus(404);
-    else
-      res.sendStatus(200);
-  });
+  app.put("/api/sandbox/cars/:name",carsControllers.update);
+  app.delete("/api/sandbox/cars/:name", carsControllers.deleteCar);
 
 
   //----------------------Api SmartPhones---------------------------------
