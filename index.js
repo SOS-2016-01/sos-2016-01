@@ -1,6 +1,7 @@
 var express = require("express");
 var bodyParser = require("body-parser");
-var carsControllers = require('./apiControllers/carsControllers.js')
+var carsControllers = require('./apiControllers/carsControllers.js');
+var co2Ctl = require('./apiControllers/co2Controllers.js');
 
   var app = express();
   var port = (process.env.PORT || 8081);
@@ -139,6 +140,24 @@ var carsControllers = require('./apiControllers/carsControllers.js')
   });
   app.put("/api/sandbox/cars/:name",carsControllers.update);
   app.delete("/api/sandbox/cars/:name", carsControllers.deleteCar);
+
+  //-----------------------------Api CO2-------------------------------
+  app.get("/api/v1/co2",co2Ctl.getData);
+  app.post("/api/v1/co2",co2Ctl.addCo2);
+  app.delete("/api/v1/co2", co2Ctl.delete);
+  app.put("/api/v1/co2", (req,res)=>{
+    console.log("PUT not allowed");
+    res.sendStatus(405);
+  });
+  app.get("/api/v1/co2/loadInitialData",co2Ctl.initialData);
+  app.get("/api/v1/co2/:country",co2Ctl.getCo2);
+  app.get("/api/v1/co2/:country/:year",co2Ctl.getCountryYear);
+  app.post("/api/v1/co2/:name", (req,res)=>{
+    console.log("POST not allowed");
+    res.sendStatus(405);
+  });
+  app.put("/api/v1/co2/:name",co2Ctl.update);
+  app.delete("/api/v1/co2/:name", co2Ctl.deleteCo2);
 
 
   //----------------------Api SmartPhones---------------------------------
