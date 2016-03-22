@@ -195,8 +195,8 @@ app.post("/api/v1/electrical-consume/:name", (req,res)=>{
   console.log("POST not allowed");
   res.sendStatus(405);
 });
-app.put("/api/v1/electrical-consume/:name",electricalConsumeCtl.update);
-app.delete("/api/v1/electrical-consume/:name", electricalConsumeCtl.deleteElectricalConsume);
+app.put("/api/v1/electrical-consume/:country/:year",electricalConsumeCtl.update);
+app.delete("/api/v1/electrical-consume/:country/:year", electricalConsumeCtl.deleteElectricalConsume);
 
 
 
