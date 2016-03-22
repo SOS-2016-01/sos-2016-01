@@ -191,7 +191,7 @@ app.put("/api/v1/electrical-consume", (req,res)=>{
 app.get("/api/v1/electrical-consume/loadInitialData",electricalConsumeCtl.initialData);
 app.get("/api/v1/electrical-consume/:country",electricalConsumeCtl.getElectricalConsume);
 app.get("/api/v1/electrical-consume/:country/:year",electricalConsumeCtl.getCountryYear);
-app.post("/api/v1/electrical-consume/:name", (req,res)=>{
+app.post("/api/v1/electrical-consume/:country/:year", (req,res)=>{
   console.log("POST not allowed");
   res.sendStatus(405);
 });
