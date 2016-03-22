@@ -1,6 +1,6 @@
 var data = [];
 
-module.exports.getData = function(req,res){
+/*module.exports.getData = function(req,res){
 console.log("New GET of resource electrical consume");
 res.send(JSON.stringify(data));
 }
@@ -18,7 +18,7 @@ console.log("New electrical consume DELETE");
 data = [];
 res.sendStatus(200);
 }
-
+*/
 module.exports.initialData = function (req,res){
 console.log("New initial electrical consume data charge");
 data = [{country : "brazil",
@@ -53,7 +53,7 @@ data = [{country : "brazil",
         urbanPopulation : "26.440.579"}];
 res.sendStatus(200);
 }
-
+/*
 module.exports.getElectricalConsume = function (req,res){
   var country = req.params.country;
   var electricalConsume = [];
@@ -142,3 +142,4 @@ if(removed==0)
 else
   res.sendStatus(200);
 }
+*/

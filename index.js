@@ -178,7 +178,7 @@ var co2Ctl = require('./apiControllers/co2Controllers.js');
   app.put("/api/sandbox/smartphones/:name",smartphonesControllers.update);
   app.delete("/api/sandbox/smartphones/:name", smartphonesControllers.deleteSmartphone);
 */
-/*
+
 app.get("/api/v1/electrical-consume",electricalConsumeCtl.getData);
 app.post("/api/v1/electrical-consume",electricalConsumeCtl.addElectricalConsume);
 app.delete("/api/v1/electrical-consume", electricalConsumeCtl.delete);
@@ -195,7 +195,7 @@ app.post("/api/v1/electrical-consume/:name", (req,res)=>{
 });
 app.put("/api/v1/electrical-consume/:name",electricalConsumeCtl.update);
 app.delete("/api/v1/electrical-consume/:name", electricalConsumeCtl.deleteElectricalConsume);
-*/
+
 
   /*app.get("/api/sandbox/smartphones",(req,res)=>{
     console.log("New GET of resource SmartPhones");
