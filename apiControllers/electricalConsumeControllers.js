@@ -109,11 +109,11 @@ module.exports.getCountryYear = function (req,res){
 }
 
 module.exports.update = function (req,res){
-var name = req.params.name;
+var country = req.params.country;
 var updated = 0;
-console.log("New PUT of resource electrical consume of "+name);
+console.log("New PUT of resource electrical consume of "+country);
 for(i=0;i<data.length;i++){
-  if(data[i].name == name){
+  if(data[i].country == country){
     data[i]=req.body;
     updated = 1;
     break;
@@ -126,11 +126,11 @@ else
 }
 
 module.exports.deleteElectricalConsume = function (req,res){
-var name = req.params.name;
+var country = req.params.country;
 var removed = 0;
-console.log("New electrical consume DELETE "+name);
+console.log("New electrical consume DELETE "+country);
 for(i=0;i<data.length;i++){
-  if(data[i].name == name){
+  if(data[i].country == country){
     /////////
     data.splice(i,1);
     removed =1;
