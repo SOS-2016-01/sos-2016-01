@@ -3,6 +3,7 @@ var bodyParser = require("body-parser");
 var carsControllers = require('./apiControllers/carsControllers.js');
 var co2Ctl = require('./apiControllers/co2Controllers.js');
 var smartphonesControllers = require('./apiControllers/smartphonesControllers.js');
+var electricalConsumeCtl = require('./apiControllers/electricalConsumeControllers.js');
 
   var app = express();
   var port = (process.env.PORT || 8081);
@@ -10,7 +11,6 @@ var smartphonesControllers = require('./apiControllers/smartphonesControllers.js
   app.use(bodyParser.json());
 
 
-  var smartphones = [];
   var teams = [];
 
   app.use("/about",express.static(__dirname + '/static/about'));
@@ -179,7 +179,8 @@ var smartphonesControllers = require('./apiControllers/smartphonesControllers.js
   app.put("/api/sandbox/smartphones/:name",smartphonesControllers.update);
   app.delete("/api/sandbox/smartphones/:name", smartphonesControllers.deleteSmartphone);
 
-/*
+//----------------------Api Electrical Consume---------------------------------
+
 app.get("/api/v1/electrical-consume",electricalConsumeCtl.getData);
 app.post("/api/v1/electrical-consume",electricalConsumeCtl.addElectricalConsume);
 app.delete("/api/v1/electrical-consume", electricalConsumeCtl.delete);
@@ -196,99 +197,8 @@ app.post("/api/v1/electrical-consume/:name", (req,res)=>{
 });
 app.put("/api/v1/electrical-consume/:name",electricalConsumeCtl.update);
 app.delete("/api/v1/electrical-consume/:name", electricalConsumeCtl.deleteElectricalConsume);
-*/
-
-  /*app.get("/api/sandbox/smartphones",(req,res)=>{
-    console.log("New GET of resource SmartPhones");
-    res.send(JSON.stringify(smartphones));
-  });
-
-  app.post("/api/sandbox/smartphones",function(req,res){
-    var smartphone = req.body;
-    smartphones.push(smartphone);
-    console.log("New SmartPhone POST");
-    console.log("Object recived: "+JSON.stringify(req.body));
-    //res.sendStatus(200);
-    res.sendStatus(200,201);
-  });
-
-  app.delete("/api/sandbox/smartphones", (req,res)=>{
-    console.log("New SmartPhone DELETE");
-    smartphones = [];
-    res.sendStatus(200);
-  });
-
-  app.put("/api/sandbox/smartphones", (req,res)=>{
-    console.log("PUT not allowed");
-    res.send("Method Not Allowed")
-  });
 
 
-  app.get("/api-test/smartphones/loadInitialData",(req,res)=>{
-    console.log("New initial smartphone data charge");
-    smartphones = [{model : "S6",
-             brand : "Samsung",
-             price : "499"},
-            {model: "P8",
-             brand : "Huawei",
-             price : "299"}];
-    res.sendStatus(200);
-  });
-  app.get("/api/sandbox/smartphones/:model",(req,res)=>{
-    var model = req.params.model;
-    var smartphone = [];
-    console.log("New GET of resource SmartPhones of "+model);
-    for(i=0;i<smartphones.length;i++){
-      if(smartphones[i].model == model){
-        smartphone.push(smartphones[i]);
-      }
-    }
-    if(smartphone.length==0)
-      res.sendStatus(404);
-    else{
-      res.send(JSON.stringify(smartphone));
-    }
-  });
-
-  app.post("/api/sandbox/smartphones/:model", (req,res)=>{
-    console.log("POST not allowed");
-    res.send("Method Not Allowed")
-  });
-
-  app.put("/api/sandbox/smartphones/:model",(req,res)=>{
-    var model = req.params.model;
-    var updated = 0;
-    console.log("New POST of resource SmartPhones of "+model);
-    for(i=0;i<smartphones.length;i++){
-      if(smartphones[i].model == model){
-        smartphones[i]=req.body;
-        updated = 1;
-        break;
-      }
-    }
-    if(updated==0)
-      res.sendStatus(404);
-    else
-      res.sendStatus(200);
-  });
-
-
-  app.delete("/api/sandbox/smartphones/:model", (req,res)=>{
-    var model = req.params.model;
-    var removed = 0;
-    console.log("New smartphone DELETE "+model);
-    for(i=0;i<smartphones.length;i++){
-      if(smartphones[i].model == model){
-        smartphones.splice(i,1);
-        removed =1;
-        break;
-      }
-    }
-    if(removed==0)
-      res.sendStatus(404);
-    else
-      res.sendStatus(200);
-  });*/
 
 
     app.listen(port,()=>{
