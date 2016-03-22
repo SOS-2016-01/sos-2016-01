@@ -162,7 +162,7 @@ var co2Ctl = require('./apiControllers/co2Controllers.js');
 
   //----------------------Api SmartPhones---------------------------------
 
-  /*app.get("/api/sandbox/smartphones",smartphonesControllers.getSmartphones);
+  app.get("/api/sandbox/smartphones",smartphonesControllers.getSmartphones);
   app.post("/api/sandbox/smartphones",smartphonesControllers.addSmartphone);
   app.delete("/api/sandbox/smartphones", smartphonesControllers.delete);
   app.put("/api/sandbox/smartphones", (req,res)=>{
@@ -177,7 +177,7 @@ var co2Ctl = require('./apiControllers/co2Controllers.js');
   });
   app.put("/api/sandbox/smartphones/:name",smartphonesControllers.update);
   app.delete("/api/sandbox/smartphones/:name", smartphonesControllers.deleteSmartphone);
-*/
+
 
 
   /*app.get("/api/sandbox/smartphones",(req,res)=>{
