@@ -10,7 +10,7 @@ var car = req.body;
 data.push(car);
 console.log("New co2 POST");
 console.log("Object recived: "+JSON.stringify(req.body));
-res.sendStatus(200);
+res.sendStatus(201);
 }
 
 module.exports.delete = function (req,res){
