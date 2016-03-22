@@ -69,7 +69,7 @@ var removed = 0;
 console.log("New smartphone DELETE "+name);
 for(i=0;i<smartphones.length;i++){
   if(smartphones[i].name == name){
-    smartphones.splice(i);
+    smartphones.splice(i,1);
     removed =1;
     break;
   }
