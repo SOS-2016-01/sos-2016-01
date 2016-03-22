@@ -161,31 +161,7 @@ var co2Ctl = require('./apiControllers/co2Controllers.js');
 
 
   //----------------------Api SmartPhones---------------------------------
-
-  app.get("/api/sandbox/smartphones",smartphonesControllers.getSmartphones);
-  app.post("/api/sandbox/smartphones",smartphonesControllers.addSmartphone);
-  app.delete("/api/sandbox/smartphones", smartphonesControllers.delete);
-  app.put("/api/sandbox/smartphones", (req,res)=>{
-    console.log("PUT not allowed");
-    res.sendStatus(405);
-  });
-  app.get("/api-test/smartphones/loadInitialData",smartphonesControllers.initialData);
-  app.get("/api/sandbox/smartphones/:name",smartphonesControllers.getSmartphone);
-  app.post("/api/sandbox/smartphones/:name", (req,res)=>{
-    console.log("POST not allowed");
-    res.sendStatus(405);
-  });
-  app.put("/api/sandbox/smartphones/:name",smartphonesControllers.update);
-  app.delete("/api/sandbox/smartphones/:name", smartphonesControllers.deleteSmartphone);
-
-
-
-
-
-
-
-
-  /*app.get("/api/sandbox/smartphones",(req,res)=>{
+  app.get("/api/sandbox/smartphones",(req,res)=>{
     console.log("New GET of resource SmartPhones");
     res.send(JSON.stringify(smartphones));
   });
@@ -275,7 +251,7 @@ var co2Ctl = require('./apiControllers/co2Controllers.js');
       res.sendStatus(404);
     else
       res.sendStatus(200);
-  });*/
+  });
 
 
     app.listen(port,()=>{
