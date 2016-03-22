@@ -185,8 +185,8 @@ app.delete("/api/v1/electrical-consume", electricalConsumeCtl.delete);
 app.put("/api/v1/electrical-consume", (req,res)=>{
   console.log("PUT not allowed");
   res.sendStatus(405);
-});*/
-app.get("/api/v1/electrical-consume/loadInitialData",electricalConsumeCtl.initialData);
+});
+app.get("/api/v1/electrical-consume/loadInitialData",electricalConsumeCtl.initialData);*/
 /*app.get("/api/v1/electrical-consume/:country",electricalConsumeCtl.getElectricalConsume);
 app.get("/api/v1/electrical-consume/:country/:year",electricalConsumeCtl.getCountryYear);
 app.post("/api/v1/electrical-consume/:name", (req,res)=>{
