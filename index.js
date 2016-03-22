@@ -162,7 +162,7 @@ var co2Ctl = require('./apiControllers/co2Controllers.js');
 
   //----------------------Api SmartPhones---------------------------------
 
-  app.get("/api/sandbox/smartphones",smartphonesControllers.getSmartphones);
+  /*app.get("/api/sandbox/smartphones",smartphonesControllers.getSmartphones);
   app.post("/api/sandbox/smartphones",smartphonesControllers.addSmartphone);
   app.delete("/api/sandbox/smartphones", smartphonesControllers.delete);
   app.put("/api/sandbox/smartphones", (req,res)=>{
@@ -177,7 +177,24 @@ var co2Ctl = require('./apiControllers/co2Controllers.js');
   });
   app.put("/api/sandbox/smartphones/:name",smartphonesControllers.update);
   app.delete("/api/sandbox/smartphones/:name", smartphonesControllers.deleteSmartphone);
+*/
 
+app.get("/api/v1/electrical-consume",electricalConsumeCtl.getData);
+app.post("/api/v1/electrical-consume",electricalConsumeCtl.addElectricalConsume);
+app.delete("/api/v1/electrical-consume", electricalConsumeCtl.delete);
+app.put("/api/v1/electrical-consume", (req,res)=>{
+  console.log("PUT not allowed");
+  res.sendStatus(405);
+});
+app.get("/api/v1/electrical-consume/loadInitialData",electricalConsumeCtl.initialData);
+app.get("/api/v1/electrical-consume/:country",electricalConsumeCtl.getElectricalConsume);
+app.get("/api/v1/electrical-consume/:country/:year",electricalConsumeCtl.getCountryYear);
+app.post("/api/v1/electrical-consume/:name", (req,res)=>{
+  console.log("POST not allowed");
+  res.sendStatus(405);
+});
+app.put("/api/v1/electrical-consume/:name",electricalConsumeCtl.update);
+app.delete("/api/v1/electrical-consume/:name", electricalConsumeCtl.deleteElectricalConsume);
 
 
   /*app.get("/api/sandbox/smartphones",(req,res)=>{
