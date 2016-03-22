@@ -51,6 +51,8 @@ res.sendStatus(200);
 module.exports.getCo2 = function (req,res){
   var country = req.params.country;
   var car = [];
+  var from = req.query.from;
+  var to = req.query.to;
   console.log("New GET of resource co2 of "+country);
   for(i=0;i<data.length;i++){
     if(data[i].country == country){
@@ -60,6 +62,19 @@ module.exports.getCo2 = function (req,res){
   for(i=0;i<data.length;i++){
     if(data[i].year == country){
       car.push(data[i]);
+    }
+  }
+  if(from && to){
+    for(i=0;i<car.length;i++){
+      equal=false;
+      for(year=from;year<=to;year++){
+        if(car[i].year==year){
+          equal=true;
+        }
+      }
+      if(!equal){
+        car.splice(i,1);
+      }
     }
   }
 
@@ -111,7 +126,7 @@ console.log("New co2 DELETE "+name);
 for(i=0;i<data.length;i++){
   if(data[i].name == name){
     //delete cars[i];
-    cars.splice(i);
+    cars.splice(i,1);
     removed =1;
     break;
   }
