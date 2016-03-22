@@ -21,10 +21,10 @@ res.sendStatus(200);
 
 module.exports.initialData = function (req,res){
 console.log("New initial smartphones data charge");
-smartphones = [{model : "S6",
+smartphones = [{name : "S6",
          brand : "Samsung",
          price : "499"},
-        {model: "P8",
+        {name: "P8",
          brand : "Huawei",
          price : "299"}];
 res.sendStatus(200);
