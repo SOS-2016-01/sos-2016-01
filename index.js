@@ -156,8 +156,8 @@ var co2Ctl = require('./apiControllers/co2Controllers.js');
     console.log("POST not allowed");
     res.sendStatus(405);
   });
-  app.put("/api/v1/co2/:name",co2Ctl.update);
-  app.delete("/api/v1/co2/:name", co2Ctl.deleteCo2);
+  app.put("/api/v1/co2/:country/:year",co2Ctl.update);
+  app.delete("/api/v1/co2/:country/:year", co2Ctl.deleteCo2);
 
 
   //----------------------Api SmartPhones---------------------------------

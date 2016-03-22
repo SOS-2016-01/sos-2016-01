@@ -103,11 +103,12 @@ module.exports.getCountryYear = function (req,res){
 }
 
 module.exports.update = function (req,res){
-var name = req.params.name;
+var country = req.params.country;
+var year = req.params.year;
 var updated = 0;
-console.log("New PUT of resource co2 of "+name);
+console.log("New PUT of resource co2 of "+country);
 for(i=0;i<data.length;i++){
-  if(data[i].name == name){
+  if(data[i].country == country && data[i].year==year){
     data[i]=req.body;
     updated = 1;
     break;
@@ -120,13 +121,14 @@ else
 }
 
 module.exports.deleteCo2 = function (req,res){
-var name = req.params.name;
+var country = req.params.country;
+var year = req.params.year;
 var removed = 0;
-console.log("New co2 DELETE "+name);
+console.log("New co2 DELETE "+country);
 for(i=0;i<data.length;i++){
-  if(data[i].name == name){
+  if(data[i].country == country&&data[i].year==year){
     //delete cars[i];
-    cars.splice(i,1);
+    data.splice(i,1);
     removed =1;
     break;
   }
