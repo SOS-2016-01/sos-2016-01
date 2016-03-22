@@ -2,6 +2,7 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var carsControllers = require('./apiControllers/carsControllers.js');
 var co2Ctl = require('./apiControllers/co2Controllers.js');
+var smartphonesControllers = require('./apiControllers/smartphonesControllers.js');
 
   var app = express();
   var port = (process.env.PORT || 8081);
@@ -162,7 +163,7 @@ var co2Ctl = require('./apiControllers/co2Controllers.js');
 
   //----------------------Api SmartPhones---------------------------------
 
-  /*app.get("/api/sandbox/smartphones",smartphonesControllers.getSmartphones);
+  app.get("/api/sandbox/smartphones",smartphonesControllers.getSmartphones);
   app.post("/api/sandbox/smartphones",smartphonesControllers.addSmartphone);
   app.delete("/api/sandbox/smartphones", smartphonesControllers.delete);
   app.put("/api/sandbox/smartphones", (req,res)=>{
@@ -177,7 +178,7 @@ var co2Ctl = require('./apiControllers/co2Controllers.js');
   });
   app.put("/api/sandbox/smartphones/:name",smartphonesControllers.update);
   app.delete("/api/sandbox/smartphones/:name", smartphonesControllers.deleteSmartphone);
-*/
+
 /*
 app.get("/api/v1/electrical-consume",electricalConsumeCtl.getData);
 app.post("/api/v1/electrical-consume",electricalConsumeCtl.addElectricalConsume);
