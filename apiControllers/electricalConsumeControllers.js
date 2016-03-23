@@ -59,6 +59,7 @@ module.exports.getElectricalConsume = function (req,res){
   var electricalConsume = [];
   var from = req.query.from;
   var to = req.query.to;
+  var limit = req.query.limit;
   console.log("New GET of resource electrical consume of "+country);
   for(i=0;i<data.length;i++){
     if(data[i].country == country){
