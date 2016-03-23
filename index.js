@@ -142,7 +142,7 @@ var electricalConsumeCtl = require('./apiControllers/electricalConsumeController
   app.put("/api/sandbox/cars/:name",carsControllers.update);
   app.delete("/api/sandbox/cars/:name", carsControllers.deleteCar);
 
-  //-----------------------------Api CO2-------------------------------
+  //-----------------------------Api CO2-----------------------------
   app.get("/api/v1/co2",co2Ctl.getData);
   app.post("/api/v1/co2",co2Ctl.addCo2);
   app.delete("/api/v1/co2", co2Ctl.delete);
