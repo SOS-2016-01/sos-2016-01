@@ -48,57 +48,57 @@ data = [{country : "brazil",
 res.sendStatus(200);
 }
 
-module.exports.getCo2 = function (req,res){
+module.exports.getOil = function (req,res){
   var country = req.params.country;
-  var car = [];
+  var oil = [];
   var from = req.query.from;
   var to = req.query.to;
-  console.log("New GET of resource co2 of "+country);
+  console.log("New GET of resource oil of "+country);
   for(i=0;i<data.length;i++){
     if(data[i].country == country){
-      car.push(data[i]);
+      oil.push(data[i]);
     }
   }
   for(i=0;i<data.length;i++){
     if(data[i].year == country){
-      car.push(data[i]);
+      oil.push(data[i]);
     }
   }
   if(from && to){
-    for(i=0;i<car.length;i++){
+    for(i=0;i<oil.length;i++){
       equal=false;
       for(year=from;year<=to;year++){
-        if(car[i].year==year){
+        if(oil[i].year==year){
           equal=true;
         }
       }
       if(!equal){
-        car.splice(i,1);
+        oil.splice(i,1);
       }
     }
   }
 
-  if(car.length==0)
+  if(oil.length==0)
     res.sendStatus(404);
     else{
-      res.send(JSON.stringify(car));
+      res.send(JSON.stringify(oil));
     }
 }
 
 module.exports.getCountryYear = function (req,res){
   var country = req.params.country;
   var year = req.params.year;
-  var car = [];
-  console.log("New GET of resource co2 of "+country+" and year "+year);
+  var oil = [];
+  console.log("New GET of resource oil of "+country+" and year "+year);
   for(i=0;i<data.length;i++){
     if(data[i].country === country && data[i].year == year){
-      car.push(data[i]);
+      oil.push(data[i]);
     }
   }
-  if(car.length==0)
+  if(oil.length==0)
     res.sendStatus(404);
   else{
-    res.send(JSON.stringify(car));
+    res.send(JSON.stringify(oil));
   }
 }
 
@@ -106,7 +106,7 @@ module.exports.update = function (req,res){
 var country = req.params.country;
 var year = req.params.year;
 var updated = 0;
-console.log("New PUT of resource co2 of "+country);
+console.log("New PUT of resource oil of "+country);
 for(i=0;i<data.length;i++){
   if(data[i].country == country && data[i].year==year){
     data[i]=req.body;
@@ -120,14 +120,13 @@ else
   res.sendStatus(200);
 }
 
-module.exports.deleteCo2 = function (req,res){
+module.exports.deleteoil = function (req,res){
 var country = req.params.country;
 var year = req.params.year;
 var removed = 0;
-console.log("New co2 DELETE "+country);
+console.log("New oil DELETE "+country);
 for(i=0;i<data.length;i++){
   if(data[i].country == country&&data[i].year==year){
-    //delete cars[i];
     data.splice(i,1);
     removed =1;
     break;
