@@ -31,21 +31,22 @@ var oilControllers = require('./apiControllers/oilControllers.js')
 
   //----------------------Api Oil---------------------------------
 
-  app.get("/api/v1/oil",oilControllers.getOil);
+  app.get("/api/v1/oil",oilControllers.getData);
   app.post("/api/v1/oil",oilControllers.addOil);
   app.delete("/api/v1/oil", oilControllers.delete);
   app.put("/api/v1/oil", (req,res)=>{
     console.log("PUT not allowed");
     res.sendStatus(405);
   });
-  app.get("/api-test/oil/loadInitialData",oilControllers.initialData);
-  app.get("/api/v1/oil/:name",oilControllers.getOil);
+  app.get("/api/v1/oil/loadInitialData",oilControllers.initialData);
+  app.get("/api/v1/oil/:country",oilControllers.getOil);
+  app.get("/api/v1/oil/:country/:year",oilControllers.getCountryYear);
   app.post("/api/v1/oil/:name", (req,res)=>{
     console.log("POST not allowed");
     res.sendStatus(405);
   });
-  app.put("/api/v1/oil/:name",oilControllers.update);
-  app.delete("/api/v1/oil/:name", oilControllers.deleteOil);
+  app.put("/api/v1/oil/:country/:year",oilControllers.update);
+  app.delete("/api/v1/oil/:country/:year", oilControllers.deleteOil);
 
 
   //----------------------Api Teams---------------------------------
