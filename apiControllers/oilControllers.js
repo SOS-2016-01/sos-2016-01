@@ -120,7 +120,7 @@ else
   res.sendStatus(200);
 }
 
-module.exports.deleteoil = function (req,res){
+module.exports.deleteOil = function (req,res){
 var country = req.params.country;
 var year = req.params.year;
 var removed = 0;
