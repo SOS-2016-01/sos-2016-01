@@ -11,13 +11,13 @@ module.exports.addTeam = function(req,res){
   console.log("New team POST");
   console.log("Object recived: "+JSON.stringify(req.body));
   res.sendStatus(200);
-});
+};
 
 module.exports.delete = function(req,res){
   console.log("New team DELETE");
   teams = [];
   res.sendStatus(200);
-});
+};
 
 //app.put("/api/sandbox/teams", (req,res)=>{
 //  console.log("PUT not allowed");
@@ -34,7 +34,7 @@ module.exports.initialData = function (req,res){
            year : "1889",
            city : "Barcelona"}];
   res.sendStatus(200);
-});
+};
 
 module.exports.getTeam = function (req,res){
   var name = req.params.name;
@@ -50,7 +50,7 @@ module.exports.getTeam = function (req,res){
   else{
     res.send(JSON.stringify(team));
   }
-});
+};
 
 //app.post("/api/sandbox/teams/:name", (req,res)=>{
 //  console.log("POST not allowed");
@@ -72,7 +72,7 @@ module.exports.update = function (req,res){
     res.sendStatus(404);
   else
     res.sendStatus(200);
-});
+};
 
 
 module.exports.deleteTeam = function (req,res){
@@ -90,4 +90,4 @@ module.exports.deleteTeam = function (req,res){
     res.sendStatus(404);
   else
     res.sendStatus(200);
-});
+};
