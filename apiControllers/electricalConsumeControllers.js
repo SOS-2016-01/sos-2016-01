@@ -6,11 +6,28 @@ res.send(JSON.stringify(data));
 }
 
 module.exports.addElectricalConsume = function (req,res){
-var electricalConsume = req.body;
-data.push(electricalConsume);
-console.log("New electrical consume POST");
-console.log("Object recived: "+JSON.stringify(req.body));
-res.sendStatus(201);
+
+  var electricalConsume = req.body;
+  var country=electricalConsume.country;
+  var year=electricalConsume.year;
+  var change=0;
+
+  for(i=0;i<data.length;i++){
+
+
+    if(data[i].country==country && data[i].year==year){
+      res.sendStatus(409);
+      change=1
+      break;
+    }
+  }
+  if(change==0){
+  data.push(electricalConsume);
+  console.log("New electrical consume POST");
+  console.log("Object recived: "+JSON.stringify(req.body));
+  res.sendStatus(201);
+  }
+
 }
 
 module.exports.delete = function (req,res){
