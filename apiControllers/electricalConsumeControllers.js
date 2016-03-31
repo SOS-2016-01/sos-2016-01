@@ -149,7 +149,7 @@ if(req.body.country!=ok.country && req.body.year!=ok.year){
   if(updated==0){
     res.sendStatus(404);
   }else{
-    data[ind]=ok;
+    data[ind]=req.body;
     res.sendStatus(200);
   }
 }
