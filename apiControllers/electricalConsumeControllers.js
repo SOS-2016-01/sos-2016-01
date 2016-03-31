@@ -126,7 +126,7 @@ module.exports.getCountryYear = function (req,res){
   }
 }
 
-module.exports.update = function (req,res){
+/*module.exports.update = function (req,res){
 var country = req.params.country;
 var year = req.params.year;
 var updated = 0;
@@ -152,6 +152,23 @@ if(req.body.country!=ok.country && req.body.year!=ok.year){
     data[ind]=ok;
     res.sendStatus(200);
   }
+}*/
+
+module.exports.update = function (req,res){
+var country = req.params.country;
+var updated = 0;
+console.log("New PUT of resource electrical consume of "+country);
+for(i=0;i<data.length;i++){
+  if(data[i].country == country){
+    data[i]=req.body;
+    updated = 1;
+    break;
+  }
+}
+if(updated==0)
+  res.sendStatus(404);
+else
+  res.sendStatus(200);
 }
 
 module.exports.deleteElectricalConsume = function (req,res){
