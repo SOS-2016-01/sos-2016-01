@@ -14,16 +14,32 @@ else{
 
 module.exports.addCo2 = function (req,res){
 var car = req.body;
+var add = true;
 var apikey = req.query.apikey;
-if(apikey===key){
-  data.push(car);
-  console.log("New co2 POST");
-  console.log("Object recived: "+JSON.stringify(req.body));
-  res.sendStatus(201);
+  if(apikey===key){
+    if(car.year && car.country && car.co2mtn && car.co2kg){
+    for(i=0;i<data.length;i++){
+      if(data[i].country === car.country && data[i].year == car.year){
+        add = false;
+      }
+    }
+    if(add){
+        data.push(car);
+        console.log("New co2 POST");
+        console.log("Object recived: "+JSON.stringify(req.body));
+        res.sendStatus(201);
+      }
+      else {
+        res.sendStatus(409);
+      }
+    }
+    else {
+      res.sendStatus(400);
+    }
   }
-else{
-    res.sendStatus(401);
-  }
+  else{
+      res.sendStatus(401);
+    }
 }
 
 module.exports.delete = function (req,res){
@@ -141,20 +157,28 @@ module.exports.getCountryYear = function (req,res){
 module.exports.update = function (req,res){
 var country = req.params.country;
 var year = req.params.year;
-var updated = 0;
+var updated = false;
+var badRequest = false;
+var sent = req.body;
 var apikey = req.query.apikey;
 if(apikey && apikey===key){
   console.log("New PUT of resource co2 of "+country);
   for(i=0;i<data.length;i++){
     if(data[i].country == country && data[i].year==year){
+        if(data[i].country==sent.country && data[i].year==sent.year){
       data[i]=req.body;
-      updated = 1;
+      updated = true;
+      }
+      else{
+        res.sendStatus(400);
+        badRequest = true;
+      }
       break;
     }
   }
-  if(updated==0)
+  if(!updated && !badRequest)
     res.sendStatus(404);
-  else
+  else if(updated)
     res.sendStatus(200);
   }
   else {
