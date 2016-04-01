@@ -89,7 +89,10 @@ data = [{country : "brazil",
 }
 
 module.exports.getOil = function (req,res){
+  var country1 = req.query.country;
+  var year1 = req.query.year;
   var country = req.params.country;
+  var year = req.params.country;
   var oil = [];
   var from = req.query.from;
   var to = req.query.to;
@@ -97,12 +100,12 @@ module.exports.getOil = function (req,res){
   if(apikey && apikey===key){
   console.log("New GET of resource oil of "+country);
   for(i=0;i<data.length;i++){
-    if(data[i].country == country){
+    if(data[i].country == country || data[i].country == country1){
       oil.push(data[i]);
     }
   }
   for(i=0;i<data.length;i++){
-    if(data[i].year == country){
+    if(data[i].year == year || data[i].country == year1){
       oil.push(data[i]);
     }
   }
