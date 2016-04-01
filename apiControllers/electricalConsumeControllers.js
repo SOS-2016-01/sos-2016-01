@@ -52,7 +52,7 @@ res.sendStatus(200);
 
 module.exports.initialData = function (req,res){
 var apikey = req.query.apikey;
-if(apikey && apikey===key){
+//if(apikey && apikey===key){
 console.log("New initial electrical consume data charge");
 data = [{country : "brazil",
          year : "2006",
@@ -85,9 +85,9 @@ data = [{country : "brazil",
         energyUse : "8.076.398",
         urbanPopulation : "26.440.579"}];
 res.sendStatus(200);
-}else{
+/*}else{
   res.sendStatus(401);
-}
+}*/
 }
 
 module.exports.getElectricalConsume = function (req,res){
