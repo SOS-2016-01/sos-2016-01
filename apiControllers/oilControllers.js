@@ -1,25 +1,62 @@
 var data = [];
+var key = "12345";
 
 module.exports.getData = function(req,res){
-console.log("New GET of resource oil");
-res.send(JSON.stringify(data));
+var apikey = req.query.apikey;
+if(apikey && apikey===key){
+  console.log("New GET of resource co2");
+  res.send(JSON.stringify(data));
+  }
+else{
+    res.sendStatus(401);
+  }
 }
 
 module.exports.addOil = function (req,res){
 var oil = req.body;
-data.push(oil);
-console.log("New oil POST");
-console.log("Object recived: "+JSON.stringify(req.body));
-res.sendStatus(201);
+var add = true;
+var apikey = req.query.apikey;
+if(apikey===key){
+  if(oil.year && oil.country && oil.diesel && oil.gasoline){
+  for(i=0;i<data.length;i++){
+    if(data[i].country === oil.country && data[i].year == oil.year){
+      add = false;
+    }
+  }
+  if(add){
+      data.push(car);
+      console.log("New oil POST");
+      console.log("Object recived: "+JSON.stringify(req.body));
+      res.sendStatus(201);
+    }
+    else {
+      res.sendStatus(409);
+    }
+  }
+  else {
+    res.sendStatus(400);
+  }
+}
+else{
+    res.sendStatus(401);
+  }
 }
 
 module.exports.delete = function (req,res){
-console.log("New oil DELETE");
-data = [];
-res.sendStatus(200);
+var apikey = req.query.apikey;
+if(apikey && apikey===key){
+  console.log("New oil DELETE");
+  data = [];
+  res.sendStatus(200);
+  }
+else{
+  res.sendStatus(401);
+  }
 }
 
 module.exports.initialData = function (req,res){
+var apikey = req.query.apikey;
+if(apikey && apikey===key){
 console.log("New initial oil data charge");
 data = [{country : "brazil",
          year : "2006",
@@ -45,7 +82,10 @@ data = [{country : "brazil",
         year : "2007",
         diesel : "1.3",
         gasoline : "0.8"}];
-res.sendStatus(200);
+        res.sendStatus(200);
+}else {
+  res.sendStatus(401);
+}
 }
 
 module.exports.getOil = function (req,res){
@@ -53,6 +93,8 @@ module.exports.getOil = function (req,res){
   var oil = [];
   var from = req.query.from;
   var to = req.query.to;
+  var apikey = req.query.apikey;
+  if(apikey && apikey===key){
   console.log("New GET of resource oil of "+country);
   for(i=0;i<data.length;i++){
     if(data[i].country == country){
@@ -84,11 +126,17 @@ module.exports.getOil = function (req,res){
       res.send(JSON.stringify(oil));
     }
 }
+else {
+  res.sendStatus(401);
+}
+}
 
 module.exports.getCountryYear = function (req,res){
   var country = req.params.country;
   var year = req.params.year;
   var oil = [];
+  var apikey = req.query.apikey;
+  if(apikey && apikey===key){
   console.log("New GET of resource oil of "+country+" and year "+year);
   for(i=0;i<data.length;i++){
     if(data[i].country === country && data[i].year == year){
@@ -101,29 +149,49 @@ module.exports.getCountryYear = function (req,res){
     res.send(JSON.stringify(oil));
   }
 }
+else{
+  res.sendStatus(401);
+}
+}
 
 module.exports.update = function (req,res){
 var country = req.params.country;
 var year = req.params.year;
-var updated = 0;
+var updated = false;
+var badRequest = false;
+var sent = req.body;
+var apikey = req.query.apikey;
+if(apikey && apikey===key){
 console.log("New PUT of resource oil of "+country);
 for(i=0;i<data.length;i++){
   if(data[i].country == country && data[i].year==year){
+    if(data[i].country==sent.country && data[i].year==sent.year){
     data[i]=req.body;
-    updated = 1;
-    break;
+    updated = true;
   }
+  else{
+    res.sendStatus(400);
+    badRequest = true;
+  }
+  break;
 }
-if(updated==0)
-  res.sendStatus(404);
-else
-  res.sendStatus(200);
+}
+if(!updated && !badRequest)
+res.sendStatus(404);
+else if(updated)
+res.sendStatus(200);
+}
+else {
+res.sendStatus(401);
+}
 }
 
 module.exports.deleteOil = function (req,res){
 var country = req.params.country;
 var year = req.params.year;
 var removed = 0;
+var apikey = req.query.apikey;
+if(apikey && apikey===key){
 console.log("New oil DELETE "+country);
 for(i=0;i<data.length;i++){
   if(data[i].country == country&&data[i].year==year){
@@ -136,4 +204,8 @@ if(removed==0)
   res.sendStatus(404);
 else
   res.sendStatus(200);
+}
+else {
+  res.sendStatus(401);
+}
 }
