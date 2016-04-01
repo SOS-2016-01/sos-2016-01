@@ -126,7 +126,7 @@ module.exports.getCountryYear = function (req,res){
   }
 }
 
-module.exports.update = function (req,res){
+/*module.exports.update = function (req,res){
 var country = req.params.country;
 var year = req.params.year;
 var updated = 0;
@@ -141,6 +141,38 @@ for(i=0;i<data.length;i++){
     updated = 1;
     break;
   }
+}*/
+
+module.exports.update = function (req,res){
+var country = req.params.country;
+var year = req.params.year;
+var updated = false;
+var badRequest = false;
+var sent = req.body;
+var apikey = req.query.apikey;
+//if(apikey && apikey===key){
+  console.log("New PUT of resource electrical consume of "+country);
+  for(i=0;i<data.length;i++){
+    if(data[i].country == country && data[i].year==year){
+        if(data[i].country==sent.country && data[i].year==sent.year){
+      data[i]=req.body;
+      updated = true;
+      }
+      else{
+        res.sendStatus(400);
+        badRequest = true;
+      }
+      break;
+    }
+  }
+  if(!updated && !badRequest)
+    res.sendStatus(404);
+  else if(updated)
+    res.sendStatus(200);
+  /*}
+  else {
+    res.sendStatus(401);
+  }*/
 }
 
 if(req.body.country!=ok.country && req.body.year!=ok.year){
