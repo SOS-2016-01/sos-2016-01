@@ -164,8 +164,8 @@ module.exports.getCountryYear = function (req,res){
 module.exports.update = function (req,res){
 var country = req.params.country;
 var year = req.params.year;
-var updated = 0;
-var badRequest = 0;
+var updated = false;
+var badRequest = false;
 var sent = req.body;
 var apikey = req.query.apikey;
 if(apikey && apikey===key){
@@ -174,18 +174,18 @@ if(apikey && apikey===key){
     if(data[i].country == country && data[i].year==year){
         if(data[i].country==req.body.country && data[i].year==req.body.year){
       data[i]=req.body;
-      updated = 1;
+      updated = true;
       }
       else{
         res.sendStatus(400);
-        badRequest = 1;
+        badRequest = true;
       }
-      //break;
+      break;
     }
   }
-  if(updated==0 && badRequest==0)
+  if(!updated && !badRequest)
     res.sendStatus(404);
-  else if(updated==1)
+  else if(updated)
     res.sendStatus(200);
   }
   else {
