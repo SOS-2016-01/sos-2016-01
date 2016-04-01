@@ -24,7 +24,7 @@ if(apikey===key){
     }
   }
   if(add){
-      data.push(car);
+      data.push(oil);
       console.log("New oil POST");
       console.log("Object recived: "+JSON.stringify(req.body));
       res.sendStatus(201);
