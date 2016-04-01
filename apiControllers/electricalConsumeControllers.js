@@ -4,7 +4,7 @@ var key = "asmsfc";
 module.exports.getData = function(req,res){
 var apikey = req.query.apikey;
 if(apikey && apikey===key){
-  console.log("New GET of resource electrical consume");
+  console.log("New GET of resource electrical");
   res.send(JSON.stringify(data));
   }
 else{
