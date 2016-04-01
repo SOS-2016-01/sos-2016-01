@@ -180,7 +180,7 @@ if(apikey && apikey===key){
         res.sendStatus(400);
         badRequest = true;
       }
-      break;
+      //break;
     }
   }
   if(!updated && !badRequest)
