@@ -4,7 +4,7 @@ var key = "asmsfc";
 module.exports.getData = function(req,res){
 var apikey = req.query.apikey;
 if(apikey && apikey===key){
-  console.log("New GET of resource electrical");
+  console.log("New GET of resource electrical consume");
   res.send(JSON.stringify(data));
   }
 else{
@@ -129,7 +129,7 @@ module.exports.getElectricalConsume = function (req,res){
     if(electricalConsume.length==0)
       res.sendStatus(404);
     else{
-        res.send(JSON.stringify(car));
+        res.send(JSON.stringify(electricalConsume));
       }
     }
   else {
@@ -151,7 +151,7 @@ module.exports.getCountryYear = function (req,res){
     if(electricalConsume.length==0)
       res.sendStatus(404);
     else{
-        res.send(JSON.stringify(car));
+        res.send(JSON.stringify(electricalConsume));
       }
   }
   else{
