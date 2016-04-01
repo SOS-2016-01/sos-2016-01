@@ -13,34 +13,32 @@ else{
 }
 
 module.exports.addElectricalConsume = function (req,res){
-var electricalConsume = req.body;
-var add = true;
-var apikey = req.query.apikey;
-  if(apikey===key){
-    if(electricalConsume.year && electricalConsume.country && electricalConsume.ePowerConsum && electricalConsume.energyUse
-    && electricalConsume.urbanPopulation){
-    for(i=0;i<data.length;i++){
-      if(data[i].country === car.country && data[i].year == car.year){
-        add = false;
-      }
-    }
-    if(add){
-        data.push(electricalConsume);
-        console.log("New electrical consume POST");
-        console.log("Object recived: "+JSON.stringify(req.body));
-        res.sendStatus(201);
-      }
-      else {
-        res.sendStatus(409);
-      }
-    }
-    else {
-      res.sendStatus(400);
+
+  var electricalConsume = req.body;
+  var country=electricalConsume.country;
+  var year=electricalConsume.year;
+  var change=0;
+  var apikey = req.query.apikey;
+  if(apikey && apikey===key){
+  for(i=0;i<data.length;i++){
+
+
+    if(data[i].country==country && data[i].year==year){
+      res.sendStatus(409);
+      change=1
+      break;
     }
   }
-  else{
-      res.sendStatus(401);
-    }
+  if(change==0){
+  data.push(electricalConsume);
+  console.log("New electrical consume POST");
+  console.log("Object recived: "+JSON.stringify(req.body));
+  res.sendStatus(201);
+  }}
+else{
+    res.sendStatus(401);
+  }
+
 }
 
 module.exports.delete = function (req,res){
