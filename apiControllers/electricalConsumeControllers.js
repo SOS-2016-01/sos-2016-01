@@ -1,14 +1,8 @@
 var data = [];
-var key = "asmsfc";
 
 module.exports.getData = function(req,res){
-var apikey = req.query.apikey;
-if(apikey && apikey===key){
-  console.log("New GET of resource electrical consume");
-  res.send(JSON.stringify(data));
-}else{
-  res.sendStatus(401);
-}
+console.log("New GET of resource electrical consume");
+res.send(JSON.stringify(data));
 }
 
 module.exports.addElectricalConsume = function (req,res){
@@ -17,8 +11,7 @@ module.exports.addElectricalConsume = function (req,res){
   var country=electricalConsume.country;
   var year=electricalConsume.year;
   var change=0;
-  var apikey = req.query.apikey;
-if(apikey===key){
+
   for(i=0;i<data.length;i++){
 
 
@@ -34,25 +27,16 @@ if(apikey===key){
   console.log("Object recived: "+JSON.stringify(req.body));
   res.sendStatus(201);
   }
-}else{
-  res.sendStatus(401);
-}
+
 }
 
 module.exports.delete = function (req,res){
-var apikey = req.query.apikey;
-if(apikey && apikey===key){
 console.log("New electrical consume DELETE");
 data = [];
 res.sendStatus(200);
-}else{
-  res.sendStatus(401);
-}
 }
 
 module.exports.initialData = function (req,res){
-var apikey = req.query.apikey;
-//if(apikey && apikey===key){
 console.log("New initial electrical consume data charge");
 data = [{country : "brazil",
          year : "2006",
@@ -85,23 +69,17 @@ data = [{country : "brazil",
         energyUse : "8.076.398",
         urbanPopulation : "26.440.579"}];
 res.sendStatus(200);
-/*}else{
-  res.sendStatus(401);
-}*/
 }
 
 module.exports.getElectricalConsume = function (req,res){
   var country = req.params.country;
-  var year = req.params.year;
   var electricalConsume = [];
   var from = req.query.from;
   var to = req.query.to;
   //var limit = req.query.limit;
-  var apikey = req.query.apikey;
-  if(apikey && apikey===key){
-  console.log("New GET of resource electrical consume of "+country+" and year "+year);
+  console.log("New GET of resource electrical consume of "+country);
   for(i=0;i<data.length;i++){
-    if(data[i].country === country && data[i].year == year){
+    if(data[i].country == country){
       electricalConsume.push(data[i]);
     }
   }
@@ -109,7 +87,7 @@ module.exports.getElectricalConsume = function (req,res){
     if(data[i].year == country){
       electricalConsume.push(data[i]);
     }
-  }/*
+  }
   if(from && to){
     for(i=0;i<electricalConsume.length;i++){
       equal=false;
@@ -122,17 +100,13 @@ module.exports.getElectricalConsume = function (req,res){
         electricalConsume.splice(i,1);
       }
     }
-  }*/
+  }
 
   if(electricalConsume.length==0)
     res.sendStatus(404);
     else{
       res.send(JSON.stringify(electricalConsume));
     }
-
-  }esle{
-    res.sendStatus(401);
-  }
 }
 
 module.exports.getCountryYear = function (req,res){
@@ -152,7 +126,7 @@ module.exports.getCountryYear = function (req,res){
   }
 }
 
-/*module.exports.update = function (req,res){
+module.exports.update = function (req,res){
 var country = req.params.country;
 var year = req.params.year;
 var updated = 0;
@@ -167,47 +141,22 @@ for(i=0;i<data.length;i++){
     updated = 1;
     break;
   }
-}*/
-
-module.exports.update = function (req,res){
-var country = req.params.country;
-var year = req.params.year;
-var updated = false;
-var badRequest = false;
-var sent = req.body;
-var apikey = req.query.apikey;
-if(apikey && apikey===key){
-  console.log("New PUT of resource electrical consume of "+country);
-  for(i=0;i<data.length;i++){
-    if(data[i].country == country && data[i].year==year){
-        if(data[i].country==sent.country && data[i].year==sent.year){
-      data[i]=req.body;
-      updated = true;
-      }
-      else{
-        res.sendStatus(400);
-        badRequest = true;
-      }
-      break;
-    }
-  }
-  if(!updated && !badRequest)
-    res.sendStatus(404);
-  else if(updated)
-    res.sendStatus(200);
-  }
-  else {
-    res.sendStatus(401);
-  }
 }
 
-
-
+if(req.body.country!=ok.country && req.body.year!=ok.year){
+  res.sendStatus(400);
+}else{
+  if(updated==0){
+    res.sendStatus(404);
+  }else{
+    data[ind]=req.body;
+    res.sendStatus(200);
+  }
+}
+}
 module.exports.deleteElectricalConsume = function (req,res){
 var country = req.params.country;
 var removed = 0;
-var apikey = req.query.apikey;
-if(apikey && apikey===key){
 console.log("New electrical consume DELETE "+country);
 for(i=0;i<data.length;i++){
   if(data[i].country == country){
@@ -221,8 +170,4 @@ if(removed==0)
   res.sendStatus(404);
 else
   res.sendStatus(200);
-}
-else {
-  res.sendStatus(401);
-}
 }
