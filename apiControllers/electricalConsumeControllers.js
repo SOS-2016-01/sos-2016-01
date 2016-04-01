@@ -149,7 +149,7 @@ var year = req.params.year;
 var updated = false;
 var badRequest = false;
 var sent = req.body;
-var apikey = req.query.apikey;
+//var apikey = req.query.apikey;
 //if(apikey && apikey===key){
   console.log("New PUT of resource electrical consume of "+country);
   for(i=0;i<data.length;i++){
