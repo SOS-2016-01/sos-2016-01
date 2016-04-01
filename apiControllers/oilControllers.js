@@ -134,12 +134,15 @@ else {
 module.exports.getCountryYear = function (req,res){
   var country = req.params.country;
   var year = req.params.year;
+  var country1 = req.query.country;
+  var year1 = req.query.year;
   var oil = [];
   var apikey = req.query.apikey;
   if(apikey && apikey===key){
   console.log("New GET of resource oil of "+country+" and year "+year);
   for(i=0;i<data.length;i++){
-    if(data[i].country === country && data[i].year == year){
+    if(data[i].country === country || data[i].country === country1
+          && data[i].year == year || data[i].year == year){
       oil.push(data[i]);
     }
   }
