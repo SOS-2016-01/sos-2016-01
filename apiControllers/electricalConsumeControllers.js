@@ -172,7 +172,7 @@ if(apikey && apikey===key){
   console.log("New PUT of resource electrical consume of "+country);
   for(i=0;i<data.length;i++){
     if(data[i].country == country && data[i].year==year){
-        if(data[i].country==sent.country && data[i].year==sent.year){
+        if(data[i].country==req.body.country && data[i].year==req.body.year){
       data[i]=req.body;
       updated = true;
       }
