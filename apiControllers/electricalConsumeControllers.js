@@ -3,14 +3,54 @@ var key = "asmsfc";
 
 module.exports.getData = function(req,res){
 var apikey = req.query.apikey;
-if(apikey && apikey===key){
-  console.log("New GET of resource electrical consume");
+var aux=0;
+//Paginacion
+var limit = req.query.limit;
+var offset = req.query.offset;
+//Busqueda?
+var from1 = req.query.from;
+var to = req.query.to;
+  if(apikey && apikey===key){
+    //Paginacion
+    if(limit && offset){
+        aux = data.slice(offset,data.length);
+        aux = aux.slice(0,limit);
+        console.log("New GET of resource electrical consume with limit is "+limit+" and offset is "+offset);
+        res.send(aux);
+      }else if(from1 && to){
+        for(i=0;i<data.length;i++){
+            if(data[i].year>=from1 || data[i].year<=to){
+              aux.push(data[i]);
+            }
+        }
+        console.log("New GET of resource electrical consume with from is "+from1+" and to is "+to);
+        res.send(aux);
+      }else if(from1){
+        for(i=0;i<data.length;i++){
+              if(data[i].year>=from1){
+                aux.push(data[i]);
+              }
+            }
+        console.log("New GET of resource electrical consume with from is "+from1);
+        res.send(aux);
+      }else if(to){
+        for(i=0;i<data.length;i++){
+            if(data[i].year<=to){
+              aux.push(data[i]);
+            }
+        }
+        console.log("New GET of resource electrical consume with to is "+to);
+        res.send(aux);
+      }else{
+  console.log("New GET of resource electrical consume"+from1);
   res.send(JSON.stringify(data));
-  }
-else{
-    res.sendStatus(401);
-  }
 }
+
+}else{
+res.sendStatus(401);
+}
+}
+
 
 module.exports.addElectricalConsume = function (req,res){
 
@@ -96,23 +136,39 @@ if(apikey && apikey===key){
 
 module.exports.getElectricalConsume = function (req,res){
   var country = req.params.country;
+  var year = req.params.year; //
   var electricalConsume = [];
   var from = req.query.from;
   var to = req.query.to;
   var apikey = req.query.apikey;
+  //PAginacion
+  var limit = req.query.limit;
+  var offset = req.query.offset;
+
   if(apikey && apikey===key){
     console.log("New GET of resource electrical consume of "+country);
+    //Busca pais
     for(i=0;i<data.length;i++){
       if(data[i].country == country){
        electricalConsume.push(data[i]);
       }
     }
+    //Busca año
     for(i=0;i<data.length;i++){
-      if(data[i].year == country){
+      if(data[i].year == country){ //
         electricalConsume.push(data[i]);
       }
     }
-    if(from && to){
+    //Pagincion
+    if(limit && offset){
+      if(electricalConsume.length!=0){
+        aux = electricalConsume.slice(offset,electricalConsume.length);
+        aux = aux.slice(0,limit);
+        console.log("New GET of resource electrical consume with limit is "+limit+" and offset is "+offset);
+        res.send(aux);
+      }
+    }
+    /*if(from && to){
       for(i=0;i<electricalConsume.length;i++){
         equal=false;
         for(year=from;year<=to;year++){
@@ -124,7 +180,7 @@ module.exports.getElectricalConsume = function (req,res){
           electricalConsume.splice(i,1);
         }
       }
-    }
+    }*/
 
     if(electricalConsume.length==0)
       res.sendStatus(404);
@@ -136,6 +192,8 @@ module.exports.getElectricalConsume = function (req,res){
     res.sendStatus(401);
   }
 }
+
+
 module.exports.getCountryYear = function (req,res){
   var country = req.params.country;
   var year = req.params.year;
