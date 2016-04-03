@@ -3,28 +3,45 @@ var key = "asmsfc";
 
 module.exports.getData = function(req,res){
 var apikey = req.query.apikey;
-var aux=0;
+var aux=[];
+var ok=false;
 //Paginacion
 var limit = req.query.limit;
 var offset = req.query.offset;
-//Busqueda?
+//Busqueda
 var from1 = req.query.from;
 var to = req.query.to;
   if(apikey && apikey===key){
-    //Paginacion
+    //Busqueda y paginacion
+    if(limit && offset && from1 && to){
+      for(i=0;i<data.length;i++){
+          if(data[i].year>=from1 && data[i].year<=to){
+            aux.push(data[i]);
+          }
+      }
+      ok=true;
+      aux = aux.slice(offset,data.length);
+      aux = aux.slice(0,limit);
+      console.log("New GET of resource electrical consume with limit is "+limit+", offset is "+offset+", from is "+from1+" and to is "+to);
+
+
+  }else{
     if(limit && offset){
         aux = data.slice(offset,data.length);
         aux = aux.slice(0,limit);
         console.log("New GET of resource electrical consume with limit is "+limit+" and offset is "+offset);
-        res.send(aux);
-      }else if(from1 && to){
+        ok=true;
+        //Busqueda from y to
+      }
+      if(from1 && to){
         for(i=0;i<data.length;i++){
-            if(data[i].year>=from1 || data[i].year<=to){
+            if(data[i].year>=from1 && data[i].year<=to){
               aux.push(data[i]);
             }
         }
         console.log("New GET of resource electrical consume with from is "+from1+" and to is "+to);
-        res.send(aux);
+        ok=true;
+        //Busqueda from
       }else if(from1){
         for(i=0;i<data.length;i++){
               if(data[i].year>=from1){
@@ -32,7 +49,8 @@ var to = req.query.to;
               }
             }
         console.log("New GET of resource electrical consume with from is "+from1);
-        res.send(aux);
+        ok=true;
+        //Busqueda con to
       }else if(to){
         for(i=0;i<data.length;i++){
             if(data[i].year<=to){
@@ -40,9 +58,13 @@ var to = req.query.to;
             }
         }
         console.log("New GET of resource electrical consume with to is "+to);
+        ok=true
+      }
+}
+      if(ok==true){
         res.send(aux);
       }else{
-  console.log("New GET of resource electrical consume"+from1);
+  console.log("New GET of resource electrical consume");
   res.send(JSON.stringify(data));
 }
 
@@ -104,9 +126,14 @@ if(apikey && apikey===key){
            urbanPopulation : "158.552.239"},
           {country : "brazil",
            year : "2007",
-           co2mtn : "2.137.765",
-           energyUse : "1.221.362",
-           urbanPopulation : "160.874.827"},
+           co2mtn : "cambiar",
+           energyUse : "1276,27",
+           urbanPopulation : "163117673"},
+           {country : "brazil",
+            year : "2008",
+            co2mtn : "2,198,484",
+            energyUse : "1276,27",
+            urbanPopulation : "163117673"},
           {country : "spain",
            year : "2006",
            ePowerConsum : "6.105.076",
@@ -136,14 +163,19 @@ if(apikey && apikey===key){
 
 module.exports.getElectricalConsume = function (req,res){
   var country = req.params.country;
-  var year = req.params.year; //
+  var year = req.params.year;
   var electricalConsume = [];
-  var from = req.query.from;
-  var to = req.query.to;
   var apikey = req.query.apikey;
+  var ok = false;
+  var okb = false;
+  var oks=false;
+  var aux=[];
   //PAginacion
   var limit = req.query.limit;
   var offset = req.query.offset;
+  //Busqueda
+  var from1 = req.query.from;
+  var to = req.query.to;
 
   if(apikey && apikey===key){
     console.log("New GET of resource electrical consume of "+country);
@@ -151,47 +183,90 @@ module.exports.getElectricalConsume = function (req,res){
     for(i=0;i<data.length;i++){
       if(data[i].country == country){
        electricalConsume.push(data[i]);
+       ok=true;
       }
     }
     //Busca año
     for(i=0;i<data.length;i++){
       if(data[i].year == country){ //
         electricalConsume.push(data[i]);
+        ok=true;
       }
     }
-    //Pagincion
-    if(limit && offset){
-      if(electricalConsume.length!=0){
-        aux = electricalConsume.slice(offset,electricalConsume.length);
-        aux = aux.slice(0,limit);
-        console.log("New GET of resource electrical consume with limit is "+limit+" and offset is "+offset);
-        res.send(aux);
-      }
-    }
-    /*if(from && to){
+  /*  if(limit && offset && from1 && to){
       for(i=0;i<electricalConsume.length;i++){
-        equal=false;
-        for(year=from;year<=to;year++){
-          if(electricalConsume[i].year==year){
-            equal=true;
+          if(electricalConsume[i].year>=from1 && electricalConsume[i].year<=to){
+            aux.push(electricalConsume[i]);
           }
-        }
-        if(!equal){
-          electricalConsume.splice(i,1);
-        }
       }
-    }*/
+      okb=true;
+      aux = aux.slice(offset,data.length);
+      aux = aux.slice(0,limit);
+      console.log("New GET of resource electrical consume with limit is "+limit+", offset is "+offset+", from is "+from1+" and to is "+to);
 
-    if(electricalConsume.length==0)
-      res.sendStatus(404);
-    else{
-        res.send(JSON.stringify(electricalConsume));
+
+    }else{
+*/
+
+
+
+
+
+
+
+
+    //Pagincion
+   if(limit && offset){
+      if(electricalConsume.length!=0){
+        electricalConsume = electricalConsume.slice(offset,electricalConsume.length);
+        electricalConsume = electricalConsume.slice(0,limit);
+        console.log("New GET of resource electrical consume with limit is "+limit+" and offset is "+offset);
+        //res.send(aux);
+        ok=true;
       }
     }
-  else {
-    res.sendStatus(401);
-  }
+   //Busqueda
+    if(from1 && to){
+      for(i=0;i<electricalConsume.length;i++){
+          if(electricalConsume[i].year>=from1 && electricalConsume[i].year<=to){
+            aux.push(electricalConsume[i]);
+          }
+      }
+      console.log("New GET of resource electrical consume with from is "+from1+" and to is "+to);
+      okb=true;
+      //Busqueda from
+    }else if(from1){
+      for(i=0;i<electricalConsume.length;i++){
+            if(electricalConsume[i].year>=from1){
+              aux.push(electricalConsume[i]);
+            }
+          }
+      console.log("New GET of resource electrical consume with from is "+from1);
+      okb=true;
+    }else if(to){
+      for(i=0;i<electricalConsume.length;i++){
+          if(electricalConsume[i].year<=to){
+            aux.push(electricalConsume[i]);
+          }
+      }
+      console.log("New GET of resource electrical consume with to is "+to);
+      okb=true
+    }
+//}
+    if(electricalConsume.length==0){
+      res.sendStatus(404);
+    }else if(okb){
+      res.send(aux);
+    }else{
+      res.send(electricalConsume);
+    }
+
+}else{
+  res.sendStatus(401);
 }
+}
+
+
 
 
 module.exports.getCountryYear = function (req,res){
