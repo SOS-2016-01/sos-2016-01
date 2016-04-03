@@ -8,40 +8,31 @@ var from = req.query.from;
 var to = req.query.to;
 var offset = req.query.offset;
 var aux = [];
-aux = data;
 if(apikey && apikey===key){
   console.log("New GET of resource co2");
   if(from && to){
-    for(i=0;i<aux.length;i++){
-      equal=false;
-        if(aux[i].year>=from && aux[i].year<=to){
-          equal=true;
+    for(i=0;i<data.length;i++){
+        if(data[i].year>=from && data[i].year<=to){
+          aux.push(data[i]);
         }
-      if(!equal){
-        aux.splice(i,1);
-      }
     }
   }else if (from){
-    for(i=0;i<aux.length;i++){
-      equal=false;
-        if(aux[i].year>=from){
-          equal=true;
-      }
-      if(!equal){
-        aux.splice(i,1);
+    for(i=0;i<data.length;i++){
+        if(data[i].year>=from){
+            aux.push(data[i]);
       }
   }
   }else if (to){
-  for(i=0;i<aux.length;i++){
-    equal=false;
-      if(aux[i].year<=to){
-        equal=true;
-    }
-    if(!equal){
-      aux.splice(i,1);
+  for(i=0;i<data.length;i++){
+      if(data[i].year<=to){
+        aux.push(data[i]);
     }
   }
+} else {
+  for(i=0;i<data.length;i++){
+    aux.push(data[i]);
   }
+}
   if(limit && offset){
     aux = aux.slice(offset,data.length);
     aux = aux.slice(0,limit);
