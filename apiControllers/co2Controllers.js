@@ -3,9 +3,50 @@ var key = "vdcgrc";
 
 module.exports.getData = function(req,res){
 var apikey = req.query.apikey;
+var limit = req.query.limit;
+var from = req.query.from;
+var to = req.query.to;
+var offset = req.query.offset;
+var aux = [];
+aux = data;
 if(apikey && apikey===key){
   console.log("New GET of resource co2");
-  res.send(JSON.stringify(data));
+  if(from && to){
+    for(i=0;i<aux.length;i++){
+      equal=false;
+        if(aux[i].year>=from && aux[i].year<=to){
+          equal=true;
+        }
+      if(!equal){
+        aux.splice(i,1);
+      }
+    }
+  }else if (from){
+    for(i=0;i<aux.length;i++){
+      equal=false;
+        if(aux[i].year>=from){
+          equal=true;
+      }
+      if(!equal){
+        aux.splice(i,1);
+      }
+  }
+  }else if (to){
+  for(i=0;i<aux.length;i++){
+    equal=false;
+      if(aux[i].year<=to){
+        equal=true;
+    }
+    if(!equal){
+      aux.splice(i,1);
+    }
+  }
+  }
+  if(limit && offset){
+    aux = aux.slice(offset,data.length);
+    aux = aux.slice(0,limit);
+  }
+  res.send(JSON.stringify(aux));
   }
 else{
     res.sendStatus(401);
@@ -94,6 +135,8 @@ module.exports.getCo2 = function (req,res){
   var car = [];
   var from = req.query.from;
   var to = req.query.to;
+  var limit = req.query.limit;
+  var offset = req.query.offset;
   var apikey = req.query.apikey;
   if(apikey && apikey===key){
     console.log("New GET of resource co2 of "+country);
@@ -110,17 +153,38 @@ module.exports.getCo2 = function (req,res){
     if(from && to){
       for(i=0;i<car.length;i++){
         equal=false;
-        for(year=from;year<=to;year++){
-          if(car[i].year==year){
+          if(car[i].year>=from && car[i].year<=to){
             equal=true;
           }
-        }
         if(!equal){
           car.splice(i,1);
         }
       }
+    }else if (from){
+      for(i=0;i<car.length;i++){
+        equal=false;
+          if(car[i].year>=from){
+            equal=true;
+        }
+        if(!equal){
+          car.splice(i,1);
+        }
     }
-
+  }else if (to){
+    for(i=0;i<car.length;i++){
+      equal=false;
+        if(car[i].year<=to){
+          equal=true;
+      }
+      if(!equal){
+        car.splice(i,1);
+      }
+    }
+  }
+  if(limit && offset){
+    car = car.slice(offset,data.length);
+    car = car.slice(0,limit);
+  }
     if(car.length==0)
       res.sendStatus(404);
     else{
