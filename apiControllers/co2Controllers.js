@@ -14,7 +14,7 @@ if(apikey && apikey===key){
   if(from && to){
     for(i=0;i<aux.length;i++){
       equal=false;
-        if(aux[i].year<=from && aux[i].year>=to){
+        if(aux[i].year>=from && aux[i].year<=to){
           equal=true;
         }
       if(!equal){
@@ -24,7 +24,7 @@ if(apikey && apikey===key){
   }else if (from){
     for(i=0;i<aux.length;i++){
       equal=false;
-        if(aux[i].year<=from){
+        if(aux[i].year>=from){
           equal=true;
       }
       if(!equal){
@@ -34,7 +34,7 @@ if(apikey && apikey===key){
   }else if (to){
   for(i=0;i<aux.length;i++){
     equal=false;
-      if(aux[i].year>=to){
+      if(aux[i].year<=to){
         equal=true;
     }
     if(!equal){
