@@ -129,6 +129,7 @@ module.exports.getCo2 = function (req,res){
   var limit = req.query.limit;
   var offset = req.query.offset;
   var apikey = req.query.apikey;
+  var aux = [];
   if(apikey && apikey===key){
     console.log("New GET of resource co2 of "+country);
     for(i=0;i<data.length;i++){
@@ -143,43 +144,35 @@ module.exports.getCo2 = function (req,res){
     }
     if(from && to){
       for(i=0;i<car.length;i++){
-        equal=false;
-          if(car[i].year<=from && car[i].year>=to){
-            equal=true;
+          if(car[i].year>=from && car[i].year<=to){
+            aux.push(car[i]);
           }
-        if(!equal){
-          car.splice(i,1);
-        }
       }
     }else if (from){
       for(i=0;i<car.length;i++){
-        equal=false;
-          if(car[i].year<=from){
-            equal=true;
-        }
-        if(!equal){
-          car.splice(i,1);
+          if(car[i].year>=from){
+            aux.push(car[i]);
         }
     }
   }else if (to){
     for(i=0;i<car.length;i++){
-      equal=false;
-        if(car[i].year>=to){
-          equal=true;
+        if(car[i].year<=to){
+          aux.push(car[i]);
       }
-      if(!equal){
-        car.splice(i,1);
-      }
+    }
+  }else{
+    for(i=0;i<car.length;i++){
+      aux.push(car[i]);
     }
   }
   if(limit && offset){
-    car = car.slice(offset,data.length);
-    car = car.slice(0,limit);
+    aux = aux.slice(offset,data.length);
+    aux = aux.slice(0,limit);
   }
-    if(car.length==0)
+    if(aux.length==0)
       res.sendStatus(404);
     else{
-        res.send(JSON.stringify(car));
+        res.send(JSON.stringify(aux));
       }
     }
   else {
