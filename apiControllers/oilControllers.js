@@ -4,7 +4,7 @@ var key = "12345";
 module.exports.getData = function(req,res){
 var apikey = req.query.apikey;
 if(apikey && apikey===key){
-  console.log("New GET of resource co2");
+  console.log("New GET of resource oil");
   res.send(JSON.stringify(data));
   }
 else{
@@ -134,24 +134,23 @@ else {
 module.exports.getCountryYear = function (req,res){
   var country = req.params.country;
   var year = req.params.year;
-  var country1 = req.query.country;
-  var year1 = req.query.year;
   var oil = [];
   var apikey = req.query.apikey;
   if(apikey && apikey===key){
   console.log("New GET of resource oil of "+country+" and year "+year);
+  if(country || year){
   for(i=0;i<data.length;i++){
-    if(data[i].country === country && data[i].year == year){
+    if(data[i].country === country || data[i].year == year){
       oil.push(data[i]);
-    }
-    if(data[i].country === country1 && data[i].year == year1){
-      oil.push(data[i]);
+      break;
     }
   }
-  if(oil.length==0)
+  }
+  if(oil.length!=0)
     res.sendStatus(404);
   else{
-    res.send(JSON.stringify(oil));
+    // res.send(JSON.stringify(oil));
+    res.send(oil);
   }
 }
 else{
