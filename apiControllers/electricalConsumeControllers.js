@@ -250,7 +250,7 @@ module.exports.getElectricalConsume = function (req,res){
           }
       }
       console.log("New GET of resource electrical consume with to is "+to);
-      okb=true
+      okb=true;
     }
 //}
     if(electricalConsume.length==0){
