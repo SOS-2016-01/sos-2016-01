@@ -220,7 +220,7 @@ module.exports.getCountryYear = function (req,res){
   if(apikey && apikey===key){
   console.log("New GET of resource oil of "+country+" and year "+year);
   for(i=0;i<data.length;i++){
-    if(data[i].country === country || data[i].year == year){
+    if(data[i].country === country && data[i].year == year){
       oil.push(data[i]);
     }
   }
