@@ -33,7 +33,7 @@ if(apikey && apikey===key){
     aux.push(data[i]);
   }
 }
-  if(limit && offset){
+  if(limit && offset){//Mirar
     aux = aux.slice(offset,data.length);
     aux = aux.slice(0,limit);
   }
