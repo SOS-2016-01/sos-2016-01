@@ -209,9 +209,9 @@ if(checkApiKey(apikey,res)){
       data.splice(i,1);
       res.sendStatus(200);
     }
-  }
   else
     res.sendStatus(404);
+  }
 }
 
 
