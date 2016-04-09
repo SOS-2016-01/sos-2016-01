@@ -1,6 +1,7 @@
 {
   "name": "sos-2016-01",
   "version": "1.0.0",
+  "description": "",
   "main": "index.js",
   "dependencies": {
     "body-parser": "^1.15.0",
@@ -20,6 +21,5 @@
   "bugs": {
     "url": "https://github.com/SOS-2016-01/sos-2016-01/issues"
   },
-  "homepage": "https://github.com/SOS-2016-01/sos-2016-01#readme",
-  "description": ""
+  "homepage": "https://github.com/SOS-2016-01/sos-2016-01#readme"
 }
