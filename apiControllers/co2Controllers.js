@@ -204,7 +204,7 @@ var apikey = req.query.apikey;
 if(checkApiKey(apikey,res)){
   console.log("New co2 DELETE "+country);
   i=searchResource(country,year);
-  if(!==-1){
+  if(i!==-1){
       //delete cars[i];
       data.splice(i,1);
       res.sendStatus(200);
