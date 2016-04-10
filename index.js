@@ -14,6 +14,8 @@ var oilControllers = require('./apiControllers/oilControllers.js')
 
   app.use("/about",express.static(__dirname + '/static/about'));
 
+  app.use("/RESTClient",express.static(__dirname + '/static/RESTClient'));
+
   app.get("/", (req, res) => {
       res.write("<html><header><title>Hello World</title></header>");
       res.write("<body><h1>Hello World!</h1></body></html>")
