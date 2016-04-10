@@ -2,8 +2,10 @@
 <html>
 <header>
   <title>CO2 Presentation</title>
+  <link href="//cdn.muicss.com/mui-0.5.0/css/mui.min.css" rel="stylesheet" type="text/css" />
+  <script src="//cdn.muicss.com/mui-0.5.0/js/mui.min.js"></script>
 </header>
-<body>
+<body style="background-color:#9C27B0;">
 
 <h1>CO2 Presentation</h1>
 <img src="http://www.uk-ecocars.co.uk/images/Co2-Emissions.jpg" alt="CO2" width="570" height="330">
@@ -16,13 +18,16 @@
 
   <p><u><b>Example of data collected.</b></u></p>
   <p>
-    <table border="2px"> <!-- Lo cambiaremos por CSS -->
-              <tr>
+    <table class="mui-table mui-table--bordered"> <!-- Lo cambiaremos por CSS -->
+              <thead>
+                <tr>
                   <td><b>Country</b></td>
                   <td><b>Year</b></td>
                   <td><b>CO2 emissions (metric tons per capita)</b></td>
                   <td><b>CO2 emissions (GDP per unit of energy use)</b></td>
-              </tr>
+                </tr>
+              </thead>
+              <tbody>
               <tr>
                  <td rowspan="6">Brazil</td>
                   <td>2006</td>
@@ -85,6 +90,7 @@
                   <td><center>5,8</center></td>
                   <td><center>178,013</center></td>
               </tr>
+            </tbody>
           </table>
 
 

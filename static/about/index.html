@@ -2,41 +2,61 @@
 <html>
 <header>
   <title>About</title>
+  <link href="//cdn.muicss.com/mui-0.5.0/css/mui.min.css" rel="stylesheet" type="text/css" />
+  <script src="//cdn.muicss.com/mui-0.5.0/js/mui.min.js"></script>
 </header>
-<body>
+<body style="background-color:#9C27B0;">
 
 <h1>Group presentation</h1>
 
 <h2>Group 01 - SOS 2016 - University of Seville</h2>
 
+  <p>Thematic: co2, diesel and gasoil and electrical consume</p>
+  <p>Authors: <b>Gonzalo Romero Castillo</b>, <b>Francisco Javier Fernandez Rodriguez</b> y <b>Angel Suarez Mora</b></p>
+  <p>In this proyect, we create a page of stadistics for any problems or questions for energy in the world. <br>The first case are emissions of co2, Gonzalo explain differents emissions analyzed from differents points of view, metrics...
+  <br>Second part is for cost of diesel and gasoil in the world. Francisco Javier compare this price of oil in <br>
+  differents countries and analyze price per litre in $. Finaly, Angel explain the electrical comsume in a world, <br>
+  comparer for KWh per capita and kg of oil per capita</p>
 
-<p>Thematic: co2, diesel and gasoil and electrical consume</p>
-<p>Authors: <b>Gonzalo Romero Castillo</b>, <b>Francisco Javier Fernandez Rodriguez</b> y <b>Angel Suarez Mora</b></p>
-<p>In this proyect, we create a page of stadistics for any problems or questions for energy in the world. <br>The first case are emissions of co2, Gonzalo explain differents emissions analyzed from differents points of view, metrics...
-<br>Second part is for cost of diesel and gasoil in the world. Francisco Javier compare this price of oil in <br>
-differents countries and analyze price per litre in $. Finaly, Angel explain the electrical comsume in a world, <br>
-comparer for KWh per capita and kg of oil per capita</p>
 
-<a href="./co2/index.html"><img src="http://www.uk-ecocars.co.uk/images/Co2-Emissions.jpg" alt="CO2" width="550" height="330"></a>
-<a href="./electrical-consume/index.html"><img src="http://www.revistaenergia.cl/wp-content/uploads/2015/08/consumo-energetico.jpg" alt="electricalC" width="550" height="330"></a>
-<a href="./oil/index.html"><img src="http://www.laizquierdadiario.com/IMG/arton4884.jpg" alt="oilC" width="550" height="330"></a>
-
-<p><a href="./co2/">CO2 Data</a>
-<a href="https://github.com/gorocca"> Github</a>
-<a href="../API/sandbox/cars">API REST Gonzalo Romero Castillo</a>
-<a href="../api/v1/co2">API CO2</a>
-<a href="../data/co2">Data CO2</a>
-</p>
-<p><a href="./electrical-consume/">Electrical Consume Data</a>
-<a href="https://github.com/AngelSuaMor"> Github</a>
-<a href="../API/sandbox/smartphones">API REST Angel Suarez Mora</a>
-<a href="http://sos-2016-01.herokuapp.com/api/v1/electrical-consume">API Electrical Consume</a>
-</p>
-<p><a href="./oil/">Oil Data</a>
-<a href="https://github.com/javyxz"> Github</a>
-<a href="../API/sandbox/teams">API REST  Fco. Javier Fernandez Rodriguez</a>
-<a href="http://sos-2016-01.herokuapp.com/api/v1/oil">API OIL</a>
-
-</p>
+<div class="mui-dropdown">
+  <button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+    Gonzalo Romero Castillo
+    <span class="mui-caret"></span>
+  </button>
+  <ul class="mui-dropdown__menu mui-dropdown__menu--right">
+    <li><a href="./co2/">CO2 Description</a></li>
+    <li><a href="https://github.com/gorocca"> Github</a></li>
+    <li><a href="../API/sandbox/cars">Cars API</a></li>
+    <li><a href="../api/v1/co2">API CO2</a></li>
+    <li><a href="../data/co2">Data CO2</a></li>
+  </ul>
+</div>
+<div class="mui-dropdown">
+  <button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+    Angel Suarez Mora
+    <span class="mui-caret"></span>
+  </button>
+  <ul class="mui-dropdown__menu mui-dropdown__menu--right">
+    <li><a href="./electrical-consume/">Description</a></li>
+    <li><a href="https://github.com/AngelSuaMor"> Github</a></li>
+    <li><a href="../API/sandbox/smartphones">API Smartphones</a></li>
+    <li><a href="http://sos-2016-01.herokuapp.com/api/v1/electrical-consume">API Electrical Consume</a></li>
+    <li><a href="../data/co2">Data CO2</a></li>
+  </ul>
+</div>
+<div class="mui-dropdown">
+  <button class="mui-btn mui-btn--primary" data-mui-toggle="dropdown">
+  Fco. Javier Fernandez Rodriguez
+    <span class="mui-caret"></span>
+  </button>
+  <ul class="mui-dropdown__menu mui-dropdown__menu--right">
+    <li><a href="./oil/">Oil Data</a></li>
+    <li><a href="https://github.com/javyxz"> Github</a></li>
+    <li><a href="../API/sandbox/teams">API Teams</a></li>
+    <li><a href="http://sos-2016-01.herokuapp.com/api/v1/oil">API OIL</a></li>
+    <li><a href="../data/co2">Data CO2</a></li>
+  </ul>
+</div>
 </body>
 </html>

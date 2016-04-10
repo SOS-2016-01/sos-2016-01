@@ -20,7 +20,7 @@ var oilControllers = require('./apiControllers/oilControllers.js')
 
   app.get("/", (req, res) => {
       res.write("<html><header><title>Hello World</title></header>");
-      res.write("<body><h1>Hello World!</h1></body></html>")
+      res.write('<body bgcolor="#29B6F6"><h1>Hello World!</h1><a href="../about">About</a></body></html>');
       res.end();
       console.log("New request to HELLO arrived!!")
     });
