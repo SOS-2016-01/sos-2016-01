@@ -19,8 +19,10 @@ $("body").ready(function (){
     });
 
     request.always(function (jqXHR,status){
-      if(status=="error")
+      if(status=="error"){
         console.log("Status: "+jqXHR.status);
+        $("#log").text(jqXHR.status);
+      }
     });
   });
 });
