@@ -15,12 +15,14 @@ $("body").ready(function (){
       console.log("Handling request (OK)");
       console.log("Data received: ");
       console.log(data);
+      $("#log").text("");
       $("#data").text(JSON.stringify(data));
     });
 
     request.always(function (jqXHR,status){
       if(status=="error"){
         console.log("Status: "+jqXHR.status);
+        $("#data").text("");
         $("#log").text(jqXHR.status);
       }
     });
