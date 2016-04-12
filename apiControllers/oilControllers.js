@@ -9,7 +9,7 @@ var limit = req.query.limit;
 var offset = req.query.offset;
 var from1 = req.query.from;
 var to = req.query.to;
-if(apikey && apikey===key){
+if(checkApiKey(apikey,res)){
   if(limit && offset && from1 && to){
     for(i=0;i<data.length;i++){
         if(data[i].year>=from1 && data[i].year<=to){
@@ -19,52 +19,33 @@ if(apikey && apikey===key){
     aux1=true;
     aux = aux.slice(offset,data.length);
     aux = aux.slice(0,limit);
-    console.log("New GET of resource oil with limit is "+limit+", offset is "+offset+", from is "+from1+" and to is "+to);
+    console.log("New GET of resource oil with limit is "+limit+",
+    offset is "+offset+", from is "+from1+" and to is "+to);
 
 
 }else{
   if(limit && offset){
-      aux = data.slice(offset,data.length);
-      aux = aux.slice(0,limit);
-      console.log("New GET of resource oil with limit is "+limit+" and offset is "+offset);
-      aux1=true;
-    }
-    if(from1 && to){
-      for(i=0;i<data.length;i++){
-          if(data[i].year>=from1 && data[i].year<=to){
-            aux.push(data[i]);
-          }
-      }
-      console.log("New GET of resource oil with from is "+from1+" and to is "+to);
-      aux1=true;
+        aux = limitAndOffset(limit,offset,data);
+        aux1=true;
+    }if(from1 && to){
+        aux = fromAndto(from1,to,data);
+        aux1=true;
     }else if(from1){
-      for(i=0;i<data.length;i++){
-            if(data[i].year>=from1){
-              aux.push(data[i]);
-            }
-          }
-      console.log("New GET of resource oil with from is "+from1);
-      aux1=true;
+        aux = methodFrom(from1,data);
+        aux1=true;
     }else if(to){
-      for(i=0;i<data.length;i++){
-          if(data[i].year<=to){
-            aux.push(data[i]);
-          }
-      }
-      console.log("New GET of resource oil with to is "+to);
-      aux1=true
+        aux = methodTo(to,data);
+        aux1=true
     }
-}
+    }
+
     if(aux1==true){
       res.send(aux);
     }else{
-console.log("New GET of resource oil");
-res.send(JSON.stringify(data));
-}
-
-}else{
-res.sendStatus(401);
-}
+        console.log("New GET of resource oil");
+        res.send(JSON.stringify(data));
+      }
+    }
 }
 
 module.exports.addOil = function (req,res){
@@ -73,7 +54,9 @@ var add = true;
 var country=oil.country;
 var year=oil.year;
 var apikey = req.query.apikey;
-if(apikey===key){
+
+if(checkApiKey(apikey,res)){
+  if(checkJSON(oil,res)){
   for(i=0;i<data.length;i++){
     if(data[i].country == country && data[i].year == year){
       res.sendStatus(409);
@@ -86,11 +69,12 @@ if(apikey===key){
       console.log("New oil POST");
       console.log("Object recived: "+JSON.stringify(req.body));
       res.sendStatus(201);
-    }}
-    else {
-      res.sendStatus(401);
     }
   }
+  }
+}
+
+//Aquiiiiiiiiii
 
 module.exports.delete = function (req,res){
 var apikey = req.query.apikey;
@@ -289,4 +273,74 @@ else
 else {
   res.sendStatus(401);
 }
+}
+
+//Funciones auxiliares
+
+function limitAndOffset(limit,offset,array){
+      var aux = [];
+      aux = array.slice(offset,array.length);
+      aux = aux.slice(0,limit);
+      console.log("New GET of resource electrical consume with limit is "+limit+" and offset is "+offset);
+      console.log(":)");
+      return aux;
+}
+
+function fromAndto(from1,to,array){
+      var aux = [];
+
+      for(i=0;i<array.length;i++){
+        if(array[i].year>=from1 && array[i].year<=to){
+            aux.push(array[i]);
+        }
+      }
+
+      console.log("New GET of resource electrical consume with from is "+from1+" and to is "+to);
+      console.log(":)");
+      return aux;
+
+}
+
+function methodFrom(from1,array){
+      var aux = [];
+      for(i=0;i<array.length;i++){
+            if(array[i].year>=from1){
+              aux.push(array[i]);
+            }
+          }
+      console.log("New GET of resource electrical consume with from is "+from1);
+      console.log(":)");
+      return aux;
+}
+
+function methodTo(to,array){
+      var aux=[];
+      for(i=0;i<array.length;i++){
+          if(array[i].year<=to){
+            aux.push(array[i]);
+          }
+      }
+      console.log("New GET of resource electrical consume with to is "+to);
+      console.log(":)");
+      return aux;
+}
+
+function checkApiKey(apikey,res){
+      if(apikey && key===apikey)
+          return true;
+      else{
+        res.sendStatus(401);
+        console.log(":)");
+        return false;
+        }
+}
+
+function checkJSON(json,res){
+      if(json.year && json.country && json.ePowerConsum
+        && json.energyUse && json.urbanPopulation)
+        return true;
+      else{
+        res.sendStatus(400);
+        return false;
+      }
 }
