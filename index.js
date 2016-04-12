@@ -4,8 +4,8 @@ var carsControllers = require('./apiControllers/carsControllers.js');
 var co2Ctl = require('./apiControllers/co2Controllers.js');
 var smartphonesControllers = require('./apiControllers/smartphonesControllers.js');
 var electricalConsumeCtl = require('./apiControllers/electricalConsumeControllers.js');
-var teamsControllers = require('./apiControllers/teamsControllers.js')
-var oilControllers = require('./apiControllers/oilControllers.js')
+var teamsControllers = require('./apiControllers/teamsControllers.js');
+var oilControllers = require('./apiControllers/oilControllers.js');
 
   var app = express();
   var port = (process.env.PORT || 8081);

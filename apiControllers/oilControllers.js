@@ -34,7 +34,7 @@ if(checkApiKey(apikey,res)){
         aux1=true;
     }else if(to){
         aux = methodTo(to,data);
-        aux1=true
+        aux1=true;
     }
     }
 
@@ -68,28 +68,24 @@ if(checkApiKey(apikey,res)){
       console.log("New oil POST");
       console.log("Object recived: "+JSON.stringify(req.body));
       res.sendStatus(201);
+      }
     }
-  }
   }
 }
 
-//Aquiiiiiiiiii
 
 module.exports.delete = function (req,res){
 var apikey = req.query.apikey;
-if(apikey && apikey===key){
+if(checkApiKey(apikey,res)){
   console.log("New oil DELETE");
   data = [];
   res.sendStatus(200);
-  }
-else{
-  res.sendStatus(401);
-  }
+    }
 }
 
 module.exports.initialData = function (req,res){
 var apikey = req.query.apikey;
-if(apikey && apikey===key){
+if(checkApiKey(apikey,res)){
 console.log("New initial oil data charge");
 data = [{country : "brazil",
          year : "2006",
@@ -116,83 +112,51 @@ data = [{country : "brazil",
         diesel : "1.3",
         gasoline : "0.8"}];
         res.sendStatus(200);
-}else {
-  res.sendStatus(401);
-}
+
+      }
 }
 
 module.exports.getOil = function (req,res){
   var country = req.params.country;
   var year = req.params.year;
   var oil = [];
-  var s1 = [];
-  var aux1 = false;
-  var aux2 = false;
   var from1 = req.query.from;
   var to1 = req.query.to;
   var apikey = req.query.apikey;
   var limit = req.query.limit;
   var offset = req.query.offset;
 
-  if(apikey && apikey===key){
+  if(checkApiKey(apikey,res)){
   console.log("New GET of resource oil of "+country);
+
   for(i=0;i<data.length;i++){
     if(data[i].country == country){
       oil.push(data[i]);
-      aux1=true;
     }
   }
   for(i=0;i<data.length;i++){
     if(data[i].year == country){
       oil.push(data[i]);
-      aux1=true;
     }
   }
-  if(limit && offset){
-     if(oil.length!=0){
-       oil = oil.slice(offset,oil.length);
-       oil = oil.slice(0,limit);
-       console.log("New GET of resource oil with limit is "+limit+" and offset is "+offset);
-       aux=true;
-     }
-   }
 
-  if(from1 && to){
-    for(i=0;i<oil.length;i++){
-      if(oil[i].year>=from1 && oil[i].year<=to){
-        aux.push(oil[i]);
-      }
-  }
-  console.log("New GET of resource oil with from is "+from1+" and to is "+to);
-  aux2 =true;
-    }else if(from1){
-      for(i=0;i<oil.length;i++){
-            if(oil[i].year>=from1){
-              aux.push(oil[i]);
-            }
-          }
-  }else if(to1){
-    for(i=0;i<oil.length;i++){
-        if(oil[i].year<=to1){
-          aux.push(oil[i]);
-        }
-    }
-    console.log("New GET of resource oil with to is "+to);
-    aux2=true;
-  }
+  if(limit && offset){
+         oil = limitAndOffset(limit,offset,oil);
+   }
+   if(from1 && to){
+         oil = fromAndto(from1,to,oil);
+   }else if(from1){
+         oil = methodFrom(from1,oil);
+   }else if(to){
+         oil=methodTo(to,oil);
+   }
 
       if(oil.length==0){
         res.sendStatus(404);
-      }else if(aux2){
-        res.send(s1);
       }else{
         res.send(oil);
-      }
-
-  }else{
-    res.sendStatus(401);
-  }
-
+        }
+    }
 }
 
 module.exports.getCountryYear = function (req,res){
@@ -200,88 +164,80 @@ module.exports.getCountryYear = function (req,res){
   var year = req.params.year;
   var oil = [];
   var apikey = req.query.apikey;
-  if(apikey && apikey===key){
+  if(checkApiKey(apikey,res)){
   console.log("New GET of resource oil of "+country+" and year "+year);
   for(i=0;i<data.length;i++){
     if(data[i].country === country && data[i].year == year){
       oil.push(data[i]);
     }
   }
-  if(oil.length==0)
+  if(oil.length==0){
     res.sendStatus(404);
-  else{
+  }else{
     res.send(JSON.stringify(oil));
-  }
-}
-else{
-  res.sendStatus(401);
-}
+    }
+    }
 }
 
 module.exports.update = function (req,res){
 var country = req.params.country;
 var year = req.params.year;
 var updated = false;
-var badRequest = false;
 var sent = req.body;
+var oil = req.body;
 var apikey = req.query.apikey;
-if(apikey && apikey===key){
-console.log("New PUT of resource oil of "+country);
-for(i=0;i<data.length;i++){
-  if(data[i].country == country && data[i].year==year){
-    if(data[i].country==sent.country && data[i].year==sent.year){
-    data[i]=req.body;
-    updated = true;
+if(checkApiKey(apikey,res)){
+  if(checkJSON(sent,res)){
+      console.log("New PUT of resource oil of "+country);
+  for(i=0;i<data.length;i++){
+    if(data[i].country == country && data[i].year==year){
+      if(data[i].country==sent.country && data[i].year==sent.year){
+      data[i]=req.body;
+      updated = true;
+    }
+    else{
+      res.sendStatus(400);
+    }
+    break;
   }
-  else{
-    res.sendStatus(400);
-    badRequest = true;
   }
-  break;
-}
-}
-if(!updated && !badRequest)
-res.sendStatus(404);
-else if(updated)
-res.sendStatus(200);
-}
-else {
-res.sendStatus(401);
-}
+    if(!updated){
+    res.sendStatus(404);
+  }else{
+        res.sendStatus(200);
+      }
+    }
+  }
 }
 
 module.exports.deleteOil = function (req,res){
 var country = req.params.country;
 var year = req.params.year;
-var removed = 0;
+var removed = false;
 var apikey = req.query.apikey;
-if(apikey && apikey===key){
+if(checkApiKey(apikey,res)){
 console.log("New oil DELETE "+country);
 for(i=0;i<data.length;i++){
-  if(data[i].country == country&&data[i].year==year){
+  if(data[i].country == country && data[i].year==year){
     data.splice(i,1);
-    removed =1;
+    removed = true;
     break;
   }
 }
-if(removed==0)
+if(!removed){
   res.sendStatus(404);
-else
+}else{
   res.sendStatus(200);
-}
-else {
-  res.sendStatus(401);
-}
+    }
+  }
 }
 
-//Funciones auxiliares
 
 function limitAndOffset(limit,offset,array){
       var aux = [];
       aux = array.slice(offset,array.length);
       aux = aux.slice(0,limit);
-      console.log("New GET of resource electrical consume with limit is "+limit+" and offset is "+offset);
-      console.log(":)");
+      console.log("New GET of resource oil with limit is "+limit+" and offset is "+offset);
       return aux;
 }
 
@@ -294,8 +250,7 @@ function fromAndto(from1,to,array){
         }
       }
 
-      console.log("New GET of resource electrical consume with from is "+from1+" and to is "+to);
-      console.log(":)");
+      console.log("New GET of resource oil with from is "+from1+" and to is "+to);
       return aux;
 
 }
@@ -307,38 +262,34 @@ function methodFrom(from1,array){
               aux.push(array[i]);
             }
           }
-      console.log("New GET of resource electrical consume with from is "+from1);
-      console.log(":)");
+      console.log("New GET of resource oil with from is "+from1);
       return aux;
 }
 
-function methodTo(to,array){
+function methodTo(to1,array){
       var aux=[];
       for(i=0;i<array.length;i++){
-          if(array[i].year<=to){
+          if(array[i].year<=to1){
             aux.push(array[i]);
           }
       }
-      console.log("New GET of resource electrical consume with to is "+to);
-      console.log(":)");
+      console.log("New GET of resource oil with to is "+to);
       return aux;
 }
 
 function checkApiKey(apikey,res){
-      if(apikey && key===apikey)
+      if(apikey && key===apikey){
           return true;
-      else{
+      }else{
         res.sendStatus(401);
-        console.log(":)");
         return false;
         }
 }
 
 function checkJSON(json,res){
-      if(json.year && json.country && json.ePowerConsum
-        && json.energyUse && json.urbanPopulation)
+      if(json.year && json.country && json.diesel && json.gasoline){
         return true;
-      else{
+      }else{
         res.sendStatus(400);
         return false;
       }
