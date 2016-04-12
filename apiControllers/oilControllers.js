@@ -19,8 +19,7 @@ if(checkApiKey(apikey,res)){
     aux1=true;
     aux = aux.slice(offset,data.length);
     aux = aux.slice(0,limit);
-    console.log("New GET of resource oil with limit is "+limit+",
-    offset is "+offset+", from is "+from1+" and to is "+to);
+    console.log("New GET of resource oil with limit is "+limit+", offset is "+offset+", from is "+from1+" and to is "+to);
 
 
 }else{
