@@ -16,7 +16,6 @@ $("body").ready(function (){
       console.log("Data received: ");
       console.log(data);
       $("#log").text("");
-      $("#status").text(statusCode +" "+statusCodeText);
       $("#data").text(data);
     });
 
@@ -26,8 +25,6 @@ $("body").ready(function (){
         console.log("Status: "+jqXHR.status);
         $("#data").text("");
         $("#log").text(jqXHR.status);
-      }else{
-        $("#txtStatus").text(status);
       }
     });
   });
