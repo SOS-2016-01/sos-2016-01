@@ -16,15 +16,19 @@ $("body").ready(function (){
       console.log("Data received: ");
       console.log(data);
       $("#log").text("");
+      //$("#status").text(statusCode +" "+statusCodeText);
       $("#data").text(data);
     });
 
     request.always(function (jqXHR,status){
       if(status=="error"){
+        //$("#status").text(statusCode +" "+statusCodeText);
         console.log("Status: "+jqXHR.status);
         $("#data").text("");
         $("#log").text(jqXHR.status);
-      }
+      }/*else{
+        $("#txtStatus").text(status);
+      }*/
     });
   });
 });
