@@ -39,10 +39,10 @@ if(checkApiKey(apikey,res)){
     }
 
     if(aux1==true){
-      res.send(aux);
+      res.send(JSON.stringify(aux));
     }else{
         console.log("New GET of resource oil");
-        res.send(data);
+        res.send(JSON.stringify(data));
       }
     }
 }
@@ -66,7 +66,7 @@ if(checkApiKey(apikey,res)){
   if(add){
       data.push(oil);
       console.log("New oil POST");
-      console.log("Object recived: "+req.body);
+      console.log("Object recived: "+JSON.stringify(req.body));
       res.sendStatus(201);
       }
     }
@@ -153,7 +153,7 @@ module.exports.getOil = function (req,res){
       if(oil.length==0){
         res.sendStatus(404);
       }else{
-        res.send(oil);
+        res.send(JSON.stringify(oil));
         }
     }
 }
@@ -173,7 +173,7 @@ module.exports.getCountryYear = function (req,res){
   if(oil.length==0){
     res.sendStatus(404);
   }else{
-    res.send(oil);
+    res.send(JSON.stringify(oil));
     }
     }
 }
