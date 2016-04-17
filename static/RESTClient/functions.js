@@ -15,16 +15,16 @@ $("body").ready(function (){
       console.log("Handling request (OK)");
       console.log("Data received: ");
       console.log(data);
-      $("#log").html("");
-      $("#data").html(data);
+      $("#log").text("");
+      $("#data").text(data);
     });
 
     request.always(function (jqXHR,status){
       if(status=="error"){
-        $("#status").html(statusCode +" "+statusCodeText);
+        $("#status").text(statusCode +" "+statusCodeText);
         console.log("Status: "+jqXHR.status);
-        $("#data").html("");
-        $("#log").html(jqXHR.status);
+        $("#data").text("");
+        $("#log").text(jqXHR.status);
       }
     });
   });
