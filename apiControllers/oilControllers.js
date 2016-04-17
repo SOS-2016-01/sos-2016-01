@@ -151,7 +151,7 @@ module.exports.getOil = function (req,res){
          aux.push(methodTo(to1,oil));
    }
 
-      if(oil.length==0){
+      if(aux.length==0){
         res.sendStatus(404);
       }else{
         res.send(JSON.stringify(aux));
