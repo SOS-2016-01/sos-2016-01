@@ -156,6 +156,7 @@ module.exports.getCo2 = function (req,res){
       }
     }
 }
+
 module.exports.getCountryYear = function (req,res){
   var country = req.params.country;
   var year = req.params.year;
