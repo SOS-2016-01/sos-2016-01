@@ -153,7 +153,7 @@ module.exports.getOil = function (req,res){
       if(oil.length==0){
         res.sendStatus(404);
       }else{
-        res.send(oil);
+        res.send(JSON.stringify(oil));
         }
     }
 }
