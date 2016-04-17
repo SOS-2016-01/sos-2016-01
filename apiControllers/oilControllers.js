@@ -272,7 +272,7 @@ function methodTo(to1,array){
             aux.push(array[i]);
           }
       }
-      console.log("New GET of resource oil with to is "+to);
+      console.log("New GET of resource oil with to is "+to1);
       return aux;
 }
 
