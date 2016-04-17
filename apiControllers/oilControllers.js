@@ -135,7 +135,7 @@ module.exports.getOil = function (req,res){
     }
   }
   for(i=0;i<data.length;i++){
-    if(data[i].year == country){
+    if(data[i].year == year){
       oil.push(data[i]);
     }
   }
