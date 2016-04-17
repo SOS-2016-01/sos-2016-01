@@ -120,7 +120,6 @@ module.exports.getOil = function (req,res){
   var country = req.params.country;
   var year = req.params.year;
   var oil = [];
-  var aux = [];
   var from1 = req.query.from;
   var to1 = req.query.to;
   var apikey = req.query.apikey;
@@ -141,20 +140,20 @@ module.exports.getOil = function (req,res){
   }
 
   if(limit && offset){
-         aux = limitAndOffset(limit,offset,oil);
+         oil = limitAndOffset(limit,offset,oil);
    }
    if(from1 && to1){
-         aux = fromAndto(from1,to1,oil);
+         oil = fromAndto(from1,to1,oil);
    }else if(from1){
-         aux = methodFrom(from1,oil);
+         oil = methodFrom(from1,oil);
    }else if(to1){
-         aux = methodTo(to1,oil);
+         oil = methodTo(to1,oil);
    }
 
       if(oil.length==0){
         res.sendStatus(404);
       }else{
-        res.send(JSON.stringify(aux));
+        res.send(JSON.stringify(oil));
         }
     }
 }
