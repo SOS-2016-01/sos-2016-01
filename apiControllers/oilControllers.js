@@ -8,32 +8,32 @@ var aux1=false;
 var limit = req.query.limit;
 var offset = req.query.offset;
 var from1 = req.query.from;
-var to = req.query.to;
+var to1 = req.query.to;
 if(checkApiKey(apikey,res)){
-  if(limit && offset && from1 && to){
+  if(limit && offset && from1 && to1){
     for(i=0;i<data.length;i++){
-        if(data[i].year>=from1 && data[i].year<=to){
+        if(data[i].year>=from1 && data[i].year<=to1){
           aux.push(data[i]);
         }
     }
     aux1=true;
     aux = aux.slice(offset,data.length);
     aux = aux.slice(0,limit);
-    console.log("New GET of resource oil with limit is "+limit+", offset is "+offset+", from is "+from1+" and to is "+to);
+    console.log("New GET of resource oil with limit is "+limit+", offset is "+offset+", from is "+from1+" and to is "+to1);
 
 
 }else{
   if(limit && offset){
         aux = limitAndOffset(limit,offset,data);
         aux1=true;
-    }if(from1 && to){
-        aux = fromAndto(from1,to,data);
+    }if(from1 && to1){
+        aux = fromAndto(from1,to1,data);
         aux1=true;
     }else if(from1){
         aux = methodFrom(from1,data);
         aux1=true;
-    }else if(to){
-        aux = methodTo(to,data);
+    }else if(to1){
+        aux = methodTo(to1,data);
         aux1=true;
     }
     }
@@ -240,16 +240,16 @@ function limitAndOffset(limit,offset,array){
       return aux;
 }
 
-function fromAndto(from1,to,array){
+function fromAndto(from1,to1,array){
       var aux = [];
 
       for(i=0;i<array.length;i++){
-        if(array[i].year>=from1 && array[i].year<=to){
+        if(array[i].year>=from1 && array[i].year<=to1){
             aux.push(array[i]);
         }
       }
 
-      console.log("New GET of resource oil with from is "+from1+" and to is "+to);
+      console.log("New GET of resource oil with from is "+from1+" and to is "+to1);
       return aux;
 
 }
