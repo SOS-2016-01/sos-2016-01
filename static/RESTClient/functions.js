@@ -16,7 +16,7 @@ $("body").ready(function (){
       console.log("Data received: ");
       console.log(data);
       $("#log").text("");
-      $("#data").text(data);
+      $("#data").text(JSON.stringify(data));
     });
 
     request.always(function (jqXHR,status){
