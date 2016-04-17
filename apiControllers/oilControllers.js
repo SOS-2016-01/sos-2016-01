@@ -142,12 +142,12 @@ module.exports.getOil = function (req,res){
   if(limit && offset){
          oil = limitAndOffset(limit,offset,oil);
    }
-   if(from1 && to){
-         oil = fromAndto(from1,to,oil);
+   if(from1 && to1){
+         oil = fromAndto(from1,to1,oil);
    }else if(from1){
          oil = methodFrom(from1,oil);
-   }else if(to){
-         oil=methodTo(to,oil);
+   }else if(to1){
+         oil=methodTo(to1,oil);
    }
 
       if(oil.length==0){
