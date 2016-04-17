@@ -162,7 +162,7 @@ module.exports.getElectricalConsume = function (req,res){
               if(electricalConsume.length==0){
                 res.sendStatus(404);
               }else{
-                res.send(electricalConsume);
+                res.send(JSON.stringify(electricalConsume));
               }
         }
 }
