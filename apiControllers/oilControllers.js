@@ -128,14 +128,13 @@ module.exports.getOil = function (req,res){
 
   if(checkApiKey(apikey,res)){
   console.log("New GET of resource oil of "+country);
-
   for(i=0;i<data.length;i++){
     if(data[i].country == country){
       oil.push(data[i]);
     }
   }
   for(i=0;i<data.length;i++){
-    if(data[i].year == year){
+    if(data[i].year == country){
       oil.push(data[i]);
     }
   }
