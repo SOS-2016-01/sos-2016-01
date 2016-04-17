@@ -147,7 +147,7 @@ module.exports.getOil = function (req,res){
    }else if(from1){
          oil = methodFrom(from1,oil);
    }else if(to1){
-         oil = methodTo(to1,oil);
+         oil=methodTo(to1,oil);
    }
 
       if(oil.length==0){
