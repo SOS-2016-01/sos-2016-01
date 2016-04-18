@@ -18,6 +18,12 @@ $("body").ready(function (){
       $("#log").text("");
       $("#data").text("");
       $("#status").text("");
+      for(i=0;i>data.length;i++){
+        $("#data").text("-"+JSON.stringify(data[i]));
+      }
+
+
+
       $("#data").text(JSON.stringify(data));
       if(jqXHR.status){
         $("#status").text(jqXHR.status + " " + jqXHR.statusText);
