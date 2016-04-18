@@ -21,12 +21,14 @@ $("body").ready(function (){
       $("#status").text("");
       $("#list").text("");
       $("#data").text(JSON.stringify(data));
-      list ="<ul>";
-      for(i=0;i<data.length;i++){
-        list = list + "<li>(Country="+data[i].country+"),(Year="+data[i].country+")</li>";
+
+      mylist = $('<ul></ul>')
+      for (i=0;i<data.length;i++){
+        $('<li></li>').text(data[i].country).appendTo(mylist);
+        $('<li></li>').text(data[i].year).appendTo(mylist);
       }
-      list = list+"</ul>";
-      $("#list").text(list);
+      console.log("List:"+mylist.html());
+      mylist.appendTo("#list");
       if(jqXHR.status){
         $("#status").text(jqXHR.status + " " + jqXHR.statusText);
         console.log("Status: "+jqXHR.status);
