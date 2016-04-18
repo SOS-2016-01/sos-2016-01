@@ -42,7 +42,7 @@ if(checkApiKey(apikey,res)){
       res.send(JSON.stringify(aux));
     }else{
         console.log("New GET of resource oil");
-        res.send(JSON.stringify(data));
+        res.send(data);
       }
     }
 }
@@ -153,7 +153,7 @@ module.exports.getOil = function (req,res){
       if(oil.length==0){
         res.sendStatus(404);
       }else{
-        res.send(JSON.stringify(oil));
+        res.send(oil);
         }
     }
 }
@@ -173,7 +173,7 @@ module.exports.getCountryYear = function (req,res){
   if(oil.length==0){
     res.sendStatus(404);
   }else{
-    res.send(JSON.stringify(oil));
+    res.send(oil);
     }
     }
 }

@@ -18,7 +18,7 @@ $("body").ready(function (){
       $("#log").text("");
       $("#data").text("");
       $("#status").text("");
-      $("#data").text(data);
+      $("#data").text(JSON.stringify(data));
       if(jqXHR.status){
         $("#status").text(jqXHR.status + " " + jqXHR.statusText);
         console.log("Status: "+jqXHR.status);

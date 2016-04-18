@@ -40,7 +40,7 @@ module.exports.getData = function(req,res){
                 res.send(aux);
           }else{
                 console.log("New GET of resource electrical consume");
-                res.send(JSON.stringify(data));
+                res.send(data);
           }
         }
 }
@@ -162,7 +162,7 @@ module.exports.getElectricalConsume = function (req,res){
               if(electricalConsume.length==0){
                 res.sendStatus(404);
               }else{
-                res.send(JSON.stringify(electricalConsume));
+                res.send(electricalConsume);
               }
         }
 }
@@ -182,7 +182,7 @@ module.exports.getCountryYear = function (req,res){
             if(electricalConsume.length==0)
                 res.sendStatus(404);
             else{
-                res.send(JSON.stringify(electricalConsume));
+                res.send(electricalConsume);
             }
       }
 }
