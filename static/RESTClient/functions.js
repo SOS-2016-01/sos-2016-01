@@ -19,6 +19,11 @@ $("body").ready(function (){
       $("#data").text("");
       $("#status").text("");
       $("#data").text(JSON.stringify(data));
+      $("#list").text("<ul>");
+      for(i=0;i<data.length;i++){
+        $("#list").text("<li>(Country="+data[i].country+"),(Year="+data[i].country+")</li>");
+      }
+      $("#list").text("</ul>");
       if(jqXHR.status){
         $("#status").text(jqXHR.status + " " + jqXHR.statusText);
         console.log("Status: "+jqXHR.status);
