@@ -12,18 +12,21 @@ $("body").ready(function (){
     });
 
     request.done(function (data,jqXHR,status){
+      var list;
       console.log("Handling request (OK)");
       console.log("Data received: ");
       console.log(data);
       $("#log").text("");
       $("#data").text("");
       $("#status").text("");
+      $("#list").text("");
       $("#data").text(JSON.stringify(data));
-      $("#list").text("<ul>");
+      list ="<ul>";
       for(i=0;i<data.length;i++){
-        $("#list").text("<li>(Country="+data[i].country+"),(Year="+data[i].country+")</li>");
+        list = list + "<li>(Country="+data[i].country+"),(Year="+data[i].country+")</li>";
       }
-      $("#list").text("</ul>");
+      list = list+"</ul>";
+      $("#list").text(list);
       if(jqXHR.status){
         $("#status").text(jqXHR.status + " " + jqXHR.statusText);
         console.log("Status: "+jqXHR.status);
@@ -35,6 +38,7 @@ $("body").ready(function (){
         $("#status").text(jqXHR.status + " " + jqXHR.statusText);
         console.log("Status: "+jqXHR.status);
         $("#data").text("");
+        $("#list").text("");
       }
     });
   });
