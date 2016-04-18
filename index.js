@@ -83,7 +83,7 @@ var oilControllers = require('./apiControllers/oilControllers.js');
   });
   app.get("/api-test/cars/loadInitialData",carsControllers.initialData);
   app.get("/api/sandbox/cars/:name",carsControllers.getCar);
-  app.post("/api/sandbox/cars/:name", (req,res)=>{
+  app.post("/api/sandbox/cars/:name/:year", (req,res)=>{
     console.log("POST not allowed");
     res.sendStatus(405);
   });
@@ -101,7 +101,7 @@ var oilControllers = require('./apiControllers/oilControllers.js');
   app.get("/api/v1/co2/loadInitialData",co2Ctl.initialData);
   app.get("/api/v1/co2/:country",co2Ctl.getCo2);
   app.get("/api/v1/co2/:country/:year",co2Ctl.getCountryYear);
-  app.post("/api/v1/co2/:name", (req,res)=>{
+  app.post("/api/v1/co2/:name/:year", (req,res)=>{
     console.log("POST not allowed");
     res.sendStatus(405);
   });

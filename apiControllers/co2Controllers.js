@@ -37,7 +37,7 @@ if(checkApiKey(apikey,res)){
     aux = aux.slice(offset,data.length);
     aux = aux.slice(0,limit);
   }
-  res.send(JSON.stringify(aux));
+  res.send(aux);
   }
 }
 
@@ -152,7 +152,7 @@ module.exports.getCo2 = function (req,res){
     if(aux.length==0)
       res.sendStatus(404);
     else{
-        res.send(JSON.stringify(aux));
+        res.send(aux);
       }
     }
 }
@@ -166,7 +166,7 @@ module.exports.getCountryYear = function (req,res){
     console.log("New GET of resource co2 of "+country+" and year "+year);
     i=searchResource(country,year);
     if(i!==-1)
-      res.send(JSON.stringify(data[i]));
+      res.send(data[i]);
     else
       res.sendStatus(404);
   }

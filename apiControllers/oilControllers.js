@@ -39,7 +39,7 @@ if(checkApiKey(apikey,res)){
     }
 
     if(aux1==true){
-      res.send(aux);
+      res.send(JSON.stringify(aux));
     }else{
         console.log("New GET of resource oil");
         res.send(data);
@@ -66,7 +66,7 @@ if(checkApiKey(apikey,res)){
   if(add){
       data.push(oil);
       console.log("New oil POST");
-      console.log("Object recived: "+req.body);
+      console.log("Object recived: "+JSON.stringify(req.body));
       res.sendStatus(201);
       }
     }

@@ -11,20 +11,25 @@ $("body").ready(function (){
       contentType : "application/json"
     });
 
-    request.done(function (data){
+    request.done(function (data,jqXHR,status){
       console.log("Handling request (OK)");
       console.log("Data received: ");
       console.log(data);
       $("#log").text("");
+      $("#data").text("");
+      $("#status").text("");
       $("#data").text(JSON.stringify(data));
+      if(jqXHR.status){
+        $("#status").text(jqXHR.status + " " + jqXHR.statusText);
+        console.log("Status: "+jqXHR.status);
+      }
     });
 
     request.always(function (jqXHR,status){
       if(status=="error"){
-        $("#status").text(statusCode +" "+statusCodeText);
+        $("#status").text(jqXHR.status + " " + jqXHR.statusText);
         console.log("Status: "+jqXHR.status);
         $("#data").text("");
-        $("#log").text(jqXHR.status);
       }
     });
   });
