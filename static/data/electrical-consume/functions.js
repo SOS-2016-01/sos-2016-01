@@ -9,37 +9,19 @@
   request.done(function (data){
     console.log("Handling request (OK)");
     console.log("Data received: ");
-    console.log(data);
-    array = JSON.parse(data);
+    console.log(JSON.stringify(data));
+    //array = JSON.parse(data);
     mytable = $('<tbody></tbody>')
-    for (i=0;i<array.length;i++){
+    for (i=0;i<data.length;i++){
       var row = $('<tr></tr>').appendTo(mytable);
-      $('<td></td>').text(array[i].country).appendTo(row);
-      $('<td></td>').text(array[i].year).appendTo(row);
-      $('<td></td>').text(array[i].ePowerConsum).appendTo(row);
-      $('<td></td>').text(array[i].energyUse).appendTo(row);
-      $('<td></td>').text(array[i].urbanPopulation).appendTo(row);
+      $('<td></td>').text(data[i].country).appendTo(row);
+      $('<td></td>').text(data[i].year).appendTo(row);
+      $('<td></td>').text(data[i].ePowerConsum).appendTo(row);
+      $('<td></td>').text(data[i].energyUse).appendTo(row);
+      $('<td></td>').text(data[i].urbanPopulation).appendTo(row);
     }
     console.log("TTTTT:"+mytable.html());
     mytable.appendTo("#t1");
-/*  var element = document.getElementById("t1");
-    for (i=0;i<array.length;i++){
-      var tr = document.createElement("tr");
-      var td = document.createElement("td");
-      td.appendChild(document.createTextNode(array[i].country));
-      element.appendChild(td);
-      var td = document.createElement("td");
-      td.appendChild(document.createTextNode(array[i].year));
-      element.appendChild(td);
-      var td = document.createElement("td");
-      td.appendChild(document.createTextNode(array[i].co2mtn));
-      element.appendChild(td);
-      var td = document.createElement("td");
-      td.appendChild(document.createTextNode(array[i].co2kg));
-      element.appendChild(td);
-      element.appendChild(tr);
-    }*/
-
   });
 
   request.always(function (jqXHR,status){

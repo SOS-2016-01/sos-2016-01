@@ -9,15 +9,15 @@
   request.done(function (data){
     console.log("Handling request (OK)");
     console.log("Data received: ");
-    console.log(data);
-    array = JSON.parse(data);
+    console.log(JSON.stringify(data));
+    //array = JSON.parse(data);
     mytable = $('<tbody></tbody>')
-    for (i=0;i<array.length;i++){
+    for (i=0;i<data.length;i++){
       var row = $('<tr></tr>').appendTo(mytable);
-      $('<td></td>').text(array[i].country).appendTo(row);
-      $('<td></td>').text(array[i].year).appendTo(row);
-      $('<td></td>').text(array[i].diesel).appendTo(row);
-      $('<td></td>').text(array[i].gasoline).appendTo(row);
+      $('<td></td>').text(data[i].country).appendTo(row);
+      $('<td></td>').text(data[i].year).appendTo(row);
+      $('<td></td>').text(data[i].diesel).appendTo(row);
+      $('<td></td>').text(data[i].gasoline).appendTo(row);
     }
     console.log("TTTTT:"+mytable.html());
     mytable.appendTo("#t1");
