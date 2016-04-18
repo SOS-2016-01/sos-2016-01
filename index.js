@@ -45,7 +45,7 @@ var oilControllers = require('./apiControllers/oilControllers.js');
   app.get("/api/v1/oil/loadInitialData",oilControllers.initialData);
   app.get("/api/v1/oil/:country",oilControllers.getOil);
   app.get("/api/v1/oil/:country/:year",oilControllers.getCountryYear);
-  app.post("/api/v1/oil/:name", (req,res)=>{
+  app.post("/api/v1/oil/:country/:year", (req,res)=>{
     console.log("POST not allowed");
     res.sendStatus(405);
   });
