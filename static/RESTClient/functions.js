@@ -21,14 +21,7 @@ $("body").ready(function (){
       $("#status").text("");
       $("#list").text("");
       $("#data").text(JSON.stringify(data));
-
-      mylist = $('<ul></ul>')
-      for (i=0;i<data.length;i++){
-        $('<li></li>').text(data[i].country).appendTo(mylist);
-        $('<li></li>').text(data[i].year).appendTo(mylist);
-      }
-      console.log("List:"+mylist.html());
-      mylist.appendTo("#list");
+      dataToHtml(data);
       if(jqXHR.status){
         $("#status").text(jqXHR.status + " " + jqXHR.statusText);
         console.log("Status: "+jqXHR.status);
@@ -43,5 +36,25 @@ $("body").ready(function (){
         $("#list").text("");
       }
     });
+    function dataToHtml(data){
+      mylist = $('<ul></ul>')
+      if(data[0].co2kg){
+      for (i=0;i<data.length;i++){
+          $('<li></li>').text("Country="+data[i].country+", Year="+data[i].year+", co2mtn="+data[i].co2mtn+", co2kg="+data[i].co2kg).appendTo(mylist);
+        }
+      }
+      else if(data[0].diesel){
+        for (i=0;i<data.length;i++){
+        $('<li></li>').text("Country="+data[i].country+", Year="+data[i].year+", diesel="+data[i].diesel+", gasoline="+data[i].gasoline).appendTo(mylist);
+        }
+      }
+      else if(data[0].ePowerConsum){
+        for (i=0;i<data.length;i++){
+        $('<li></li>').text("Country="+data[i].country+", Year="+data[i].year+", ePowerConsum="+data[i].ePowerConsum+", energyUse="+data[i].energyUse+", urbanPopulation="+data[i].urbanPopulation).appendTo(mylist);
+        }
+      }
+      console.log("List:"+mylist.html());
+      mylist.appendTo("#list");
+    }
   });
 });
