@@ -162,15 +162,19 @@ module.exports.getCountryYear = function (req,res){
   var country = req.params.country;
   var year = req.params.year;
   var oil = [];
+  var check = false;
   var apikey = req.query.apikey;
   if(checkApiKey(apikey,res)){
   console.log("New GET of resource oil of "+country+" and year "+year);
   for(i=0;i<data.length;i++){
     if(data[i].country === country && data[i].year == year){
       oil.push(data[i]);
+      check = true;
     }
   }
-  if(oil.length==0){
+  if (!check){
+    res.sendStatus(400);
+  }else if(oil.length==0){
     res.sendStatus(404);
   }else{
     res.send(oil);
@@ -193,8 +197,7 @@ if(checkApiKey(apikey,res)){
       if(data[i].country==sent.country && data[i].year==sent.year){
       data[i]=req.body;
       updated = true;
-    }
-    else{
+    }else{
       res.sendStatus(400);
     }
     break;
