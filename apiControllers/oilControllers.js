@@ -173,7 +173,7 @@ module.exports.getCountryYear = function (req,res){
     }
   }
   if (!check){
-    res.sendStatus(400);
+    res.sendStatus(405);
   }else if(oil.length==0){
     res.sendStatus(404);
   }else{
