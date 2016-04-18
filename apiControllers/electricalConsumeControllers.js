@@ -40,7 +40,6 @@ module.exports.getData = function(req,res){
                 res.send(aux);
           }else{
                 console.log("New GET of resource electrical consume");
-                //res.send(JSON.stringify(data));
                 res.send(data);
           }
         }
@@ -67,8 +66,7 @@ module.exports.addElectricalConsume = function (req,res){
             if(changedOK){
                 data.push(electricalConsume);
                 console.log("New electrical consume POST");
-                //console.log("Object recived: "+JSON.stringify(req.body));
-                console.log("Object recived: "+req.body);
+                console.log("Object recived: "+JSON.stringify(req.body));
                 res.sendStatus(201);
             }
           }
@@ -164,7 +162,6 @@ module.exports.getElectricalConsume = function (req,res){
               if(electricalConsume.length==0){
                 res.sendStatus(404);
               }else{
-                //res.send(JSON.stringify(electricalConsume));
                 res.send(electricalConsume);
               }
         }
@@ -185,7 +182,6 @@ module.exports.getCountryYear = function (req,res){
             if(electricalConsume.length==0)
                 res.sendStatus(404);
             else{
-                //res.send(JSON.stringify(electricalConsume));
                 res.send(electricalConsume);
             }
       }
