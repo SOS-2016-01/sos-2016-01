@@ -22,13 +22,11 @@ $("body").ready(function (){
       $("#list").text("");
       $("#data").text(JSON.stringify(data));
       dataToHtml(data);
-      if(jqXHR.status){
-        $("#status").text(jqXHR.status + " " + jqXHR.statusText);
-        console.log("Status: "+jqXHR.status);
-      }
+      console.log("Status: "+jqXHR.status);
     });
 
     request.always(function (jqXHR,status){
+      $("#status").text(jqXHR.status + " " + jqXHR.statusText);
       if(status=="error"){
         $("#status").text(jqXHR.status + " " + jqXHR.statusText);
         console.log("Status: "+jqXHR.status);
