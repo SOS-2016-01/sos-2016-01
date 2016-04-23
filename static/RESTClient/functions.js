@@ -26,7 +26,7 @@ $("body").ready(function (){
     });
 
     request.always(function (jqXHR,status){
-      $("#status").text(jqXHR.status + " " + jqXHR.statusText);
+      $("#status").text(status);
       if(status=="error"){
         $("#status").text(jqXHR.status + " " + jqXHR.statusText);
         console.log("Status: "+jqXHR.status);
