@@ -1,0 +1,51 @@
+<html>
+  <head>
+  <link rel="stylesheet" href="./materialize/css/materialize.min.css">
+  <script src="./materialize//js/materialize.min.js"></script>
+  <script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
+  <script src="./functions.js"></script>
+  </head>
+
+  <body>
+    <div class="container">
+    <h1>JQuery CO2 REST Client</h1>
+    <div class="row">
+      <h5>URL:</h5>
+      <input id="url" size="30" value="/api/v1/co2?apikey=vdcgrc" placeholder="URL"/>
+    </div>
+    <div class="row">
+        <h5>METHOD:</h5>
+        <input name="method" type="radio" id="GET" checked="checked"/> &nbsp;&nbsp;
+        <label for="GET">GET</label>
+        <input name="method" type="radio" id="POST" /> &nbsp;&nbsp;
+        <label for="POST">POST</label>
+        <input name="method" type="radio" id="PUT" /> &nbsp;&nbsp;
+        <label for="PUT">PUT</label>
+        <input name="method" type="radio" id="DELETE" /> &nbsp;&nbsp;
+        <label for="DELETE">DELETE</label>
+    </div>
+    <div class="row">
+      <br/>
+      <h5>PAYLOAD:</h5>
+      <input id="payload" size="60" placeholder="JSON Data" class="mui-textfield"/>
+      <br/>
+    </div>
+    <div class="row">
+      <br/>
+      <button id="button" class="btn waves-effect waves-light" type="submit" name="action">Send</button>
+      <br/>
+    </div>
+    <div class="row">
+      <br/>
+      <h5>HTTP Status:</h5><span id="status"></span>
+      <hr/>
+      <h5>DATA:</h5><span id="data"></span>
+      <hr/>
+      <h5>LISTED DATA:</h5>
+      <ul id="list"></ul>
+      <hr/>
+      <h5>LOG:</h5> <span id="log" ></span>
+    </div>
+    </div>
+  </body>
+</html>
