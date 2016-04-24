@@ -3,29 +3,37 @@
 <link href="//cdn.muicss.com/mui-0.5.0/css/mui.min.css" rel="stylesheet" type="text/css" />
 <script src="//cdn.muicss.com/mui-0.5.0/js/mui.min.js"></script>
 <script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
-<script type="text/javascript" src="jquery.tablesorter.js"></script>
-<script type="text/javascript">$(document).ready(function()
-    {
-        $("#t1").tablesorter();
-    }
-);
+<script src="tablesorter/tsort.min.js"></script>
+<link rel="stylesheet" href="tablesorter/style.css" type="text/css" />
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#t1").tableSort();
+	});
 </script>
+
 
 </head>
 
 <body style="background-color:#A9E2F3;">
   <h1>Electrical Consume Data Table</h1>
-  <table id="t1">
+
+
+  <table id="t1" class="mui-table mui-table--bordered">
     <thead>
       <tr>
-        <th>Country</th>
-        <th>Year</th>
-        <th>Elec. power consumption(kWh per capita)</th>
-        <th>Energyuse(kg of oil equivalent per capita)</th>
-        <th>Urban population</th>
+        <th data-sortBy="text"></th>
+        <th data-sortBy="numeric"></th>
+        <th data-sortBy="numeric"></th>
+        <th data-sortBy="numeric"></th>
+        <th data-sortBy="numeric"></th>
       </tr>
-    </thead>
+</thead>
+      <tbody>
+        <tr>
       <script src="functions.js"></script>
+    </tr>
+    </tbody>
+
   </table>
 
 
