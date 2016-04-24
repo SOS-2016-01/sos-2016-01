@@ -12,9 +12,9 @@
 </head>
 
 <body style="background-color:#A9E2F3;">
-  <h1>CO2 Data Table</h1>
-  <table id="tt" title="Formatting Columns" class="easyui-datagrid" style="width:550px;height:250px"
-        url="/api/v1/co2?apikey=vdcgrc" method="get" singleSelect="true" iconCls="icon-save">
+  <table id="tt" title="CO2 Data" class="easyui-datagrid" style="width:450px;height:300px"
+        url="/api/v1/co2?apikey=vdcgrc" method="get" singleSelect="true" iconCls="icon-save"
+        rownumbers="true" pagination="true">
     <thead>
         <tr>
             <th field="country" width="80">Country</th>
