@@ -2,24 +2,27 @@
 <head>
 <link href="//cdn.muicss.com/mui-0.5.0/css/mui.min.css" rel="stylesheet" type="text/css" />
 <script src="//cdn.muicss.com/mui-0.5.0/js/mui.min.js"></script>
-<script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
+<link rel="stylesheet" type="text/css" href="http://www.jeasyui.com/easyui/themes/default/easyui.css">
+<link rel="stylesheet" type="text/css" href="http://www.jeasyui.com/easyui/themes/icon.css">
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.4.4.min.js"></script>
+<script type="text/javascript" src="http://www.jeasyui.com/easyui/jquery.easyui.min.js"></script>
+
 
 
 </head>
 
 <body style="background-color:#A9E2F3;">
   <h1>CO2 Data Table</h1>
-  <table id="t1"  class="mui-table mui-table--bordered">
+  <table id="tt" title="Formatting Columns" class="easyui-datagrid" style="width:550px;height:250px"
+        url="/api/v1/co2?apikey=vdcgrc" method="get" singleSelect="true" iconCls="icon-save">
     <thead>
-      <tr>
-        <th>Country</th>
-        <th>Year</th>
-        <th>CO2 mtn</th>
-        <th>CO2 kg</th>
-      </tr>
+        <tr>
+            <th field="country" width="80">Country</th>
+            <th field="year" width="80">Year</th>
+            <th field="co2mtn" width="80" align="right">co2mtn</th>
+            <th field="co2kg" width="80" align="right">co2kg</th>
+        </tr>
     </thead>
-      <script src="functions.js"></script>
-  </table>
-
+</table>
 </body>
 </html>
