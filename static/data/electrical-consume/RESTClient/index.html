@@ -1,0 +1,30 @@
+<html>
+  <head>
+    <link href="//cdn.muicss.com/mui-0.5.0/css/mui.min.css" rel="stylesheet" type="text/css" />
+    <script src="//cdn.muicss.com/mui-0.5.0/js/mui.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
+    <script src="functions.js"></script>
+  </head>
+
+  <body style="background-color:#A9E2F3;">
+    <h1 class="mui--text-display1">JQuery REST Client</h1>
+      URL: <input id="url" size="30" value="../api/v1/electrical-consume" placeholder="URL" class="mui-textfield"/>
+      GET <input name="method" type="radio" id="GET" checked="checked"/> &nbsp;&nbsp;
+      POST <input name="method" type="radio" id="POST" /> &nbsp;&nbsp;
+      PUT <input name="method" type="radio" id="PUT" /> &nbsp;&nbsp;
+      DELETE <input name="method" type="radio" id="DELETE" /> &nbsp;&nbsp;
+    <br/>
+      Payload: <input id="payload" size="60" placeholder="JSON Data" class="mui-textfield"/>
+    <br/><br/>
+    <button id="button" class="mui-btn mui-btn--primary">SEND</button>
+    <!--<span id="button">Send</span>-->
+    <br/><hr/>
+      HTTP Status: <span id="status"></span>
+    <br/><hr/>
+    <span id="data"></span>
+    <br/><hr/>
+    <ul id="list"></ul>
+    <hr/>
+      Log: <span id="log" ></span>
+  </body>
+</html>
