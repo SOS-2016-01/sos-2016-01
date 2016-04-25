@@ -1,25 +1,21 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<link href="//cdn.muicss.com/mui-0.5.0/css/mui.min.css" rel="stylesheet" type="text/css" />
-<script src="//cdn.muicss.com/mui-0.5.0/js/mui.min.js"></script>
-<script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
-
+    <link rel="stylesheet" href="jqwidgets/jqwidgets/styles/jqx.base.css" type="text/css" />
+    <script type="text/javascript" src="jqwidgets/scripts/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="jqwidgets/jqwidgets/jqxcore.js"></script>
+    <script type="text/javascript" src="jqwidgets/jqwidgets/jqxdata.js"></script>
+    <script type="text/javascript" src="jqwidgets/jqwidgets/jqxbuttons.js"></script>
+    <script type="text/javascript" src="jqwidgets/jqwidgets/jqxscrollbar.js"></script>
+    <script type="text/javascript" src="jqwidgets/jqwidgets/jqxmenu.js"></script>
+    <script type="text/javascript" src="jqwidgets/jqwidgets/jqxgrid.js"></script>
+    <script type="text/javascript" src="jqwidgets/jqwidgets/jqxgrid.selection.js"></script>
+    <script src="functions.js"></script>
 
 </head>
-
-<body style="background-color:#A9E2F3;">
-  <h1>OIL Data Table</h1>
-  <table id="t1"  class="mui-table mui-table--bordered">
-    <thead>
-      <tr>
-        <th>Country</th>
-        <th>Year</th>
-        <th>Diesel</th>
-        <th>Gasoline</th>
-      </tr>
-    </thead>
-      <script src="functions.js"></script>
-  </table>
-
+<body class='default'>
+    <div id='jqxWidget' style="font-size: 13px; font-family: Verdana; float: left;">
+        <div id="jqxgrid"></div>
+    </div>
 </body>
 </html>
