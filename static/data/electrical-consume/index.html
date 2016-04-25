@@ -1,42 +1,41 @@
 <html>
 <head>
-<link href="//cdn.muicss.com/mui-0.5.0/css/mui.min.css" rel="stylesheet" type="text/css" />
-<script src="//cdn.muicss.com/mui-0.5.0/js/mui.min.js"></script>
+<!--<link href="//cdn.muicss.com/mui-0.5.0/css/mui.min.css" rel="stylesheet" type="text/css" />
+<script src="//cdn.muicss.com/mui-0.5.0/js/mui.min.js"></script>-->
+<link href="./css/bootstrap.min.css" rel="stylesheet" media="screen">
 <script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
-<script src="tablesorter/tsort.min.js"></script>
-<link rel="stylesheet" href="tablesorter/style.css" type="text/css" />
-<script type="text/javascript">
-	$(document).ready(function() {
-		$("#t1").tableSort();
-	});
-</script>
+<script src="./js/bootstrap.min.js"></script>
+
+
+
 
 
 </head>
 
-<body style="background-color:#A9E2F3;">
+<body>
   <h1>Electrical Consume Data Table</h1>
 
 
-  <table id="t1" class="mui-table mui-table--bordered">
+  <div class="table-responsive">
+	<table id="t1" class="table-striped table-bordered table-hover"  style=" width:100%; text-align:center;">
     <thead>
       <tr>
-        <th data-sortBy="text">country</th>
-				<th data-sortBy="numeric">year</th>
-				<th data-sortBy="numeric">electric power consumption (kwh per capita)</th>
-        <th data-sortBy="numeric">energy use (kg of oil equivalent per capita)</th>
-        <th data-sortBy="numeric">urban population</th>
+        <th>country</th>
+				<th>year</th>
+				<th>electric power consumption (kwh per capita)</th>
+        <th>energy use (kg of oil equivalent per capita)</th>
+        <th>urban population</th>
 
       </tr>
-</thead>
-      <tbody>
-        <tr>
+		</thead>
+
+
       <script src="functions.js"></script>
-    </tr>
-    </tbody>
+
+
 
   </table>
-
+</div>
 
 
 </body>
