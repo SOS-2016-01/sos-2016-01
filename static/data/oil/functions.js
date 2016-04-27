@@ -29,7 +29,7 @@
       console.log("Status: "+jqXHR.status);
   });
 
-  $(document).ready(function (data) {
+  $(document).ready(function () {
       // prepare the data
       var url = "/api/v1/oil?apikey=12345";
       var source =
