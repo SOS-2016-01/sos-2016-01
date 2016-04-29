@@ -1,6 +1,5 @@
 
   console.log("Handling request");
-
   var request = $.ajax({
     url:"/api/v1/co2?apikey=vdcgrc",
     type:"GET"
@@ -10,6 +9,8 @@
     console.log("Handling request (OK)");
     console.log("Data received: ");
     console.log(JSON.stringify(data));
+    items = $("#items").val();
+    page = $("#page").val();
   //  array = JSON.parse(data);
     mytable = $('<tbody></tbody>')
     for (i=0;i<data.length;i++){
@@ -21,24 +22,6 @@
     }
     console.log("TTTTT:"+mytable.html());
     mytable.appendTo("#t1");
-/*  var element = document.getElementById("t1");
-    for (i=0;i<array.length;i++){
-      var tr = document.createElement("tr");
-      var td = document.createElement("td");
-      td.appendChild(document.createTextNode(array[i].country));
-      element.appendChild(td);
-      var td = document.createElement("td");
-      td.appendChild(document.createTextNode(array[i].year));
-      element.appendChild(td);
-      var td = document.createElement("td");
-      td.appendChild(document.createTextNode(array[i].co2mtn));
-      element.appendChild(td);
-      var td = document.createElement("td");
-      td.appendChild(document.createTextNode(array[i].co2kg));
-      element.appendChild(td);
-      element.appendChild(tr);
-    }*/
-
   });
 
   request.always(function (jqXHR,status){
