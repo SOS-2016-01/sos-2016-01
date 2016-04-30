@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
-
     <link rel="stylesheet" href="jqwidgets/jqwidgets/styles/jqx.base.css" type="text/css" />
     <script type="text/javascript" src="jqwidgets/scripts/jquery-1.11.1.min.js"></script>
     <script type="text/javascript" src="jqwidgets/jqwidgets/jqxcore.js"></script>
@@ -16,8 +13,10 @@
     <script type="text/javascript" src="jqwidgets/jqwidgets/jqxcheckbox.js"></script>
     <script type="text/javascript" src="jqwidgets/jqwidgets/jqxlistbox.js"></script>
     <script type="text/javascript" src="jqwidgets/jqwidgets/jqxdropdownlist.js"></script>
-
-
+    <link rel="stylesheet" href="materialize/css/materialize.min.css">
+    <script src="materialize/js/materialize.min.js"></script>
+    <script src="sweetalert/dist/sweetalert.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="sweetalert/dist/sweetalert.css">
     <link href="//cdn.muicss.com/mui-0.5.0/css/mui.min.css" rel="stylesheet" type="text/css" />
     <script src="//cdn.muicss.com/mui-0.5.0/js/mui.min.js"></script>
     <script src="functions.js"></script>
@@ -27,19 +26,19 @@
 <div class="container">
   <h1 style="color:white">Data oil</h1>
   <div class="card-panel">
-    <h4>Status:</h4>  <span id="data" name="data" class="green-text"></span>
-  </div>
-  <div class="card-panel">
     <label style="font-size: 200%;">Apikey</label>
-    <input style="font-size: 110%;" type="text" id="apiKey" name="apiKey" value="12345" class="validate"></input>
-    <button id="loadInitialData" name="loadInitialData" class="mui-btn mui-btn--flat mui-btn--primary">LoadInitialData</button>
+    <input style="font-size: 110%;" type="text" id="apiKey" name="apiKey" value="12345"></input>
+      <button id="loadInitialData" name="loadInitialData" class="mui-btn mui-btn--flat mui-btn--primary">LoadInitialData</button>
   </div>
   <div class="card-panel">
     <label style="font-size: 200%;">Search & Delete</label>
     <input style="font-size: 110%;" type="text" id="country" name="country" placeholder="Country"></input>
     <input style="font-size: 110%;" type="text" id="year" name="year" placeholder="Year"></input>
-    <button id="searchButton" name="searchButton" class="mui-btn mui-btn--flat mui-btn--primary">Search</button>
+    <a href="#footer" title="footer">
+      <button id="searchButton" name="searchButton" class="mui-btn mui-btn--flat mui-btn--primary">Search</button>
+    </a>
     <button id="deleteButton" name="deleteButton" class="mui-btn mui-btn--flat mui-btn--primary">Delete</button><br>
+
   </div>
   <div class="card-panel">
     <label style="font-size: 200%;">Create & Update</label>
@@ -49,6 +48,7 @@
     <input style="font-size: 110%;" type="text" id="gasolineCreate" name="gasolineCreate" placeholder="Gasoline"></input>
     <button id="createButton" name="createButton" class="mui-btn mui-btn--flat mui-btn--primary">Create</button>
     <button id="updateButton" name="updateButton" class="mui-btn mui-btn--flat mui-btn--primary">Update</button><br>
+
   </div>
   <div class="card-panel">
     <center><div class="card-panel" id='jqxWidget' style="font-size: 13px; font-family: Verdana;">
@@ -58,8 +58,8 @@
     <center><button id="cleanButton" name="cleanButton" class="mui-btn mui-btn--flat mui-btn--danger">Delete All</button></center>
   </div>
 </div>
-
-
-
+<div>
+<a name="footer"></a>
+</div>
 </body>
 </html>

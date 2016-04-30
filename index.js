@@ -22,14 +22,17 @@ var oilControllers = require('./apiControllers/oilControllers.js');
   app.use("/electrical-consume",express.static(__dirname + '/static/electrical-consume'));
 
   app.use("/oil",express.static(__dirname + '/static/oil'));
+  app.use("/",express.static(__dirname + '/static'));
+
+    app.use("/co2",express.static(__dirname + '/static/co2'));
 
 
-  app.get("/", (req, res) => {
-      res.write("<html><header><title>Hello World</title></header>");
-      res.write('<body bgcolor="#29B6F6"><h1>Hello World!</h1><a href="../about">About</a></body></html>');
-      res.end();
-      console.log("New request to HELLO arrived!!")
-    });
+  // app.get("/", (req, res) => {
+  //     res.write("<html><header><title>Hello World</title></header>");
+  //     res.write('<body bgcolor="#29B6F6"><h1>Hello World!</h1><a href="../about">About</a></body></html>');
+  //     res.end();
+  //     console.log("New request to HELLO arrived!!")
+  //   });
 
   app.get("/time",(req,res)=>{
     var date = new Date();
