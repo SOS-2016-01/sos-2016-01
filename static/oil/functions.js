@@ -1,8 +1,8 @@
 $("body").ready(function (){
   console.log("jQuery Ready!");
 
-
   $("#loadInitialData").click(function(){
+
     var apikey = $("#apiKey").val();
     var dir = "";
 
@@ -11,22 +11,22 @@ $("body").ready(function (){
       type:"GET"
     });
 
-    if(apikey==12345){
-
     request.done(function (data){
       console.log("Handling request (OK)");
       console.log("Data received: ");
-      $("#data").text("Data Loaded!");
-
       table(dir);
 
     });
 
-  }else{
+    request.always(function (jqXHR,status){
+      if(status=="error" && jqXHR.status==401){
+        swal("Unauthorized: Apikey No Valid");
+    }else {
 
-    $("#data").text("Unauthorized!");
+      swal("Data Loaded");
 
-  }
+    }
+    });
 
   });
 
@@ -39,21 +39,16 @@ $("body").ready(function (){
       type:"DELETE"
     });
 
-    if(apikey==12345){
-
     request.done(function (data){
       console.log("Handling request (OK)");
       console.log("Data received: ");
-      $("#data").text("Data Clear!");
       table(dir);
 
     });
 
-  }else{
-
-    $("#data").text("Unauthorized!");
-
-  }
+    request.always(function (){
+      swal("All Clean");
+    });
 
   });
 
@@ -63,30 +58,41 @@ $("body").ready(function (){
     var year = $("#year").val();
     var dir = "";
 
+    if(country && year){
+
     var request = $.ajax({
       url:"/api/v1/oil/"+country+"/"+year+"?apikey="+apikey,
       type:"DELETE"
     });
 
-    if(apikey==12345){
-
     request.done(function (data){
       console.log("Handling request (OK)");
       console.log("Data received: ");
-      $("#data").text("Data Clear!");
       table(dir);
 
     });
 
+    request.always(function (jqXHR,status){
+      if(status=="error" && jqXHR.status==404){
+      swal("Error code: "+jqXHR.status+" Not Found");
+    }else if (status=="error" && jqXHR.status==401){
+
+      swal("Unauthorized: Apikey No Valid");
+
+    }else{
+
+      swal("Data Deleted");
+
+    }
+    });
+
   }else{
 
-    $("#data").text("Unauthorized!");
+    swal("Fill in all fields");
 
   }
 
   });
-
-
 
   $("#searchButton").click(function(){
     console.log("Handling click");
@@ -110,27 +116,24 @@ $("body").ready(function (){
     type:"GET"
   });
 
-  if(apikey==12345){
 
 
   request.done(function (data){
     console.log("Handling request (OK)");
     console.log("Data received: ");
-    $("#data").text("");
     table(dir);
 
 
   });
-}else{
-
-    $("#data").text("Unauthorized!");
-
-}
 
 
   request.always(function (jqXHR,status){
-    if(status=="error")
-      console.log("Status: "+jqXHR.status);
+    if(status=="error" && jqXHR.status==401){
+
+      swal("Unauthorized: Apikey No Valid");
+
+  }
+
   });
 
 });
@@ -143,29 +146,43 @@ $("#createButton").click(function(){
   var gasoline = $("#gasolineCreate").val();
   var dir = "";
 
+
+  if(country && year && diesel && gasoline){
+
   var request = $.ajax({
     url:"/api/v1/oil?apikey="+apikey,
     type:"POST",
     data: '{"country":"'+country+'","year":'+year+',"diesel":'+diesel+',"gasoline":'+gasoline+'}',
     contentType : "application/json"
   });
-  console.log(data);
-
-  if(apikey==12345){
 
   request.done(function (data){
     console.log("Handling request (OK)");
     console.log("Data received: ");
-    $("#data").text("Data Created!");
+    swal("Data Created!");
     table(dir);
 
   });
 
+  request.always(function (jqXHR,status){
+    if(status=="error" && jqXHR.status==401){
+
+    swal("Unauthorized: Apikey No Valid");
+
+  }else if(status=="error" && jqXHR.status==409){
+
+    swal("Data Already Exists");
+
+    }
+  });
+
 }else{
 
-  $("#data").text("Unauthorized!");
+  swal("Fill in all fields");
 
 }
+
+
 
 });
 
@@ -177,38 +194,33 @@ $("#updateButton").click(function(){
   var gasoline = $("#gasolineCreate").val();
   var dir = "";
 
+  if(country && year && diesel && gasoline){
+
+
   var request = $.ajax({
     url:"/api/v1/oil/"+country+"/"+year+"?apikey="+apikey,
     type:"PUT",
     data: '{"country":"'+country+'","year":'+year+',"diesel":'+diesel+',"gasoline":'+gasoline+'}',
     contentType : "application/json"
   });
-  console.log(data);
-
-  if(apikey==12345){
 
   request.done(function (data){
     console.log("Handling request (OK)");
     console.log("Data received: ");
-    $("#data").text("Data Update!");
+    swal("Data Update!");
     table(dir);
 
   });
 
 }else{
 
-  $("#data").text("Unauthorized!");
+  swal("Fill in all fields");
 
 }
 
 });
 
-
-
-
 });
-
-
 
 
 function table(dir){
