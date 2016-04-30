@@ -12,6 +12,11 @@ $("body").ready(function(){
         type:"GET"
       });
 
+      var request = $.ajax({
+        url:"/api/v1/electrical-consume?apikey="+apikey,
+        type:"GET"
+      });
+
       request.done(function (data){
         console.log("Handling request (OK)");
         console.log("Data received: ");
