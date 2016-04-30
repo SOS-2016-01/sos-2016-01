@@ -1,38 +1,41 @@
-$("body").ready(function(){
-  console.log("Jquery Ready!");
-
+$("body").ready(function (){
+  console.log("jQuery Ready!");
 
   $("#loadInitialData").click(function(){
-      console.log("Entra");
-      var apikey = $("#apikey").val();
-      var dir = "";
+    var apikey = $("#apikey").val();
+    var dir = "";
 
-      var request = $.ajax({
-        url:"/api/v1/electrical-consume/loadInitialData?apikey="+apikey,
-        type:"GET"
-      });
+    var request = $.ajax({
+      url:"/api/v1/electrical-consume/loadInitialData?apikey="+apikey,
+      type:"GET"
+    });
 
-      request.done(function (data){
-        console.log("Handling request (OK)");
-        console.log("Data received: ");
-        showTable(data);
+    
+    request.done(function (data){
+      console.log("Handling request (OK)");
+      console.log("Data received: ");
+      $("#data").text("Data Loaded!");
 
-      });
-
+      table(data);
 
     });
 
+    request.always(function (jqXHR,status){
+      if(status=="error")
+        console.log("Status: "+jqXHR.status);
+    });
+      });
 
 
-});
+  });
 
 
 
 
-function showTable(data){
 
-  console.log(data);
-  var mytable = $('<tbody></tbody>');
+
+function table(data){
+  mytable = $('<tbody></tbody>')
   for (i=0;i<data.length;i++){
     var row = $('<tr></tr>').appendTo(mytable);
     $('<td></td>').text(data[i].country).appendTo(row);
