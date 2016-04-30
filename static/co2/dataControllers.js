@@ -15,6 +15,7 @@ $("body").ready(function (){
       var list;
       console.log("Handling request (OK)");
       console.log("Status: "+jqXHR.status);
+      loadTable();
     });
 
     request.always(function (jqXHR,status){
@@ -38,6 +39,7 @@ $("body").ready(function (){
     request.done(function (data,jqXHR,status){
       console.log("Handling DELETE ALL (OK)");
       console.log("Status: "+jqXHR.status);
+      loadTable();
     });
 
     request.always(function (jqXHR,status){
