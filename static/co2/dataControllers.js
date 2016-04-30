@@ -57,20 +57,117 @@ function createData(){
   console.log("Handling create data");
   var apikey = $("#apikey").val();
   var country = $("#countryMod").val();
-  var url = "/api/v1/co2";
+  var year = $("#yearMod").val();
+  var co2mtn = $("#co2mtnMod").val();
+  var co2kg = $("#co2kgMod").val();
+  var url = "/api/v1/co2?apikey="+apikey;
 
-  if(countrySearch)
-    url = url+"/"+countrySearch;
-  url = url +"?apikey="+apikey+"&limit="+items+"&offset="+items*(page-1)+"&from="+fromS+"&to="+to;
-
+  if(country&&year&&co2mtn&&co2kg){
+  var data = '{"country" : "'+country+'","year" : "'+year+'","co2mtn" : "'+co2mtn+'","co2kg" : "'+co2kg+'"}';
   var request = $.ajax({
-    url:url,
-    type:"GET",
-    contentType : "application/json"
+      url:url,
+      type:"POST",
+      data:data,
+      contentType : "application/json"
+    });
+
+  }
+  else {
+    alert("You have to enter all modify inputs");
+  }
+  request.done(function (data){
+    console.log("Handling request (OK)");
+    loadTable();
+  });
+  request.always(function (jqXHR,status){
+    if(status=="error"){
+      console.log("Status: "+jqXHR.status);
+      if(jqXHR.status==401)
+      alert("You entered a wrong APIkey");
+      if(jqXHR.status==409)
+      alert("You entered a existing data");
+    }
   });
 
 }
 
+function deleteData(){
+  console.log("Handling delete data");
+  var apikey = $("#apikey").val();
+  var country = $("#countryMod").val();
+  var year = $("#yearMod").val();
+  var url = "/api/v1/co2";
+
+  if(country&&year){
+  url = url + "/"+country+"/"+year+"?apikey="+apikey;
+  var request = $.ajax({
+      url:url,
+      type:"DELETE",
+      contentType : "application/json"
+    });
+
+  }
+  else {
+    alert("You have to enter year and country modify inputs");
+  }
+  request.done(function (data){
+    console.log("Handling request (OK)");
+    loadTable();
+  });
+  request.always(function (jqXHR,status){
+    if(status=="error"){
+      console.log("Status: "+jqXHR.status);
+      if(jqXHR.status==401)
+      alert("You entered a wrong APIkey");
+      if(jqXHR.status==409)
+      alert("You entered a wrong data");
+      if(jqXHR.status==404)
+      alert("You entered a non existing data to delete");
+    }
+  });
+
+}
+
+function updateData(){
+  console.log("Handling update data");
+  var apikey = $("#apikey").val();
+  var country = $("#countryMod").val();
+  var year = $("#yearMod").val();
+  var co2mtn = $("#co2mtnMod").val();
+  var co2kg = $("#co2kgMod").val();
+  var url = "/api/v1/co2";
+
+  if(country&&year&&co2mtn&&co2kg){
+  var data = '{"country" : "'+country+'","year" : "'+year+'","co2mtn" : "'+co2mtn+'","co2kg" : "'+co2kg+'"}';
+  url = url + "/"+country+"/"+year+"?apikey="+apikey;
+  var request = $.ajax({
+      url:url,
+      type:"PUT",
+      data:data,
+      contentType : "application/json"
+    });
+
+  }
+  else {
+    alert("You have to enter all modify inputs");
+  }
+  request.done(function (data){
+    console.log("Handling request (OK)");
+    loadTable();
+  });
+  request.always(function (jqXHR,status){
+    if(status=="error"){
+      console.log("Status: "+jqXHR.status);
+      if(jqXHR.status==401)
+      alert("You entered a wrong APIkey");
+      if(jqXHR.status==409)
+      alert("You entered a wrong data");
+      if(jqXHR.status==404)
+      alert("You entered a non existing data to update");
+    }
+  });
+
+}
 
 function loadTable(){
   console.log("Handling load table");
@@ -107,7 +204,6 @@ function loadTable(){
       $('<td class="data"></td>').text(data[i].year).appendTo(row);
       $('<td class="data"></td>').text(data[i].co2mtn).appendTo(row);
       $('<td class="data"></td>').text(data[i].co2kg).appendTo(row);
-      $('<td class="data"></td>').html('<a href="#" onClick="deleteRow(this)"><i class="small material-icons">mode_edit</i><i class="small material-icons">delete</i></a>').appendTo(row);
     }
     console.log("TTTTT:"+mytable.html());
     mytable.appendTo("#tt");
@@ -122,7 +218,6 @@ function loadTable(){
 
   });
 }
-
 
 function deleteRow(target){
 
