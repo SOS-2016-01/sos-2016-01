@@ -1,0 +1,66 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="./materialize/css/materialize.min.css">
+    <script src="./materialize//js/materialize.min.js"></script>
+    <link href="../css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="functions.js"></script>
+  </head>
+
+  <body style=" background-color: #585858;">
+    <div class="container" style="width: 70%; background-color:#BDBDBD;">
+   <center>
+    <h1>Electrical Consume REST Client</h1>
+    <div class="row">
+      <h5>URL:</h5>
+      <input id="url" style="font-size:large;" size="20" value="/api/v1/electrical-consume?apikey=asmsfc" placeholder="URL"/>
+    </div>
+    <div class="row" >
+        <h5>METHOD:</h5>
+        <input name="method" type="radio" id="GET" checked="checked"/> &nbsp;&nbsp;
+        <label for="GET" style="color:#6E6E6E" >GET</label>
+        <input name="method" type="radio" id="POST" /> &nbsp;&nbsp;
+        <label for="POST" style="color:#6E6E6E">POST</label>
+        <input name="method" type="radio" id="PUT" /> &nbsp;&nbsp;
+        <label for="PUT" style="color:#6E6E6E">PUT</label>
+        <input name="method" type="radio" id="DELETE" /> &nbsp;&nbsp;
+        <label for="DELETE" style="color:#6E6E6E">DELETE</label>
+    </div>
+    <div class="row">
+      <br/>
+      <h5>PAYLOAD:</h5>
+      <input id="payload" style="font-size:medium; " size="60" placeholder="JSON Data" class="mui-textfield"/>
+      <br/>
+    </div>
+    <div class="row">
+      <br/>
+      <button type="button" id="button" value="Send" class="btn btn-success">
+      Send <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+      </button>
+
+      <button type="button" id="button" value="InitialData" class="btn btn-primary" onclick = "location='http://sos-2016-01.herokuapp.com/api/v1/electrical-consume/loadInitialData?apikey=asmsfc'">
+      Initial Data <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
+      </button>
+
+
+
+
+
+      <br/>
+    </div>
+    <div class="row">
+      <br/>
+      <h5><div class="alert alert-warning">HTTP Status:</div></h5><span id="status"></span>
+      <hr/>
+      <h5><div class="alert alert-info">DATA:</div></h5><span id="data"></span>
+      <hr/>
+      <h5><div class="alert alert-info">LISTED DATA:</div></h5>
+      <ul id="list"></ul>
+      <hr/>
+      <h5><div class="alert alert-info">LOG:</div></h5> <span id="log" ></span>
+    </div>
+  </center>
+    </div>
+  </body>
+  </html>

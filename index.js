@@ -18,6 +18,8 @@ var oilControllers = require('./apiControllers/oilControllers.js');
 
   app.use("/data",express.static(__dirname + '/static/data'));
 
+  app.use("/electrical-consume",express.static(__dirname + '/static/electrical-consume'));
+
   app.get("/", (req, res) => {
       res.write("<html><header><title>Hello World</title></header>");
       res.write('<body bgcolor="#29B6F6"><h1>Hello World!</h1><a href="../about">About</a></body></html>');
