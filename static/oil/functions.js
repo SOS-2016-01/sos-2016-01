@@ -212,6 +212,18 @@ $("#updateButton").click(function(){
 
   });
 
+  request.always(function (jqXHR,status){
+    if(status=="error" && jqXHR.status==401){
+
+    swal("Unauthorized: Apikey No Valid");
+
+  }else{
+
+    swal("Data Updated");
+
+    }
+  });
+
 }else{
 
   swal("Fill in all fields");
