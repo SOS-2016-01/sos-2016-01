@@ -26,12 +26,9 @@ $("body").ready(function(){
 
 });
 
-
-
-
 function showTable(data){
 
-  console.log(data);
+  console.log("showTable"+data[0]);
   var mytable = $('<tbody></tbody>');
   for (i=0;i<data.length;i++){
     var row = $('<tr></tr>').appendTo(mytable);
