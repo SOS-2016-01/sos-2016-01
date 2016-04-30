@@ -1,41 +1,40 @@
-$("body").ready(function (){
-  console.log("jQuery Ready!");
+$("body").ready(function(){
+  console.log("Jquery Ready!");
+
 
   $("#loadInitialData").click(function(){
-    var apikey = $("#apikey").val();
-    var dir = "";
+      console.log("Entra");
+      var apikey = $("#apikey").val();
+      var dir = "";
 
-    var request = $.ajax({
-      url:"/api/v1/electrical-consume/loadInitialData?apikey="+apikey,
-      type:"GET"
-    });
+      var request = $.ajax({
+        url:"/api/v1/electrical-consume/loadInitialData?apikey="+apikey,
+        type:"GET"
+      });
 
-    
-    request.done(function (data){
-      console.log("Handling request (OK)");
-      console.log("Data received: ");
-      $("#data").text("Data Loaded!");
+      var request = $.ajax({
+        url:"/api/v1/electrical-consume?apikey="+apikey,
+        type:"GET"
+      });
 
-      table(data);
+      request.done(function (data){
+        console.log("Handling request (OK)");
+        console.log("Data received: ");
+        showTable(data);
 
-    });
-
-    request.always(function (jqXHR,status){
-      if(status=="error")
-        console.log("Status: "+jqXHR.status);
-    });
       });
 
 
-  });
+    });
 
 
 
+});
 
+function showTable(data){
 
-
-function table(data){
-  mytable = $('<tbody></tbody>')
+  console.log("showTable"+data[0]);
+  var mytable = $('<tbody></tbody>');
   for (i=0;i<data.length;i++){
     var row = $('<tr></tr>').appendTo(mytable);
     $('<td></td>').text(data[i].country).appendTo(row);
