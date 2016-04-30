@@ -111,8 +111,8 @@ $("body").ready(function (){
 
       $("#create").click(function(){
             var apikey = $("#apikey").val();
-            var country = $("#country").val();
-            var year = $("#year").val();
+            var country = $("#countryCr").val();
+            var year = $("#yearCr").val();
             var ePowerConsum = $("#ePowerConsum").val();
             var energyUse = $("#energyUse").val();
             var urbanPopulation = $("#urbanPopulation").val();
@@ -143,8 +143,8 @@ $("body").ready(function (){
 
     $("#update").click(function(){
           var apikey = $("#apikey").val();
-          var country = $("#country").val();
-          var year = $("#year").val();
+          var country = $("#countryCr").val();
+          var year = $("#yearCr").val();
           var ePowerConsum = $("#ePowerConsum").val();
           var energyUse = $("#energyUse").val();
           var urbanPopulation = $("#urbanPopulation").val();

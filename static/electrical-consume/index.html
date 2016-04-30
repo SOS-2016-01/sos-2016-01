@@ -1,120 +1,133 @@
 <html>
 <head>
-
 <link href="./css/bootstrap.min.css" rel="stylesheet" media="screen">
 <script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
 <script src="./js/bootstrap.min.js"></script>
 <script src="functions.js"></script>
 </head>
 
-<body>
-  <h1>Electrical Consume Data Table</h1>
+<body style=" background-color: #585858; ">
+    <center><div id="container" style="width: 70%; background-color:#BDBDBD;">
+        <div style=""> <h1 style="color:white; padding-top:10px;">Electrical Consume Data Table</h1></div>
+        <hr/>
+        <div id="initialData">
+          <p >Initial Data</p>
+
+          <label style="color:white;">Apikey</label><input type="text" class="form-control" value="asmsfc" id="apikey"
+          name="apikey" placeholder="Apikey"   style="width: 20%;">
+
+          <button type="button" style="margin-top:10px;" id="loadInitialData" name="loadInitialData" class="btn btn-primary" >
+          Initial Data <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
+          </button>
+
+        </div>
+        <hr/>
+        <div id="create">
+          <p>Create And Update</p>
+          <div class="row" style="padding-left:30%;">
+            <div class="col-xs-4">
+              <input type="text" class="form-control" id="countryCr" name="countryCr" placeholder="Country">
+            </div>
+            <div class="col-xs-2">
+              <input type="text" class="form-control" id="yearCr" name="yearCr" placeholder="Year">
+            </div>
+          </div>
+
+          <div class="row" style="margin-top:10px; padding-left:20%;">
+            <div class="col-xs-3">
+              <input type="text" class="form-control" id="ePowerConsum" name="ePowerConsum" placeholder="E. power consumption">
+            </div>
+            <div class="col-xs-3">
+              <input type="text" class="form-control" id="energyUse" name="energyUse" placeholder="E. use">
+            </div>
+            <div class="col-xs-3">
+              <input type="text" class="form-control" id="urbanPopulation" name="urbanPopulation" placeholder="Urban Population">
+            </div>
+          </div>
 
 
-<div id="inputs">
+          <div class="btn-group">
 
+            <button type="button"  style="margin-top:10px;" id="create" name="create" class="btn btn-success">
+            Create <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+            </button>
 
-  <div class="input-group">
-    <span class="input-group-addon" id="basic-addon1">Apikey</span>
-    <input type="text" class="form-control" value="asmsfc" id="apikey" name="apikey" placeholder="Apikey" aria-describedby="basic-addon1"  style="width: 10%;">
-  </div>
+            <button type="button" style="margin-top:10px;" id="update" name="update" class="btn btn-success">
+              Update <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>
+            </button>
 
-  <div class="input-group">
-    <span class="input-group-addon" id="basic-addon1">Country</span>
-    <input type="text" class="form-control" id="country" name="country" placeholder="Country" aria-describedby="basic-addon1"  style="width: 30%;">
-  </div>
+        </div>
+      </div>
+      <hr/>
 
-  <div class="input-group">
-    <span class="input-group-addon" id="basic-addon1">Year</span>
-    <input type="text" class="form-control" id="year" name="year" placeholder="Year" aria-describedby="basic-addon1"  style="width: 10%;">
-  </div>
+        <div id="Search">
+          <p>Search And Delete Item</p>
+          <div class="row" style="padding-left:30%;">
+            <div class="col-xs-4">
+              <input type="text" class="form-control" id="country" name="country" placeholder="Country">
+            </div>
+            <div class="col-xs-2">
+              <input type="text" class="form-control" id="year" name="year" placeholder="Year">
+            </div>
+          </div>
+          <div class="btn-group">
+              <button type="button" id="search" style="margin-top:10px;" name="search" class="btn btn-primary">
+                Search <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+              </button>
 
-  <div class="input-group">
-    <span class="input-group-addon" id="basic-addon1">Electric power consumption</span>
-    <input type="text" class="form-control" id="ePowerConsum" name="ePowerConsum" placeholder="E. power consumption" aria-describedby="basic-addon1"  style="width: 10%;">
-  </div>
+              <button type="button" id="deleteItem" style="margin-top:10px;" name="deleteItem" class="btn btn-danger">
+                Delete Item <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+              </button>
+            </div>
+        </div>
+        <hr/>
 
+        <div class="">
+	         <table id="t1" name="t1" class="table-striped table-bordered table-hover"  style=" width:100%; text-align:center;">
+             <thead>
+               <tr style=" background-color: #1C1C1C; color:white; font-size: small; ">
+                <th style="text-align: center; width: 20%;">country</th>
+				        <th style="text-align: center; width: 20%;">year</th>
+				        <th style="text-align: center; width: 20%;">electric power consumption (kwh per capita)</th>
+                <th style="text-align: center; width: 20%;">energy use (kg of oil equivalent per capita)</th>
+                <th style="text-align: center; width: 20%;">urban population</th>
+              </tr>
+		        </thead>
+          </table>
+          <div class="row" style="padding-left:35%;">
+            <div class="col-xs-3">
+              <label>Nº Items</label>
+              <select id="items"  class="input-group" onchange="table()">
+                <option value=10 class="form-control">10</option>
+                <option value=5 class="form-control">5</option>
+                <option value=15 class="form-control">15</option>
+              </select>
+            </div>
+            <div class="col-xs-2">
+              <label>Page</label>
+              <select id="page"  class="input-group" onchange="table()">
+                <option value=1 class="form-control">1</option>
+                <option value=2 class="form-control">2</option>
+                <option value=3 class="form-control">3</option>
+                <option value=4 class="form-control">4</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <hr/>
 
-  <div class="input-group">
-    <span class="input-group-addon" id="basic-addon1">Energy use</span>
-    <input type="text" class="form-control" id="energyUse" name="energyUse" placeholder="E. use" aria-describedby="basic-addon1"  style="width: 10%;">
-  </div>
-
-  <div class="input-group">
-    <span class="input-group-addon" id="basic-addon1">Urban population</span>
-    <input type="text" class="form-control" id="urbanPopulation" name="urbanPopulation" placeholder="Urban Population" aria-describedby="basic-addon1"  style="width: 10%;">
-  </div>
-
-</div>
-
-<div id="button">
-  <button type="button" id="loadInitialData" name="loadInitialData" class="btn btn-primary" >
-  Initial Data <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
-  </button>
-
-  <button type="button" id="search" name="search" class="btn btn-primary">
-  Search <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-  </button>
-
-  <button type="button" id="deleteAll" name="deleteAll" class="btn btn-danger">
+        <button type="button" id="deleteAll" name="deleteAll" class="btn btn-danger">
   Delete ALL <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
   </button>
-
-  <button type="button" id="deleteItem" name="deleteItem" class="btn btn-danger">
-  Delete Item <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-  </button>
-
-  <button type="button" id="create" name="create" class="btn btn-success">
-  Create <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-  </button>
-
-  <button type="button" id="update" name="update" class="btn btn-success">
-  Update <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>
-  </button>
-
-</div>
+  <hr/>
 
 
 
-  <div class="table-responsive">
-	<table id="t1" name="t1" class="table-striped table-bordered table-hover"  style=" width:100%; text-align:center;">
-    <thead>
-      <tr>
-        <th>country</th>
-				<th>year</th>
-				<th>electric power consumption (kwh per capita)</th>
-        <th>energy use (kg of oil equivalent per capita)</th>
-        <th>urban population</th>
-
-      </tr>
-		</thead>
-  </table>
-  <center>
-    <div >
-      <div>Nº Items</div>
-      <select id="items"  class="input-group" onchange="table()">
-<option value=10 class="form-control">10</option>
-        <option value=5 class="form-control">5</option>
-
-        <option value=15 class="form-control">15</option>
-      </select>
-    </div>
-
-
-    <div>
-      <div>Page</div>
-      <select id="page"  class="input-group" onchange="table()">
-        <option value=1 class="form-control">1</option>
-        <option value=2 class="form-control">2</option>
-        <option value=3 class="form-control">3</option>
-        <option value=4 class="form-control">4</option>
-      </select>
-    </div>
 
 
 
-</div></center>
 
 
+</center>
 </body>
 </html>
