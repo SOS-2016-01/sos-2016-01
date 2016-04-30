@@ -29,10 +29,26 @@
     <input type="text" class="form-control" id="year" name="year" placeholder="Year" aria-describedby="basic-addon1"  style="width: 10%;">
   </div>
 
+  <div class="input-group">
+    <span class="input-group-addon" id="basic-addon1">Electric power consumption</span>
+    <input type="text" class="form-control" id="ePowerConsum" name="ePowerConsum" placeholder="E. power consumption" aria-describedby="basic-addon1"  style="width: 10%;">
+  </div>
+
+
+  <div class="input-group">
+    <span class="input-group-addon" id="basic-addon1">Energy use</span>
+    <input type="text" class="form-control" id="energyUse" name="energyUse" placeholder="E. use" aria-describedby="basic-addon1"  style="width: 10%;">
+  </div>
+
+  <div class="input-group">
+    <span class="input-group-addon" id="basic-addon1">Urban population</span>
+    <input type="text" class="form-control" id="urbanPopulation" name="urbanPopulation" placeholder="Urban Population" aria-describedby="basic-addon1"  style="width: 10%;">
+  </div>
+
 </div>
 
 <div id="button">
-  <button type="button" id="loadInitialData" name="loadInitialData" class="btn btn-primary">
+  <button type="button" id="loadInitialData" name="loadInitialData" class="btn btn-primary" >
   Initial Data <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
   </button>
 
@@ -42,6 +58,18 @@
 
   <button type="button" id="deleteAll" name="deleteAll" class="btn btn-danger">
   Delete ALL <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+  </button>
+
+  <button type="button" id="deleteItem" name="deleteItem" class="btn btn-danger">
+  Delete Item <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+  </button>
+
+  <button type="button" id="create" name="create" class="btn btn-success">
+  Create <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+  </button>
+
+  <button type="button" id="update" name="update" class="btn btn-success">
+  Update <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>
   </button>
 
 </div>
@@ -61,7 +89,30 @@
       </tr>
 		</thead>
   </table>
-</div>
+  <center>
+    <div >
+      <div>Nº Items</div>
+      <select id="items"  class="input-group" onchange="table("")">
+        <option value=5 class="form-control">5</option>
+        <option value=10 class="form-control">10</option>
+        <option value=15 class="form-control">15</option>
+      </select>
+    </div>
+
+
+    <div>
+      <div>Page</div>
+      <select id="page"  class="input-group" onchange="table("")">
+        <option value=1 class="form-control">1</option>
+        <option value=2 class="form-control">2</option>
+        <option value=3 class="form-control">3</option>
+        <option value=4 class="form-control">4</option>
+      </select>
+    </div>
+
+
+
+</div></center>
 
 
 </body>
