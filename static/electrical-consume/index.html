@@ -4,11 +4,7 @@
 <link href="./css/bootstrap.min.css" rel="stylesheet" media="screen">
 <script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
 <script src="./js/bootstrap.min.js"></script>
-
-
-
-
-
+<script src="functions.js"></script>
 </head>
 
 <body>
@@ -20,31 +16,31 @@
 
   <div class="input-group">
     <span class="input-group-addon" id="basic-addon1">Apikey</span>
-    <input type="text" class="form-control" placeholder="Apikey" aria-describedby="basic-addon1"  style="width: 10%;">
+    <input type="text" class="form-control" value="asmsfc" id="apikey" name="apikey" placeholder="Apikey" aria-describedby="basic-addon1"  style="width: 10%;">
   </div>
 
   <div class="input-group">
     <span class="input-group-addon" id="basic-addon1">Country</span>
-    <input type="text" class="form-control" placeholder="Apikey" aria-describedby="basic-addon1"  style="width: 30%;">
+    <input type="text" class="form-control" id="country" name="country" placeholder="Country" aria-describedby="basic-addon1"  style="width: 30%;">
   </div>
 
   <div class="input-group">
     <span class="input-group-addon" id="basic-addon1">Year</span>
-    <input type="text" class="form-control" placeholder="Apikey" aria-describedby="basic-addon1"  style="width: 10%;">
+    <input type="text" class="form-control" id="year" name="year" placeholder="Year" aria-describedby="basic-addon1"  style="width: 10%;">
   </div>
 
 </div>
 
 <div id="button">
-  <button type="button" id="button" value="InitialData" class="btn btn-primary" onclick = "location='http://sos-2016-01.herokuapp.com/api/v1/electrical-consume/loadInitialData?apikey=asmsfc'">
+  <button type="button" id="loadInitialData" name="loadInitialData" class="btn btn-primary">
   Initial Data <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span>
   </button>
 
-  <button type="button" id="button" value="Search" class="btn btn-primary">
+  <button type="button" id="search" name="search" class="btn btn-primary">
   Search <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
   </button>
 
-  <button type="button" id="button" value="Delete All" class="btn btn-danger">
+  <button type="button" id="deleteAll" name="deleteAll" class="btn btn-danger">
   Delete ALL <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
   </button>
 
@@ -53,7 +49,7 @@
 
 
   <div class="table-responsive">
-	<table id="t1" class="table-striped table-bordered table-hover"  style=" width:100%; text-align:center;">
+	<table id="t1" name="t1" class="table-striped table-bordered table-hover"  style=" width:100%; text-align:center;">
     <thead>
       <tr>
         <th>country</th>
@@ -64,12 +60,6 @@
 
       </tr>
 		</thead>
-
-
-      <script src="functions.js"></script>
-
-
-
   </table>
 </div>
 
