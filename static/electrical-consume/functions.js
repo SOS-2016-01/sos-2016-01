@@ -187,7 +187,7 @@ function table(url){
   items = $("#items").val();
   page = $("#page").val();
 
-  if(url==""){
+  if(url=="" || url==undefined){
     url="/api/v1/electrical-consume?apikey="+apikey+"&limit="+items+"&offset="+items*(page-1);
     console.log(url);
   }
