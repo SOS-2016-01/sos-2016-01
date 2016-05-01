@@ -102,14 +102,6 @@ $("body").ready(function (){
     var item = $("#item").val();
     var page = $("#page").val();
     var dir = "";
-    if(country && year){
-      var dir = "/api/v1/oil/"+country+"/"+year+"?apikey="+apikey+"&limit="+item+"&offset="+item*(page-1);
-    }else if(year){
-      var dir = "/api/v1/oil/"+year+"?apikey="+apikey+"&limit="+item+"&offset="+item*(page-1);
-
-    }else if (country){
-      var dir = "/api/v1/oil/"+country+"?apikey="+apikey+"&limit="+item+"&offset="+item*(page-1);
-    }
 
   var request = $.ajax({
     url:"/api/v1/oil?apikey="+apikey,
@@ -244,6 +236,7 @@ function table(dir){
     if(dir==""){
 
       dir = "/api/v1/oil?apikey="+apikey+"&limit="+item+"&offset="+item*(page-1);
+
     }else{
 
       if(country && year){
