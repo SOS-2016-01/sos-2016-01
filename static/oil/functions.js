@@ -99,16 +99,16 @@ $("body").ready(function (){
     var apikey = $("#apiKey").val();
     var country = $("#country").val();
     var year = $("#year").val();
+    var item = $("#item").val();
+    var page = $("#page").val();
     var dir = "";
     if(country && year){
-      var dir = "/api/v1/oil/"+country+"/"+year+"?apikey="+apikey;
+      var dir = "/api/v1/oil/"+country+"/"+year+"?apikey="+apikey+"&limit="+item+"&offset="+item*(page-1);
     }else if(year){
-      var dir = "/api/v1/oil/"+year+"?apikey="+apikey;
+      var dir = "/api/v1/oil/"+year+"?apikey="+apikey+"&limit="+item+"&offset="+item*(page-1);
 
     }else if (country){
-
-      var dir = "/api/v1/oil/"+country+"?apikey="+apikey;
-
+      var dir = "/api/v1/oil/"+country+"?apikey="+apikey+"&limit="+item+"&offset="+item*(page-1);
     }
 
   var request = $.ajax({
@@ -234,14 +234,34 @@ $("#updateButton").click(function(){
 
 });
 
-
 function table(dir){
   $(document).ready(function () {
     var apikey = $("#apiKey").val();
+    var item = $("#item").val();
+    var country = $("#country").val();
+    var year = $("#year").val();
+    var page = $("#page").val();
     if(dir==""){
 
-      dir = "/api/v1/oil?apikey="+apikey;
+      dir = "/api/v1/oil?apikey="+apikey+"&limit="+item+"&offset="+item*(page-1);
+    }else{
+
+      if(country && year){
+        var dir = "/api/v1/oil/"+country+"/"+year+"?apikey="+apikey+"&limit="+item+"&offset="+item*(page-1);
+      }else if(year){
+        var dir = "/api/v1/oil/"+year+"?apikey="+apikey+"&limit="+item+"&offset="+item*(page-1);
+
+      }else if (country){
+        var dir = "/api/v1/oil/"+country+"?apikey="+apikey+"&limit="+item+"&offset="+item*(page-1);
+      }else{
+
+        dir = "/api/v1/oil?apikey="+apikey+"&limit="+item+"&offset="+item*(page-1);
+
+      }
+
     }
+
+      console.log(dir);
 
       var url = dir;
       var source =
@@ -272,5 +292,4 @@ function table(dir){
           ]
       });
   });
-
 }

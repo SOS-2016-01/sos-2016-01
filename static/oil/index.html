@@ -51,25 +51,25 @@
   </div>
   <div class="card-panel">
     <center>
-      <div class="card-panel" id='jqxWidget' style="font-size: 13px; font-family: Verdana;">
+      <div class="card-panel" id='jqxWidget' style="font-size: 11px; font-family: Verdana;">
           <div id="jqxgrid"></div>
       </div>
     </center>
       <div class="row" style="padding-left: 35%;">
-          <div class="input-field col s1">
+          <div class="input-field col s2">
           Items:
-          <select class="browser-default">
+          <select id="item" class="browser-default"  onchange="table()">
           <option value="5">5</option>
           <option value="10">10</option>
           <option value="15">15</option>
         </select>
     </div>
-      <div class="input-field col s1">
+      <div class="input-field col s2">
       Page:
       <select id="page" class="browser-default" onchange="table()">
-        <option value=1>1</option>
-        <option value=2>2</option>
-        <option value=3>3</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
       </select>
       </div>
       <br><button id="cleanButton" name="cleanButton" class="mui-btn mui-btn--flat mui-btn--danger">Delete All</button>
