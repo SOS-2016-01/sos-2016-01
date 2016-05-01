@@ -81,14 +81,16 @@ $("body").ready(function (){
             var apikey = $("#apikey").val();
             var country = $("#country").val();
             var year = $("#year").val();
+            items = $("#items").val();
+            page = $("#page").val();
             var url="";
 
             if(country && year){
-              url = "/api/v1/electrical-consume/"+country+"/"+year+"?apikey="+apikey;
+              url = "/api/v1/electrical-consume/"+country+"/"+year+"?apikey="+apikey+"&limit="+items+"&offset="+items*(page-1);
             }else if(year){
-              url = "/api/v1/electrical-consume/"+year+"?apikey="+apikey;
+              url = "/api/v1/electrical-consume/"+year+"?apikey="+apikey+"&limit="+items+"&offset="+items*(page-1);
             }else if (country){
-              url = "/api/v1/electrical-consume/"+country+"?apikey="+apikey;
+              url = "/api/v1/electrical-consume/"+country+"?apikey="+apikey+"&limit="+items+"&offset="+items*(page-1);
             }
 
             var request = $.ajax({
