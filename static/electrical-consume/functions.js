@@ -42,10 +42,11 @@ $("body").ready(function (){
             table("");
         });
 
-        request.always(function (){
-            if(status=="error"){
-              console.log("Status: "+jqXHR.status);
-            }
+        request.always(function (jqXHR,status){
+          if(status=="error" && jqXHR.status==401){
+            console.log("Status: "+jqXHR.status);
+            alertify.alert("Incorrect apikey");
+          }
         });
     });
 
@@ -65,12 +66,14 @@ $("body").ready(function (){
             $("#t1").find("tr:gt(0)").remove();
             table("");
 
+
         });
 
         request.always(function (jqXHR,status){
-            if(status=="error"){
-              console.log("Status: "+jqXHR.status);
-            }
+          if(status=="error" && jqXHR.status==401){
+            console.log("Status: "+jqXHR.status);
+            alertify.alert("Incorrect apikey");
+          }
         });
       }//poner emergente
     });
@@ -105,8 +108,9 @@ $("body").ready(function (){
             });
 
             request.always(function (jqXHR,status){
-              if(status=="error"){
+              if(status=="error" && jqXHR.status==401){
                 console.log("Status: "+jqXHR.status);
+                alertify.alert("Incorrect apikey");
               }
             });
           });
@@ -137,9 +141,19 @@ $("body").ready(function (){
             });
 
             request.always(function (jqXHR,status){
-                if(status=="error" && jqXHR.status==409){
+                if(status=="error"){
                   console.log("Status: "+jqXHR.status);
-                  alertify.alert("Resource already exists");
+                  if(jqXHR.status==401){
+                    alertify.alert("Incorrect apikey");
+                  }else
+                  if(jqXHR.status==409){
+                      alertify.alert("Resource already exists");
+                  }
+
+
+
+
+
                 }
             });
             }//emergente
@@ -166,11 +180,14 @@ $("body").ready(function (){
             console.log("Handling request (OK)");
             $("#t1").find("tr:gt(0)").remove();
             table("");
+            $("#countryCr").reset();
+
           });
 
           request.always(function (jqXHR,status){
-            if(status=="error"){
+            if(status=="error" && jqXHR.status==401){
               console.log("Status: "+jqXHR.status);
+              alertify.alert("Incorrect apikey");
             }
           });
         }//emergente
