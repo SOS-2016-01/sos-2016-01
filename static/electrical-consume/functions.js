@@ -43,9 +43,10 @@ $("body").ready(function (){
         });
 
         request.always(function (){
-            if(status=="error"){
-              console.log("Status: "+jqXHR.status);
-            }
+          if(status=="error" && jqXHR.status==401){
+            console.log("Status: "+jqXHR.status);
+            alertify.alert("Incorrect apikey");
+          }
         });
     });
 
@@ -68,9 +69,10 @@ $("body").ready(function (){
         });
 
         request.always(function (jqXHR,status){
-            if(status=="error"){
-              console.log("Status: "+jqXHR.status);
-            }
+          if(status=="error" && jqXHR.status==401){
+            console.log("Status: "+jqXHR.status);
+            alertify.alert("Incorrect apikey");
+          }
         });
       }//poner emergente
     });
@@ -105,8 +107,9 @@ $("body").ready(function (){
             });
 
             request.always(function (jqXHR,status){
-              if(status=="error"){
+              if(status=="error" && jqXHR.status==401){
                 console.log("Status: "+jqXHR.status);
+                alertify.alert("Incorrect apikey");
               }
             });
           });
@@ -137,9 +140,13 @@ $("body").ready(function (){
             });
 
             request.always(function (jqXHR,status){
-                if(status=="error" && jqXHR.status==409){
+                if(status=="error" && ){
                   console.log("Status: "+jqXHR.status);
+                  if(jqXHR.status==409){
                   alertify.alert("Resource already exists");
+                }else if (jqXHR.status==401) {
+                  alertify.alert("Incorrect apikey");
+                }
                 }
             });
             }//emergente
@@ -169,8 +176,9 @@ $("body").ready(function (){
           });
 
           request.always(function (jqXHR,status){
-            if(status=="error"){
+            if(status=="error" && jqXHR.status==401){
               console.log("Status: "+jqXHR.status);
+              alertify.alert("Incorrect apikey");
             }
           });
         }//emergente
