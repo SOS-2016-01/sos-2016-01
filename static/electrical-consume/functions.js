@@ -110,7 +110,7 @@ $("body").ready(function (){
           });
 
 
-      $("#create").click(function(){
+      $("#createB").click(function(){
             var apikey = $("#apikey").val();
             var country = $("#countryCr").val();
             var year = $("#yearCr").val();
