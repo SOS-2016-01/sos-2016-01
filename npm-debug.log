@@ -20,7 +20,7 @@
 9 verbose stack     at maybeClose (internal/child_process.js:821:16)
 9 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:211:5)
 10 verbose pkgid sos-2016-01@1.0.0
-11 verbose cwd E:\Users\Gonzalo\Documents\Universidad\Tercero\SOS\Repositorio\sos-2016-01
+11 verbose cwd E:\Dropbox\UNIVERSIDAD\Tercero\SOS\sos-2016-01
 12 error Windows_NT 10.0.10586
 13 error argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "start"
 14 error node v4.3.1

@@ -21,8 +21,9 @@ $("body").ready(function (){
         });
 
         request.always(function (jqXHR,status){
-            if(status=="error"){
+            if(status=="error" && jqXHR.status==401){
               console.log("Status: "+jqXHR.status);
+              alertify.alert("Incorrect apikey");
             }
         });
   });
@@ -134,8 +135,9 @@ $("body").ready(function (){
             });
 
             request.always(function (jqXHR,status){
-                if(status=="error"){
+                if(status=="error" && jqXHR.status==409){
                   console.log("Status: "+jqXHR.status);
+                  alertify.alert("Resource already exists");
                 }
             });
             }//emergente
