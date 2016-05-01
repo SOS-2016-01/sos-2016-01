@@ -74,7 +74,7 @@ $("body").ready(function (){
 
     request.always(function (jqXHR,status){
       if(status=="error" && jqXHR.status==404){
-      swal("Error code: "+jqXHR.status+" Not Found");
+      swal("Data Not Found");
     }else if (status=="error" && jqXHR.status==401){
 
       swal("Unauthorized: Apikey No Valid");
