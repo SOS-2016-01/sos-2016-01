@@ -42,7 +42,7 @@ $("body").ready(function (){
             table("");
         });
 
-        request.always(function (){
+        request.always(function (jqXHR,status){
           if(status=="error" && jqXHR.status==401){
             console.log("Status: "+jqXHR.status);
             alertify.alert("Incorrect apikey");
@@ -65,6 +65,7 @@ $("body").ready(function (){
             console.log("Handling request (OK)");
             $("#t1").find("tr:gt(0)").remove();
             table("");
+
 
         });
 
@@ -140,13 +141,19 @@ $("body").ready(function (){
             });
 
             request.always(function (jqXHR,status){
-                if(status=="error" && ){
+                if(status=="error"){
                   console.log("Status: "+jqXHR.status);
+                  if(jqXHR.status==401){
+                    alertify.alert("Incorrect apikey");
+                  }else
                   if(jqXHR.status==409){
-                  alertify.alert("Resource already exists");
-                }else if (jqXHR.status==401) {
-                  alertify.alert("Incorrect apikey");
-                }
+                      alertify.alert("Resource already exists");
+                  }
+
+
+
+
+
                 }
             });
             }//emergente
@@ -173,6 +180,8 @@ $("body").ready(function (){
             console.log("Handling request (OK)");
             $("#t1").find("tr:gt(0)").remove();
             table("");
+            $("#countryCr").reset();
+
           });
 
           request.always(function (jqXHR,status){
