@@ -24,7 +24,7 @@
 </head>
 <body class='default' style="background-color:#A9E2F3;">
 <div class="container">
-  <h1 style="color:white">Data oil</h1>
+  <h1 style="color:white; text-align:center">Data oil</h1>
   <div class="card-panel">
     <label style="font-size: 200%;">Apikey</label>
     <input style="font-size: 110%;" type="text" id="apiKey" name="apiKey" value="12345"></input>
@@ -43,21 +43,39 @@
   <div class="card-panel">
     <label style="font-size: 200%;">Create & Update</label>
     <input style="font-size: 110%;" type="text" id="countryCreate" name="countryCreate" placeholder="Country"></input>
-    <input style="font-size: 110%;" type="text" id="yearCreate" name="yearCreate" placeholder="Year"></input><br>
+    <input style="font-size: 110%;" type="text" id="yearCreate" name="yearCreate" placeholder="Year"></input>
     <input style="font-size: 110%;" type="text" id="dieselCreate" name="dieselCreate" placeholder="Diesel"></input>
     <input style="font-size: 110%;" type="text" id="gasolineCreate" name="gasolineCreate" placeholder="Gasoline"></input>
     <button id="createButton" name="createButton" class="mui-btn mui-btn--flat mui-btn--primary">Create</button>
     <button id="updateButton" name="updateButton" class="mui-btn mui-btn--flat mui-btn--primary">Update</button><br>
-
   </div>
   <div class="card-panel">
-    <center><div class="card-panel" id='jqxWidget' style="font-size: 13px; font-family: Verdana;">
+    <center>
+      <div class="card-panel" id='jqxWidget' style="font-size: 13px; font-family: Verdana;">
           <div id="jqxgrid"></div>
-      </div></center>
-
-    <center><button id="cleanButton" name="cleanButton" class="mui-btn mui-btn--flat mui-btn--danger">Delete All</button></center>
+      </div>
+    </center>
+      <div class="row" style="padding-left: 35%;">
+          <div class="input-field col s1">
+          Items:
+          <select class="browser-default">
+          <option value="5">5</option>
+          <option value="10">10</option>
+          <option value="15">15</option>
+        </select>
+    </div>
+      <div class="input-field col s1">
+      Page:
+      <select id="page" class="browser-default" onchange="table()">
+        <option value=1>1</option>
+        <option value=2>2</option>
+        <option value=3>3</option>
+      </select>
+      </div>
+      <br><button id="cleanButton" name="cleanButton" class="mui-btn mui-btn--flat mui-btn--danger">Delete All</button>
+      </div>
   </div>
-</div>
+
 <div>
 <a name="footer"></a>
 </div>

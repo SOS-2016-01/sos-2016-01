@@ -242,7 +242,7 @@ function table(dir){
 
       dir = "/api/v1/oil?apikey="+apikey;
     }
-    
+
       var url = dir;
       var source =
                 {
