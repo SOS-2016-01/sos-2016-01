@@ -86,11 +86,11 @@ $("body").ready(function (){
             var url="";
 
             if(country && year){
-              url = "/api/v1/electrical-consume/"+country+"/"+year+"?apikey="+apikey+"&limit="+items+"&offset="+items*(page-1);
+              url = "/api/v1/electrical-consume/"+country+"/"+year+"?apikey="+apikey;
             }else if(year){
-              url = "/api/v1/electrical-consume/"+year+"?apikey="+apikey+"&limit="+items+"&offset="+items*(page-1);
+              url = "/api/v1/electrical-consume/"+year+"?apikey="+apikey;
             }else if (country){
-              url = "/api/v1/electrical-consume/"+country+"?apikey="+apikey+"&limit="+items+"&offset="+items*(page-1);
+              url = "/api/v1/electrical-consume/"+country+"?apikey="+apikey;
             }
 
             var request = $.ajax({
@@ -190,6 +190,18 @@ function table(url){
   var apikey = $("#apikey").val();
   items = $("#items").val();
   page = $("#page").val();
+  var country = $("#country").val();
+  var year = $("#year").val();
+
+  if(country && year){
+    url = "/api/v1/electrical-consume/"+country+"/"+year+"?apikey="+apikey+"&limit="+items+"&offset="+items*(page-1);
+  }else if(year){
+    url = "/api/v1/electrical-consume/"+year+"?apikey="+apikey+"&limit="+items+"&offset="+items*(page-1);
+  }else if (country){
+    url = "/api/v1/electrical-consume/"+country+"?apikey="+apikey+"&limit="+items+"&offset="+items*(page-1);
+  }
+
+
 
   if(url=="" || url==undefined){
     url="/api/v1/electrical-consume?apikey="+apikey+"&limit="+items+"&offset="+items*(page-1);
