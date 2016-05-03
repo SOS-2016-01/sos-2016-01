@@ -22,9 +22,12 @@ var oilControllers = require('./apiControllers/oilControllers.js');
   app.use("/electrical-consume",express.static(__dirname + '/static/electrical-consume'));
 
   app.use("/oil",express.static(__dirname + '/static/oil'));
+
+  app.use("/co2",express.static(__dirname + '/static/co2'));
+
   app.use("/",express.static(__dirname + '/static'));
 
-    app.use("/co2",express.static(__dirname + '/static/co2'));
+
 
 
   // app.get("/", (req, res) => {
