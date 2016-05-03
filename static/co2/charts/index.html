@@ -1,0 +1,41 @@
+<html>
+  <head>
+    <script src="https://code.jquery.com/jquery-2.1.2.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+    <script src="./mapController.js"></script>
+    <script>
+    $(document).ready(function() {
+        $('select').material_select();
+    });
+    google.charts.load('current', {'packages':['geochart']});
+    </script>
+  </head>
+  <body style="background-color:#A9E2F3;">
+
+    <div class="row">
+    <div class="input-field col s2">
+    Select year:
+    </div>
+    <div id="year" class="input-field col s4 m2">
+    </div>
+    <div class="input-field col s2">
+    Select measure:
+    </div>
+    <div class="input-field col s4 m2">
+    <select id="measure" onchange="drawRegionsMap()">
+      <option value="co2mtn">co2mtn</option>
+      <option value="co2kg">co2kg</option>
+    </select>
+    </div>
+  </div>
+  <div class="row"></div>
+</div>
+<div class="card-panel" style="padding-left: 20%;">
+    <div id="chart_div" style="width: 900px; height: 500px;"></div>
+  </div>
+
+  </body>
+</html>
