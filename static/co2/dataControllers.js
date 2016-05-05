@@ -1,5 +1,40 @@
+function charge_pages(){
+  var request = $.ajax({
+    url:"/api/v1/co2?apikey=vdcgrc",
+    type:"GET",
+    contentType : "application/json"
+  });
+
+  request.done(function (data,jqXHR,status){
+    console.log("Handling request (OK)");
+    console.log("Status: "+jqXHR.status);
+    console.log(data);
+    var pages = data.length/$("#items").val();
+    $(".pagesValues").remove();
+
+    var select=$('#page');
+
+    for(i=1;i<pages+1;i++){
+      $('<option class="pagesValues" value='+i+'></option>').text(i).appendTo(select);
+    }
+    select.appendTo("#inputPages");
+    $('select').material_select();
+  });
+
+  request.always(function (jqXHR,status){
+    if(status=="error"){
+      console.log("Status: "+jqXHR.status);
+    }
+  });
+
+
+}
+
+
+
 $("body").ready(function (){
   console.log("jQuery Ready!");
+  charge_pages();
   $("#load").click(function(){
     console.log("Handling click on load data");
 
@@ -249,5 +284,6 @@ function deleteRow(target){
 				});
 
 }
+
 
 }
