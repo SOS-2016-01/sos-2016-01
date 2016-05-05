@@ -232,12 +232,30 @@ function table(dir){
     var item = $("#item").val();
     var country = $("#country").val();
     var year = $("#year").val();
+    var yearTo = $("#yearTo").val();
     var page = $("#page").val();
     if(dir==""){
 
-      dir = "/api/v1/oil?apikey="+apikey+"&limit="+item+"&offset="+item*(page-1);
+      dir = "/api/v1/oil?apikey="+apikey+"&limit="+item+"&offset="+item*(page-1)+"&from="+year+"&to="+yearTo;
 
     }else{
+
+      if(yearTo){
+
+        if(country && year){
+          var dir = "/api/v1/oil/"+country+"?apikey="+apikey+"&limit="+item+"&offset="+item*(page-1)+"&from="+year+"&to="+yearTo;
+        }else if(year){
+          var dir = "/api/v1/oil?apikey="+apikey+"&limit="+item+"&offset="+item*(page-1)+"&from="+year+"&to="+yearTo;
+
+        }else if (country){
+          var dir = "/api/v1/oil/"+country+"?apikey="+apikey+"&limit="+item+"&offset="+item*(page-1)+"&from="+year+"&to="+yearTo;
+        }else{
+          dir = "/api/v1/oil?apikey="+apikey+"&limit="+item+"&offset="+item*(page-1)+"&from="+year+"&to="+yearTo;
+
+        }
+
+
+      }else{
 
       if(country && year){
         var dir = "/api/v1/oil/"+country+"/"+year+"?apikey="+apikey+"&limit="+item+"&offset="+item*(page-1);
@@ -251,8 +269,8 @@ function table(dir){
         dir = "/api/v1/oil?apikey="+apikey+"&limit="+item+"&offset="+item*(page-1);
 
       }
-
     }
+}
 
       console.log(dir);
 
