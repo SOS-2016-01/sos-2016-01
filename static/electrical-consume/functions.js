@@ -224,8 +224,6 @@ function table(url){
     url = "/api/v1/electrical-consume/"+country+"?apikey="+apikey+"&limit="+items+"&offset="+items*(page-1);
   }
 
-
-
   if(url=="" || url==undefined){
     url="/api/v1/electrical-consume?apikey="+apikey+"&limit="+items+"&offset="+items*(page-1);
     console.log(url);
