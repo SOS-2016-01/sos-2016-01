@@ -240,37 +240,18 @@ function table(dir){
 
     }else{
 
-      if(yearTo){
-
         if(country && year){
           var dir = "/api/v1/oil/"+country+"?apikey="+apikey+"&limit="+item+"&offset="+item*(page-1)+"&from="+year+"&to="+yearTo;
         }else if(year){
           var dir = "/api/v1/oil?apikey="+apikey+"&limit="+item+"&offset="+item*(page-1)+"&from="+year+"&to="+yearTo;
-
         }else if (country){
           var dir = "/api/v1/oil/"+country+"?apikey="+apikey+"&limit="+item+"&offset="+item*(page-1)+"&from="+year+"&to="+yearTo;
         }else{
           dir = "/api/v1/oil?apikey="+apikey+"&limit="+item+"&offset="+item*(page-1)+"&from="+year+"&to="+yearTo;
 
         }
-
-
-      }else{
-
-      if(country && year){
-        var dir = "/api/v1/oil/"+country+"/"+year+"?apikey="+apikey+"&limit="+item+"&offset="+item*(page-1);
-      }else if(year){
-        var dir = "/api/v1/oil/"+year+"?apikey="+apikey+"&limit="+item+"&offset="+item*(page-1);
-
-      }else if (country){
-        var dir = "/api/v1/oil/"+country+"?apikey="+apikey+"&limit="+item+"&offset="+item*(page-1);
-      }else{
-
-        dir = "/api/v1/oil?apikey="+apikey+"&limit="+item+"&offset="+item*(page-1);
-
-      }
     }
-}
+
 
       console.log(dir);
 
