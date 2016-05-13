@@ -1,6 +1,7 @@
 var express = require("express");
 var bodyParser = require("body-parser");
 var request = require("request");
+var cors = require("cors");
 var carsControllers = require('./apiControllers/carsControllers.js');
 var co2Ctl = require('./apiControllers/co2Controllers.js');
 var smartphonesControllers = require('./apiControllers/smartphonesControllers.js');
@@ -10,6 +11,8 @@ var oilControllers = require('./apiControllers/oilControllers.js');
 
   var app = express();
   var port = (process.env.PORT || 8081);
+
+  app.use(cors());
 
   app.use(bodyParser.json());
 
