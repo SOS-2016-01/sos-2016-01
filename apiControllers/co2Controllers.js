@@ -1,6 +1,8 @@
 var data = [];
 var key = "vdcgrc";
 
+//key = multiPlan_C2_sos-2016-01-grc_ag
+
 module.exports.getData = function(req,res){
 var apikey = req.query.apikey;
 var limit = req.query.limit;
@@ -8,7 +10,6 @@ var from = req.query.from;
 var to = req.query.to;
 var offset = req.query.offset;
 var aux = [];
-if(checkApiKey(apikey,res)){
   console.log("New GET of resource co2");
   if(from && to){
     for(i=0;i<data.length;i++){
@@ -38,14 +39,12 @@ if(checkApiKey(apikey,res)){
     aux = aux.slice(0,limit);
   }
   res.send(aux);
-  }
 }
 
 module.exports.addCo2 = function (req,res){
 var car = req.body;
 var add = true;
 var apikey = req.query.apikey;
-  if(checkApiKey(apikey,res)){
     if(checkJSON(car,res)){
       if(searchResource(car.country,car.year)===-1){
         data.push(car);
@@ -57,21 +56,15 @@ var apikey = req.query.apikey;
         res.sendStatus(409);
       }
     }
-  }
 }
 
 module.exports.delete = function (req,res){
-var apikey = req.query.apikey;
-if(checkApiKey(apikey,res)){
-  console.log("New co2 DELETE");
+console.log("New co2 DELETE");
   data = [];
   res.sendStatus(200);
-  }
 }
 
 module.exports.initialData = function (req,res){
-var apikey = req.query.apikey;
-if(checkApiKey(apikey,res)){
   console.log("New initial co2 data charge");
   data = [{country : "brazil",
          year : "2006",
@@ -130,7 +123,6 @@ if(checkApiKey(apikey,res)){
         co2mtn : "17.1",
         co2kg : "434.705"}];
     res.sendStatus(200);
-  }
 }
 
 module.exports.getCo2 = function (req,res){
@@ -142,7 +134,6 @@ module.exports.getCo2 = function (req,res){
   var offset = req.query.offset;
   var apikey = req.query.apikey;
   var aux = [];
-  if(checkApiKey(apikey,res)){
     console.log("New GET of resource co2 of "+country);
     for(i=0;i<data.length;i++){
       if(data[i].country == country){
@@ -186,22 +177,18 @@ module.exports.getCo2 = function (req,res){
     else{
         res.send(aux);
       }
-    }
 }
 
 module.exports.getCountryYear = function (req,res){
   var country = req.params.country;
   var year = req.params.year;
   var car = [];
-  var apikey = req.query.apikey;
-  if(checkApiKey(apikey,res)){
     console.log("New GET of resource co2 of "+country+" and year "+year);
     i=searchResource(country,year);
     if(i!==-1)
       res.send(data[i]);
     else
       res.sendStatus(404);
-  }
 }
 
 module.exports.update = function (req,res){
@@ -210,9 +197,7 @@ var year = req.params.year;
 var updated = false;
 var badRequest = false;
 var sent = req.body;
-var apikey = req.query.apikey;
-if(checkApiKey(apikey,res)){
-  if(checkJSON(sent,res)){
+if(checkJSON(sent,res)){
     console.log("New PUT of resource co2 of "+country);
     i=searchResource(country,year);
     if(i!==-1){
@@ -226,15 +211,12 @@ if(checkApiKey(apikey,res)){
       else
         res.sendStatus(404);
     }
-  }
 }
 
 module.exports.deleteCo2 = function (req,res){
 var country = req.params.country;
 var year = req.params.year;
 var removed = 0;
-var apikey = req.query.apikey;
-if(checkApiKey(apikey,res)){
   console.log("New co2 DELETE "+country);
   i=searchResource(country,year);
   if(i!==-1){
@@ -244,18 +226,17 @@ if(checkApiKey(apikey,res)){
     }
   else
     res.sendStatus(404);
-  }
 }
 
 
-function checkApiKey(apikey,res){
+/*function checkApiKey(apikey,res){
 if(apikey && key===apikey)
   return true;
 else{
   res.sendStatus(401);
   return false;
   }
-}
+}*/
 
 function checkJSON(json,res){
   if(json.year && json.country && json.co2mtn && json.co2kg)

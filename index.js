@@ -2,6 +2,7 @@ var express = require("express");
 var bodyParser = require("body-parser");
 var request = require("request");
 var cors = require("cors");
+var governify = require("governify");
 var carsControllers = require('./apiControllers/carsControllers.js');
 var co2Ctl = require('./apiControllers/co2Controllers.js');
 var smartphonesControllers = require('./apiControllers/smartphonesControllers.js');
@@ -9,8 +10,14 @@ var electricalConsumeCtl = require('./apiControllers/electricalConsumeController
 var teamsControllers = require('./apiControllers/teamsControllers.js');
 var oilControllers = require('./apiControllers/oilControllers.js');
 
+
   var app = express();
   var port = (process.env.PORT || 8081);
+governify.control(app,{
+  datastore : "http://datastore.governify.io/api/v6.1/",
+  namespace : "sos-2016-01-grc",
+  defaultPath: "/api/v1/co2"
+});
 
   app.use(cors());
 
