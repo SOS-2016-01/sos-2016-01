@@ -125,7 +125,7 @@ var oilControllers = require('./apiControllers/oilControllers.js');
   app.delete("/api/v1/co2/:country/:year", co2Ctl.deleteCo2);
 
   var pathGon = '/api/v1/mort-sickness';
-  var apiServerHostGon = 'https://sos-2016-03.herokuapp.com';
+  var apiServerHostGon = 'http://sos-2016-03.herokuapp.com';
 
   app.use(pathGon,function(req,res){
     var url = apiServerHostGon + req.baseUrl + req.url;
