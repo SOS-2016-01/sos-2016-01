@@ -14,6 +14,24 @@ var oilControllers = require('./apiControllers/oilControllers.js');
 
   app.use(cors());
 
+
+    var pathGon = '/api/v1/mort-sickness';
+    var apiServerHostGon = 'http://sos-2016-03.herokuapp.com';
+
+    app.use(pathGon,function(req,res){
+      var url = apiServerHostGon + pathGon + req.url;
+      console.log("Piped: "+ req.baseUrl + req.url);
+      console.log("URL Accesed: "+ url);
+
+      req.pipe(request(url,(error,response,body)=>{
+        if(error){
+          console.error(error);
+          res.sendStatus(503);
+        }
+      })).pipe(res);
+    });
+
+//Escribid vuestros pipe antes de esta línea pq si no no va bien
   app.use(bodyParser.json());
 
   app.use("/about",express.static(__dirname + '/static/about'));
@@ -123,23 +141,6 @@ var oilControllers = require('./apiControllers/oilControllers.js');
   });
   app.put("/api/v1/co2/:country/:year",co2Ctl.update);
   app.delete("/api/v1/co2/:country/:year", co2Ctl.deleteCo2);
-
-  var pathGon = '/api/v1/mort-sickness';
-  var apiServerHostGon = 'http://sos-2016-03.herokuapp.com';
-
-  app.use(pathGon,function(req,res){
-    var url = apiServerHostGon + req.baseUrl + req.url;
-    console.log("Piped: "+ req.baseUrl + req.url);
-    console.log("URL Accesed: "+ url);
-
-    req.pipe(request(url,(error,response,body)=>{
-      if(error){
-        console.error(error);
-        res.sendStatus(503);
-      }
-    })).pipe(res);
-  });
-
 
   //----------------------Api SmartPhones---------------------------------
 
