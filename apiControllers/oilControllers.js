@@ -1,5 +1,5 @@
 var data = [];
-var key = "multiPlan_C2_sos-2016-01-fjfr_ag";
+var key = "multiPlan_C4_sos-2016-01-fjfr_ag";
 
 module.exports.getData = function(req,res){
 // var apikey = req.query.apikey;
