@@ -2,14 +2,14 @@ var data = [];
 var key = "asmsfc";
 
 module.exports.getData = function(req,res){
-      var apikey = req.query.apikey;
+      // var apikey = req.query.apikey;
       var aux=[];
       var ok=false;
       var limit = req.query.limit;
       var offset = req.query.offset;
       var from1 = req.query.from;
       var to = req.query.to;
-        if(checkApiKey(apikey,res)){
+        // if(checkApiKey(apikey,res)){
             if(limit && offset && from1 && to){
                 for(i=0;i<data.length;i++){
                     if(data[i].year>=from1 && data[i].year<=to){
@@ -42,7 +42,7 @@ module.exports.getData = function(req,res){
                 console.log("New GET of resource electrical consume");
                 res.send(data);
           }
-        }
+        // }
 }
 
 
@@ -52,9 +52,9 @@ module.exports.addElectricalConsume = function (req,res){
       var country=electricalConsume.country;
       var year=electricalConsume.year;
       var changedOK=true;
-      var apikey = req.query.apikey;
+      // var apikey = req.query.apikey;
 
-      if(checkApiKey(apikey,res)){
+      // if(checkApiKey(apikey,res)){
             if(checkJSON(electricalConsume,res)){
                 for(i=0;i<data.length;i++){
                     if(data[i].country==country && data[i].year==year){
@@ -70,21 +70,21 @@ module.exports.addElectricalConsume = function (req,res){
                 res.sendStatus(201);
             }
           }
-      }
+      // }
 }
 
 module.exports.delete = function (req,res){
-        var apikey = req.query.apikey;
-        if(checkApiKey(apikey,res)){
+        // var apikey = req.query.apikey;
+        // if(checkApiKey(apikey,res)){
                 console.log("New electrical consume DELETE");
                 data = [];
                 res.sendStatus(200);
-          }
+          // }
 }
 
 module.exports.initialData = function (req,res){
-      var apikey = req.query.apikey;
-      if(checkApiKey(apikey,res)){
+      // var apikey = req.query.apikey;
+      // if(checkApiKey(apikey,res)){
             console.log("New initial electrical consume data charge");
             data = [{country : "brazil",
                      year : "2006",
@@ -178,20 +178,20 @@ module.exports.initialData = function (req,res){
                          urbanPopulation : "27857146"}
                        ];
               res.sendStatus(200);
-        }
+        // }
 }
 
 module.exports.getElectricalConsume = function (req,res){
         var country = req.params.country;
         var year = req.params.year;
         var electricalConsume = [];
-        var apikey = req.query.apikey;
+        // var apikey = req.query.apikey;
         var limit = req.query.limit;
         var offset = req.query.offset;
         var from1 = req.query.from;
         var to = req.query.to;
 
-        if(checkApiKey(apikey,res)){
+        // if(checkApiKey(apikey,res)){
               console.log("New GET of resource electrical consume of "+country);
 
               for(i=0;i<data.length;i++){
@@ -220,15 +220,15 @@ module.exports.getElectricalConsume = function (req,res){
               }else{
                 res.send(electricalConsume);
               }
-        }
+        // }
 }
 
 module.exports.getCountryYear = function (req,res){
       var country = req.params.country;
       var year = req.params.year;
       var electricalConsume = [];
-      var apikey = req.query.apikey;
-      if(checkApiKey(apikey,res)){
+      // var apikey = req.query.apikey;
+      // if(checkApiKey(apikey,res)){
             console.log("New GET of resource electrical consume of "+country+" and year "+year);
             for(i=0;i<data.length;i++){
                   if(data[i].country === country && data[i].year == year){
@@ -240,7 +240,7 @@ module.exports.getCountryYear = function (req,res){
             else{
                 res.send(electricalConsume);
             }
-      }
+      // }
 }
 
 module.exports.update = function (req,res){
@@ -250,8 +250,8 @@ module.exports.update = function (req,res){
         var updated = false;
         var badRequest = false;
         var sent = req.body;
-        var apikey = req.query.apikey;
-        if(checkApiKey(apikey,res)){
+        // var apikey = req.query.apikey;
+        // if(checkApiKey(apikey,res)){
                 if(checkJSON(electricalConsume,res)){
                       console.log("New PUT of resource electrical consume of "+country);
                       for(i=0;i<data.length;i++){
@@ -270,7 +270,7 @@ module.exports.update = function (req,res){
                       else if(updated)
                           res.sendStatus(200);
                 }
-        }
+        // }
 }
 
 
@@ -278,8 +278,8 @@ module.exports.deleteElectricalConsume = function (req,res){
         var country = req.params.country;
         var year = req.params.year;
         var removed = false;
-        var apikey = req.query.apikey;
-        if(checkApiKey(apikey,res)){
+        // var apikey = req.query.apikey;
+        // if(checkApiKey(apikey,res)){
               console.log("New electrical consume DELETE "+country);
               for(i=0;i<data.length;i++){
                     if(data[i].country == country && data[i].year==year){
@@ -293,7 +293,7 @@ module.exports.deleteElectricalConsume = function (req,res){
                   res.sendStatus(404);
               else
                   res.sendStatus(200);
-          }
+          // }
 }
 
 
@@ -349,15 +349,15 @@ function methodTo(to,array){
       return aux;
 }
 
-function checkApiKey(apikey,res){
-      if(apikey && key===apikey)
-          return true;
-      else{
-        res.sendStatus(401);
-        console.log(":)");
-        return false;
-        }
-}
+// function checkApiKey(apikey,res){
+//       if(apikey && key===apikey)
+//           return true;
+//       else{
+//         res.sendStatus(401);
+//         console.log(":)");
+//         return false;
+//         }
+// }
 
 function checkJSON(json,res){
       if(json.year && json.country && json.ePowerConsum

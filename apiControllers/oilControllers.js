@@ -2,14 +2,14 @@ var data = [];
 var key = "12345";
 
 module.exports.getData = function(req,res){
-var apikey = req.query.apikey;
+// var apikey = req.query.apikey;
 var aux=[];
 var aux1=false;
 var limit = req.query.limit;
 var offset = req.query.offset;
 var from1 = req.query.from;
 var to1 = req.query.to;
-if(checkApiKey(apikey,res)){
+// if(checkApiKey(apikey,res)){
   if(limit && offset && from1 && to1){
     for(i=0;i<data.length;i++){
         if(data[i].year>=from1 && data[i].year<=to1){
@@ -44,7 +44,7 @@ if(checkApiKey(apikey,res)){
         console.log("New GET of resource oil");
         res.send(data);
       }
-    }
+    // }
 }
 
 module.exports.addOil = function (req,res){
@@ -52,9 +52,9 @@ var oil = req.body;
 var add = true;
 var country=oil.country;
 var year=oil.year;
-var apikey = req.query.apikey;
+// var apikey = req.query.apikey;
 
-if(checkApiKey(apikey,res)){
+// if(checkApiKey(apikey,res)){
   if(checkJSON(oil,res)){
   for(i=0;i<data.length;i++){
     if(data[i].country == country && data[i].year == year){
@@ -70,22 +70,22 @@ if(checkApiKey(apikey,res)){
       res.sendStatus(201);
       }
     }
-  }
+  // }
 }
 
 
 module.exports.delete = function (req,res){
-var apikey = req.query.apikey;
-if(checkApiKey(apikey,res)){
+// var apikey = req.query.apikey;
+// if(checkApiKey(apikey,res)){
   console.log("New oil DELETE");
   data = [];
   res.sendStatus(200);
-    }
+    // }
 }
 
 module.exports.initialData = function (req,res){
-var apikey = req.query.apikey;
-if(checkApiKey(apikey,res)){
+// var apikey = req.query.apikey;
+// if(checkApiKey(apikey,res)){
 console.log("New initial oil data charge");
 data = [{country : "Brazil",
          year : 2006,
@@ -161,7 +161,7 @@ data = [{country : "Brazil",
             gasoline : 1.2}];
         res.sendStatus(200);
 
-      }
+      // }
 }
 
 module.exports.getOil = function (req,res){
@@ -170,11 +170,11 @@ module.exports.getOil = function (req,res){
   var oil = [];
   var from1 = req.query.from;
   var to1 = req.query.to;
-  var apikey = req.query.apikey;
+  // var apikey = req.query.apikey;
   var limit = req.query.limit;
   var offset = req.query.offset;
 
-  if(checkApiKey(apikey,res)){
+  // if(checkApiKey(apikey,res)){
   console.log("New GET of resource oil of "+country);
   for(i=0;i<data.length;i++){
     if(data[i].country == country){
@@ -203,15 +203,15 @@ module.exports.getOil = function (req,res){
       }else{
         res.send(oil);
         }
-    }
+    // }
 }
 
 module.exports.getCountryYear = function (req,res){
   var country = req.params.country;
   var year = req.params.year;
   var oil = [];
-  var apikey = req.query.apikey;
-  if(checkApiKey(apikey,res)){
+  // var apikey = req.query.apikey;
+  // if(checkApiKey(apikey,res)){
   console.log("New GET of resource oil of "+country+" and year "+year);
   for(i=0;i<data.length;i++){
     if(data[i].country === country && data[i].year == year){
@@ -223,7 +223,7 @@ if(oil.length==0){
   }else{
     res.send(oil);
     }
-    }
+    // }
 }
 
 module.exports.update = function (req,res){
@@ -232,8 +232,8 @@ var year = req.params.year;
 var updated = false;
 var sent = req.body;
 var oil = req.body;
-var apikey = req.query.apikey;
-if(checkApiKey(apikey,res)){
+// var apikey = req.query.apikey;
+// if(checkApiKey(apikey,res)){
   if(checkJSON(sent,res)){
       console.log("New PUT of resource oil of "+country);
   for(i=0;i<data.length;i++){
@@ -253,7 +253,7 @@ if(checkApiKey(apikey,res)){
         res.sendStatus(200);
       }
     }
-  }
+  // }
 }
 
 module.exports.deleteOil = function (req,res){
@@ -261,7 +261,7 @@ var country = req.params.country;
 var year = req.params.year;
 var removed = false;
 var apikey = req.query.apikey;
-if(checkApiKey(apikey,res)){
+// if(checkApiKey(apikey,res)){
 console.log("New oil DELETE "+country);
 for(i=0;i<data.length;i++){
   if(data[i].country == country && data[i].year==year){
@@ -275,7 +275,7 @@ if(!removed){
 }else{
   res.sendStatus(200);
     }
-  }
+  // }
 }
 
 
@@ -323,14 +323,14 @@ function methodTo(to1,array){
       return aux;
 }
 
-function checkApiKey(apikey,res){
-      if(apikey && key===apikey){
-          return true;
-      }else{
-        res.sendStatus(401);
-        return false;
-        }
-}
+// function checkApiKey(apikey,res){
+//       if(apikey && key===apikey){
+//           return true;
+//       }else{
+//         res.sendStatus(401);
+//         return false;
+//         }
+// }
 
 function checkJSON(json,res){
       if(json.year && json.country && json.diesel && json.gasoline){

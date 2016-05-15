@@ -13,15 +13,28 @@ var oilControllers = require('./apiControllers/oilControllers.js');
 
   var app = express();
   var port = (process.env.PORT || 8081);
+// Gonzalo
 governify.control(app,{
   datastore : "http://datastore.governify.io/api/v6.1/",
   namespace : "sos-2016-01-grc",
   defaultPath: "/api/v1/co2"
 });
+// Javi key= multiPlan_C2_sos-2016-01-fjfr_ag
+governify.control(app, {
+  datastore: "http://datastore.governify.io/api/v6.1/",
+  namespace: "sos-2016-01-fjfr",
+  defaultPath: "/api/v1/oil"
+});
+// Angel
+// governify.control(app, {
+//   datastore: "",
+//   namespace: "",
+//   defaultPath: "/api/v1/electrical-consume"
+// });
 
   app.use(cors());
 
-
+// Gonzalo
     var pathGon = '/api/v1/mort-sickness';
     var apiServerHostGon = 'http://sos-2016-03.herokuapp.com';
 
@@ -37,6 +50,40 @@ governify.control(app,{
         }
       })).pipe(res);
     });
+
+// Javi
+    var pathJav = '/api/v1/music';
+    var apiServerHostJav = 'http://sos-2016-08.herokuapp.com';
+
+    app.use(pathJav,function(req,res){
+      var url = apiServerHostJav + pathJav + req.url;
+      console.log("Piped: "+ req.baseUrl + req.url);
+      console.log("URL Accesed: "+ url);
+
+      req.pipe(request(url,(error,response,body)=>{
+        if(error){
+          console.error(error);
+          res.sendStatus(503);
+        }
+      })).pipe(res);
+    });
+// Angel
+  var pathAng = '/api/v1/social_situation';
+  var apiServerHostAng = 'http://sos-2016-08.herokuapp.com';
+
+  app.use(pathAng,function(req,res){
+    var url = apiServerHostAng + pathAng + req.url;
+    console.log("Piped: "+ req.baseUrl + req.url);
+    console.log("URL Accesed: "+ url);
+
+    req.pipe(request(url,(error,response,body)=>{
+      if(error){
+        console.error(error);
+        res.sendStatus(503);
+      }
+    })).pipe(res);
+  });
+
 
 //Escribid vuestros pipe antes de esta línea pq si no no va bien
   app.use(bodyParser.json());
