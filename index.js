@@ -25,7 +25,7 @@ governify.control(app, {
   namespace: "sos-2016-01-fjfr",
   defaultPath: "/api/v1/oil"
 });
-// Angel  multiPlan_C3_sos-2016-01-asm_ag
+// Angel  key=multiPlan_C3_sos-2016-01-asm_ag
  governify.control(app, {
   datastore: "http://datastore.governify.io/api/v6.1/",
   namespace: "sos-2016-01-asm",
