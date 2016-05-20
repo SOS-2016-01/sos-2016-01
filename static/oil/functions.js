@@ -19,7 +19,7 @@ $("body").ready(function (){
     });
 
     request.always(function (jqXHR,status){
-      if(status=="error" && jqXHR.status==401){
+      if(status=="error" && jqXHR.status==402 ){
         swal("Unauthorized: Apikey No Valid");
     }else {
 
@@ -46,8 +46,16 @@ $("body").ready(function (){
 
     });
 
-    request.always(function (){
-      swal("All Clean");
+    request.always(function (jqXHR,status){
+      if (status=="error" && jqXHR.status==402){
+
+      swal("Unauthorized: Apikey No Valid");
+
+    }else{
+
+      swal("All Deleted");
+
+    }
     });
 
   });
@@ -75,7 +83,7 @@ $("body").ready(function (){
     request.always(function (jqXHR,status){
       if(status=="error" && jqXHR.status==404){
       swal("Data Not Found");
-    }else if (status=="error" && jqXHR.status==401){
+    }else if (status=="error" && jqXHR.status==402){
 
       swal("Unauthorized: Apikey No Valid");
 
@@ -120,7 +128,7 @@ $("body").ready(function (){
 
 
   request.always(function (jqXHR,status){
-    if(status=="error" && jqXHR.status==401){
+    if(status=="error" && jqXHR.status==402){
 
       swal("Unauthorized: Apikey No Valid");
 
@@ -157,7 +165,7 @@ $("#createButton").click(function(){
   });
 
   request.always(function (jqXHR,status){
-    if(status=="error" && jqXHR.status==401){
+    if(status=="error" && jqXHR.status==402){
 
     swal("Unauthorized: Apikey No Valid");
 
@@ -205,7 +213,7 @@ $("#updateButton").click(function(){
   });
 
   request.always(function (jqXHR,status){
-    if(status=="error" && jqXHR.status==401){
+    if(status=="error" && jqXHR.status==402){
 
     swal("Unauthorized: Apikey No Valid");
 
