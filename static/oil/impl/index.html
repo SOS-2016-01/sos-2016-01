@@ -1,0 +1,73 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
+      <script src="materialize/js/materialize.min.js"></script>
+      <link rel="stylesheet" href="materialize/css/materialize.min.css">
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawVisualization);
+
+
+      function drawVisualization() {
+        // Some raw data (not necessarily accurate)
+
+        $(document).ready(function () {
+        var request = $.ajax({
+          url:"/api/v1/oil/Spain?apikey=multiPlan_C4_sos-2016-01-fjfr_ag",
+          type:"GET"
+        })
+        var request1 = $.ajax({
+          url:"/api/v1/music/spain?apikey=123",
+          type:"GET"
+        });
+
+        request1.done(function (data1){
+
+          var dataToMap1=[];
+
+          for (i=0;i<data1.length;i++){
+            dataToMap1.push([(data1[i].percentage).substring(0, 2)]);
+          }
+
+          console.log(dataToMap1);
+
+        request.done(function (data){
+
+          var dataToMap = [["Year","Diesel", "Music"]];
+
+          for (i=0;i<dataToMap1.length;i++){
+            dataToMap.push([data[i].year, Number(data[i].diesel), Number(dataToMap1[i])]);
+          }
+
+          console.log(dataToMap);
+
+      var data = google.visualization.arrayToDataTable(dataToMap);
+
+    var options = {
+      title : 'Yearly Diesel & Music Consumer by Year',
+      vAxis: {title: '$'},
+      hAxis: {title: 'Year'},
+      seriesType: 'bars',
+      series: {6: {type: 'line'}}
+    };
+
+    var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
+    chart.draw(data, options);
+
+    });
+  });
+
+  });
+}
+    </script>
+  </head>
+  <body style="background-color:#A9E2F3;">
+</div>
+<div class="card-panel"><center><h3>Impl1: API Music & my API</h3></center></div>
+<div class="card-panel" style="padding-left: 20%;">
+    <div id="chart_div" style="width: 900px; height: 500px;"></div>
+  </div>
+
+  </body>
+</html>
