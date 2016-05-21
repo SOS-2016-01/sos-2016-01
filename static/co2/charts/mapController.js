@@ -1,6 +1,6 @@
 $("body").ready(function (){
   var request = $.ajax({
-    url:"/api/v1/co2?apikey=vdcgrc",
+    url:"/api/v1/co2?apikey=multiPlan_C4_sos-2016-01-grc_ag",
     type:"GET",
     contentType : "application/json"
   });
@@ -45,7 +45,7 @@ $("body").ready(function (){
     var dataMap = [['Country',$(measure).val()]];
 
     var request = $.ajax({
-      url:"/api/v1/co2?apikey=vdcgrc",
+      url:"/api/v1/co2?apikey=multiPlan_C4_sos-2016-01-grc_ag",
       type:"GET",
       contentType : "application/json"
     });
