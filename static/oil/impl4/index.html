@@ -17,6 +17,10 @@
       text-align: center;
     }
   </style>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
+    <script src="../materialize/js/materialize.min.js"></script>
+    <link rel="stylesheet" href="../materialize/css/materialize.min.css">
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js">
 </script>
 <script>
@@ -153,11 +157,14 @@
   google.maps.event.addDomListener(window, 'load', initialize);
 </script>
 </head>
-<body>
+<body style="background-color:#A9E2F3;">
+  <div class="card-panel"><center><h3>Impl3: API OpenWeatherMap</h3></center></div>
+  <div class="card-panel">
+    <div style="text-align: center; height: 550px;">
+      <div id="map-canvas"></div>
+    </div>
+  </div>
 
-<div id="map-canvas"></div>
 
 </body>
 </html>
-Status API Training Shop Blog About
-© 2016 GitHub, Inc. Terms Privacy Security Contact Help
