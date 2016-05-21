@@ -37,7 +37,7 @@
           var dataToMap = [["Year","Diesel", "Co2"]];
 
           for (i=0;i<dataToMap1.length;i++){
-            dataToMap.push([data[i].year, Number(data[i].diesel), Number(dataToMap1[i])]);
+            dataToMap.push([String(data[i].year), Number(data[i].diesel), Number(dataToMap1[i])]);
           }
 
           console.log(dataToMap);
@@ -47,7 +47,7 @@
     var options = {
       title : 'Yearly Diesel & Co2 Consumer by Year in Spain',
       vAxis: {title: '$'},
-      hAxis: {title: 'Year', ticks: [2006, 2007, 2008, 2009, 2010, 2011]},
+      hAxis: {title: 'Year'},
       seriesType: 'bars',
       series: {6: {type: 'line'}}
     };
