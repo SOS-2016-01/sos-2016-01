@@ -17,7 +17,7 @@
                type:"GET"
              })
              var request1 = $.ajax({
-               url:"/api/v1/social_situation?apikey=123",
+               url:"/api/v1/participants-number/Spain?apikey=multiPlan_C4_sos-2016-05-egf_ag",
                type:"GET"
              });
 
@@ -26,15 +26,15 @@
                var dataToMap1=[];
 
                for (i=0;i<data1.length;i++){
-                 dataToMap1.push([data1[i].sales]);
+                 dataToMap1.push([data1[i].maleathletesnumber]);
                }
 
                request.done(function (data){
 
-                 var dataToMap = [["Year","Electrical Consume", "Sales"]];
+                 var dataToMap = [["Year","Electrical Consume", "Participant Number"]];
 
                  for (i=0;i<dataToMap1.length;i++){
-                   dataToMap.push([data[i].year, Number(data[i].ePowerConsum), Number(dataToMap1[i])]);
+                   dataToMap.push([data[i].year, Number(data[i].energyUse), Number(dataToMap1[i])]);
                  }
 
 
@@ -45,6 +45,7 @@
              var options = {
                width: 800,
                chart: {
+                 title: 'Prueba',
                },
                bars: 'horizontal', // Required for Material Bar Charts.
                series: {
@@ -70,7 +71,7 @@
 
   </head>
   <body>
-    <div class="card-panel"><center><h3>Integration 1: API Social Situation & my API(Elec.Consume)</h3></center></div>
+    <div class="card-panel"><center><h3>Integration 1: API Oil & my API(Elec.Consume)</h3></center></div>
     <div class="card-panel" style="padding-left: 20%;">
         <div id="dual_x_div" style="width: 900px; height: 500px;"></div>
       </div>
