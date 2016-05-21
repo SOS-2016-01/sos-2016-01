@@ -68,8 +68,8 @@ governify.control(app, {
       })).pipe(res);
     });
 // Angel
-  var pathAng = '/api/v1/social_situation';
-  var apiServerHostAng = 'http://sos-2016-08.herokuapp.com';
+  var pathAng = '/api/v1/participants-number';
+  var apiServerHostAng = 'http://sos-2016-05.herokuapp.com';
 
   app.use(pathAng,function(req,res){
     var url = apiServerHostAng + pathAng + req.url;
