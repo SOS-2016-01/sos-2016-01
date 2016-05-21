@@ -18,7 +18,7 @@
           type:"GET"
         })
         var request1 = $.ajax({
-          url:"/api/v1/music/Spain?apikey=123",
+          url:"/api/v1/music/spain?apikey=123",
           type:"GET"
         });
 
@@ -37,7 +37,7 @@
           var dataToMap = [["Year","Diesel", "Music"]];
 
           for (i=0;i<dataToMap1.length;i++){
-            dataToMap.push([data[i].year, Number(data[i].diesel), Number(dataToMap1[i])]);
+            dataToMap.push([String(data[i].year), Number(data[i].diesel), Number(dataToMap1[i])]);
           }
 
           console.log(dataToMap);
@@ -46,8 +46,8 @@
 
     var options = {
       title : 'Yearly Diesel & Music Consumer by Year in Spain',
-      vAxis: {title: '$', ticks: [0, 10, 20, 30, 40, 50, 60]},
-      hAxis: {title: 'Year', ticks: [2006, 2007, 2008]},
+      vAxis: {title: '$'},
+      hAxis: {title: 'Year'},
       seriesType: 'bars',
       series: {6: {type: 'line'}}
     };
