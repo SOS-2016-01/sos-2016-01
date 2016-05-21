@@ -37,7 +37,7 @@
           var dataToMap = [["Year","Diesel", "Music"]];
 
           for (i=0;i<dataToMap1.length;i++){
-            dataToMap.push([String(data[i].year), Number(data[i].diesel), Number(dataToMap1[i])]);
+            dataToMap.push([String(data[i].year), Number(data[i].diesel), Number(dataToMap1[i]/100)]);
           }
 
           console.log(dataToMap);
@@ -46,7 +46,7 @@
 
     var options = {
       title : 'Yearly Diesel & Music Consumer by Year in Spain',
-      vAxis: {title: '$'},
+      vAxis: {title: '$ & %'},
       hAxis: {title: 'Year'},
       seriesType: 'bars',
       series: {6: {type: 'line'}}
