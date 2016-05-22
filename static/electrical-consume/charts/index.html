@@ -2,8 +2,8 @@
   <head>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
-     <script src="materialize/js/materialize.min.js"></script>
-      <link rel="stylesheet" href="materialize/css/materialize.min.css">
+    <script src="../materialize/js/materialize.min.js"></script>
+    <link rel="stylesheet" href="../materialize/css/materialize.min.css">
     <script type="text/javascript">
       google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawVisualization);
@@ -14,7 +14,7 @@
 
         $(document).ready(function () {
         var request = $.ajax({
-          url:"/api/v1/electrical-consume?apikey=asmsfc",
+          url:"/api/v1/electrical-consume?apikey=multiPlan_C4_sos-2016-01-asm_ag",
           type:"GET"
         });
 
