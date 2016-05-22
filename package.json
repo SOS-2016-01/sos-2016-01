@@ -8,6 +8,7 @@
     "cors": "^2.7.1",
     "express": "^4.13.4",
     "governify": "0.0.10",
+    "instafeed.js": "^1.4.1",
     "request": "^2.72.0",
     "sweetalert": "^1.1.3"
   },

@@ -1,0 +1,35 @@
+<script type="text/javascript" src="js/instafeed.min.js"></script>
+
+<script type="text/javascript">
+    var feed = new Instafeed({
+        get: 'tagged',
+        tagName: 'awesome',
+        clientId: 'ddb5bcafc8c74afe8935aa327c5af194'
+    });
+    feed.run();
+</script>
+
+
+
+<script type="text/javascript">
+    var feed = new Instafeed({
+        get: 'goroca93',
+        userId: 'ddb5bcafc8c74afe8935aa327c5af194',
+        filter: function(image) {
+            return image.tags.indexOf('TAG_NAME') >= 0;
+        }
+    });
+    feed.run();
+</script>
+
+
+<script type="text/javascript">
+    var userFeed = new Instafeed({
+        get: 'user',
+        userId: 'goroca93',
+        accessToken: 'ddb5bcafc8c74afe8935aa327c5af194'
+    });
+    userFeed.run();
+</script>
+
+<div id="instafeed"></div>
