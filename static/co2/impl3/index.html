@@ -1,18 +1,25 @@
-<script type="text/javascript" src="js/instafeed.min.js"></script>
-
-
-<script type="text/javascript">
-    var userFeed = new Instafeed({
-        get: 'user',
-        clientId: 'ddb5bcafc8c74afe8935aa327c5af194' ,
-        userId: '218961375',
-        accessToken: '218961375.ddb5bca.0fcc5b4e16e4451ca1aac2e4fd850f49',
-        sortBy: 'random'
-    });
-    userFeed.run();
-</script>
-
-
-
-
-<div id="instafeed"></div>
+<html>
+  <head>
+    <script src="https://code.jquery.com/jquery-2.1.2.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+    <script type="text/javascript" src="js/instafeed.min.js"></script>
+  </head>
+  <body class='default' style="background-color:#A9E2F3;">
+    <div class="container">
+      <div class="row"><h3>goroca93's INSTAGRAM IMAGES</h3></div>
+      <script type="text/javascript">
+        var userFeed = new Instafeed({
+            get: 'user',
+            clientId: 'ddb5bcafc8c74afe8935aa327c5af194' ,
+            userId: '218961375',
+            accessToken: '218961375.ddb5bca.0fcc5b4e16e4451ca1aac2e4fd850f49',
+            resolution: 'standard_resolution',
+            template: '<div class="row"><div class="col s12 m7"><div class="card"><div class="card-image"><img src="{{image}}"></div><div class="card-content"><p>{{caption}}</p></div><div class="card-action"><a href="{{link}}">Link</a></div></div></div></div>'
+            });
+        userFeed.run();
+      </script>
+    <div id="instafeed"></div>
+    </div>
+  </body>
+</html>
