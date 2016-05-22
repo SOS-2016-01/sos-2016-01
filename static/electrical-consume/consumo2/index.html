@@ -1,23 +1,18 @@
 <html>
   <head>
-    <script src="https://www.google.com/jsapi"
-        type="text/javascript"></script>
-    <script type="text/javascript">
-      google.load("search", "1");
-
-      // Call this function when the page has been loaded
-      function initialize() {
-        var searchControl = new google.search.SearchControl();
-        searchControl.addSearcher(new google.search.WebSearch());
-        searchControl.addSearcher(new google.search.NewsSearch());
-        searchControl.draw(document.getElementById("searchcontrol"));
-      }
-      google.setOnLoadCallback(initialize);
-    </script>
-
+    <title>Books API Example</title>
   </head>
   <body>
-    <div id="searchcontrol"></div>
+    <div id="content"></div>
+    <script>
+      function handleResponse(response) {
+      for (var i = 0; i < response.items.length; i++) {
+        var item = response.items[i];
+        // in production code, item.text should have the HTML entities escaped.
+        document.getElementById("content").innerHTML += "<br>" + item.volumeInfo.title;
+      }
+    }
+    </script>
+    <script src="https://www.googleapis.com/books/v1/volumes?q=manolito+gafotas&callback=handleResponse"></script>
   </body>
-
 </html>
