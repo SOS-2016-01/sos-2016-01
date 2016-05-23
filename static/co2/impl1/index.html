@@ -1,0 +1,54 @@
+<html>
+  <head>
+    <script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <script type="text/javascript">
+    $("body").ready(function (){
+      var requestMyAPI = $.ajax({
+        url:"/api/v1/co2/spain?apikey=multiPlan_C4_sos-2016-01-grc_ag",
+        type:"GET",
+        contentType : "application/json"
+      });
+
+      var requestAngelAPI = $.ajax({
+        url:"/api/v1/electrical-consume/spain?apikey=multiPlan_C4_sos-2016-01-asm_ag",
+        type:"GET"
+      });
+
+      requestMyAPI.done(function (myData){
+        requestAngelAPI.done(function(angelData){
+          google.charts.load('current', {'packages':['bar']});
+          google.charts.setOnLoadCallback(drawChart);
+          function drawChart() {
+            var myData = [];
+            myData.push(['Year', 'CO2mtn', 'ePowerConsum']);
+
+            for(i=0;i<myData.length;i++)
+              myData.push([myData[i].year,myData[i].co2mtn,angelData[i].ePowerConsum]);
+
+            var data = google.visualization.arrayToDataTable(myData);
+
+            var options = {
+              chart: {
+                title: 'Company Performance',
+                subtitle: 'Sales, Expenses, and Profit: 2014-2017',
+              }
+            };
+
+            var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+
+            chart.draw(data, options);
+          }
+        });
+
+      });
+    });
+    </script>
+  </head>
+  <body>
+    <div id="columnchart_material" style="width: 900px; height: 500px;"></div>
+  </body>
+</html>
