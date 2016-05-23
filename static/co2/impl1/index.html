@@ -20,7 +20,7 @@
 
       requestMyAPI.done(function (myData){
         requestAngelAPI.done(function(angelData){
-          google.charts.load('current', {'packages':['bar']});
+          google.charts.load('current', {'packages':['corechart']});
           google.charts.setOnLoadCallback(drawChart);
           function drawChart() {
             var myDataMap = [];
