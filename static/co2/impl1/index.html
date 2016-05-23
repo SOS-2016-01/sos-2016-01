@@ -23,14 +23,14 @@
           google.charts.load('current', {'packages':['bar']});
           google.charts.setOnLoadCallback(drawChart);
           function drawChart() {
-            var myData = [];
+            var myDataMap = [];
             myData.push(['Year', 'CO2mtn', 'ePowerConsum']);
             console.log(myData);
             console.log(angelData);
             for(i=0;i<myData.length;i++)
-              myData.push([myData[i].year,Number(myData[i].co2mtn),Number(angelData[i].energyUse)]);
+              myDataMap.push([myData[i].year,Number(myData[i].co2mtn),Number(angelData[i].energyUse)]);
 
-            var data = google.visualization.arrayToDataTable(myData);
+            var data = google.visualization.arrayToDataTable(myDataMap);
 
             var options = {
               chart: {
@@ -41,7 +41,7 @@
 
             var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
 
-            chart.draw(data, options);
+            chart.draw(myDataMap, options);
           }
         });
 
