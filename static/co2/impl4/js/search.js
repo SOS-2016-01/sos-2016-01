@@ -13,6 +13,7 @@ function search() {
   });
 
   request.execute(function(response) {
+    $("#search-container").remove();
     recived= response.result;
     var length =  recived.items.length;
     console.log(recived);
