@@ -19,7 +19,7 @@ governify.control(app,{
   namespace : "sos-2016-01-grc",
   defaultPath: "/api/v1/co2"
 });
-// Javi key= multiPlan_C2_sos-2016-01-fjfr_ag
+// Javi key= multiPlan_C4_sos-2016-01-fjfr_ag
 governify.control(app, {
   datastore: "http://datastore.governify.io/api/v6.1/",
   namespace: "sos-2016-01-fjfr",
@@ -54,6 +54,8 @@ governify.control(app, {
 // Javi
     var pathJav = '/api/v1/music';
     var apiServerHostJav = 'http://sos-2016-08.herokuapp.com';
+    var pathJav2 = '/data/2.5/box/city';
+    var apiServerHostJav2 = 'http://api.openweathermap.org';
 
     app.use(pathJav,function(req,res){
       var url = apiServerHostJav + pathJav + req.url;
