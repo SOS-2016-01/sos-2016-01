@@ -1,6 +1,7 @@
 // After the API loads, call a function to enable the search box.
 function handleAPILoaded() {
   $('#search-button').attr('disabled', false);
+  $('#search-button').attr('class', "waves-effect waves-light btn");
 }
 
 // Search for a specified string.
