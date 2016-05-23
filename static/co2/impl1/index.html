@@ -25,6 +25,7 @@
           function drawChart() {
             var myData = [];
             myData.push(['Year', 'CO2mtn', 'ePowerConsum']);
+            console.log(myData);
             console.log(angelData);
             for(i=0;i<myData.length;i++)
               myData.push([myData[i].year,Number(myData[i].co2mtn),Number(angelData[i].energyUse)]);
