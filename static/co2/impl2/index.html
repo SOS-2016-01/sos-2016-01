@@ -1,0 +1,60 @@
+<html>
+  <head>
+    <script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    <script type="text/javascript">
+    $("body").ready(function (){
+      var requestMyAPI = $.ajax({
+        url:"/api/v1/co2/spain?apikey=multiPlan_C4_sos-2016-01-grc_ag",
+        type:"GET",
+        contentType : "application/json"
+      });
+
+      var requestAngelAPI = $.ajax({
+        url:"/api/v1/electrical-consume/spain?apikey=multiPlan_C4_sos-2016-01-asm_ag",
+        type:"GET"
+      });
+
+      requestMyAPI.done(function (myData){
+        requestAngelAPI.done(function(angelData){
+          google.charts.load('current', {'packages':['corechart']});
+          google.charts.setOnLoadCallback(drawChart);
+          function drawChart() {
+            var myDataMap = [];
+            myDataMap.push(['Year', 'CO2mtn', 'energyUse']);
+            console.log(myData);
+            console.log(angelData);
+            for(i=0;i<myData.length;i++)
+              myDataMap.push([myData[i].year,Number(myData[i].co2mtn),Number(angelData[i].energyUse/1000000)]);
+
+
+            var data = google.visualization.arrayToDataTable(myDataMap);
+
+            var options = {
+              chart: {
+                title: 'Company Performance',
+                subtitle: 'Sales, Expenses, and Profit: 2014-2017',
+              }
+            };
+            var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+            chart.draw(data, options);
+          }
+        });
+
+      });
+    });
+    </script>
+  </head>
+  <body class='default' style="background-color:#A9E2F3;">
+    <div class="container">
+      <div class="row"><h3>ÁNGEL INTEGRATION</h3></div>
+      <div class="col s12">
+        <div id="curve_chart" style="width: 950px; height: 500px;"></div>
+      </div>
+    </div>
+  </body>
+</html>
