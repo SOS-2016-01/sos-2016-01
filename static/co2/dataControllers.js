@@ -18,7 +18,7 @@ function charge_pages(){
     for(i=1;i<pages+1;i++){
       $('<option class="pagesValues" value='+i+'></option>').text(i).appendTo(select);
     }
-    select.appendTo("#page");
+    select.appendTo("#inputPages");
     $('select').material_select();
   });
 
