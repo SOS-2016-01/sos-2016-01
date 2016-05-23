@@ -77,7 +77,14 @@
   // Make the weather request
   var getWeather = function(northLat, eastLng, southLat, westLng) {
     gettingData = true;
-    var requestString = "http://api.openweathermap.org/data/2.5/box/city?bbox="
+    // var requestString = "http://api.openweathermap.org/data/2.5/box/city?bbox="
+    //                     + westLng + "," + northLat + "," //left top
+    //                     + eastLng + "," + southLat + "," //right bottom
+    //                     + map.getZoom()
+    //                     + "&cluster=yes&format=json"
+    //                     + "&APPID=" + openWeatherMapKey
+    //                     +"&apikey=6cb360e0e09036a9e0a3b096a06af067";
+    var requestString = "/data/2.5/box/city?bbox="
                         + westLng + "," + northLat + "," //left top
                         + eastLng + "," + southLat + "," //right bottom
                         + map.getZoom()

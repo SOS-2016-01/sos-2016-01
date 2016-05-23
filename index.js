@@ -61,7 +61,6 @@ governify.control(app, {
       var url = apiServerHostJav2 + pathJav2 + req.url;
       console.log("Piped: "+ req.baseUrl + req.url);
       console.log("URL Accesed: "+ url);
-
       req.pipe(request(url,(error,response,body)=>{
         if(error){
           console.error(error);
