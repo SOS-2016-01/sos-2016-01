@@ -13,7 +13,7 @@ function charge_pages(){
     var pages = data.length/$("#items").val();
     $(".pagesValues").remove();
 
-    var select=$('#inputPages');
+    var select=$('#pages');
 
     for(i=1;i<pages+1;i++){
       $('<option class="pagesValues" value='+i+'></option>').text(i).appendTo(select);
