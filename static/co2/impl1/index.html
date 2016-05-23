@@ -30,6 +30,7 @@
             for(i=0;i<myData.length;i++)
               myDataMap.push([myData[i].year,Number(myData[i].co2mtn),Number(angelData[i].energyUse)]);
 
+
             var data = google.visualization.arrayToDataTable(myDataMap);
 
             var options = {
@@ -41,7 +42,7 @@
 
             var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
 
-            chart.draw(myDataMap, options);
+            chart.draw(data, options);
           }
         });
 
