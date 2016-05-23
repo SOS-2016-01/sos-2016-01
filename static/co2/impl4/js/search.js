@@ -12,7 +12,8 @@ function search() {
   });
 
   request.execute(function(response) {
-    var str = response.result;
+    var str = JSON.stringify(response.result);
+    console.log(response.result);
     $('#search-container').html('<pre>' + str + '</pre>');
   });
 }
