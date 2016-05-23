@@ -17,7 +17,7 @@ function search() {
     console.log(response.result);
     recived= response.result;
     mycontainer = $('#search-container');
-    $('<div class="row"><div class="col s12 m7"><div class="card"><div class="card-image"><img src='+recived.items[0].snippet.thumbnails.medium.url+'></div><div class="card-content"><p>'+recived.items[0].snippet.title+'</p></div><div class="card-action"><a href='++'>Link</a></div></div></div></div>')
+    $('<div class="row"><div class="col s12 m7"><div class="card"><div class="card-image"><img src='+recived.items[0].snippet.thumbnails.medium.url+'></div><div class="card-content"><p>'+recived.items[0].snippet.title+'</p></div><div class="card-action"><a href=>Link</a></div></div></div></div>');
 //recived.items[0]
     for(i=0;i<reponse.result.items.length;i++){
     }
