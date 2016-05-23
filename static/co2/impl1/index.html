@@ -28,7 +28,7 @@
             console.log(myData);
             console.log(angelData);
             for(i=0;i<myData.length;i++)
-              myDataMap.push([myData[i].year,Number(myData[i].co2mtn),Number(angelData[i].energyUse)]);
+              myDataMap.push([myData[i].year,Number(myData[i].co2mtn),Number(angelData[i].energyUse/1000000)]);
 
 
             var data = google.visualization.arrayToDataTable(myDataMap);
@@ -39,8 +39,7 @@
                 subtitle: 'Sales, Expenses, and Profit: 2014-2017',
               }
             };
-
-            var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+            var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
 
             chart.draw(data, options);
           }
@@ -50,7 +49,12 @@
     });
     </script>
   </head>
-  <body>
-    <div id="columnchart_material" style="width: 900px; height: 500px;"></div>
+  <body class='default' style="background-color:#A9E2F3;">
+    <div class="container">
+      <div class="row"><h3>goroca93's INSTAGRAM IMAGES</h3></div>
+      <div class="col s12">
+        <div id="curve_chart" style="width: 950px; height: 500px;"></div>
+      </div>
+    </div>
   </body>
 </html>
