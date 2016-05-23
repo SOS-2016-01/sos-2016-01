@@ -27,7 +27,7 @@
             myData.push(['Year', 'CO2mtn', 'ePowerConsum']);
             console.log(angelData);
             for(i=0;i<myData.length;i++)
-              myData.push([myData[i].year,myData[i].co2mtn,angelData[i].ePowerConsum]);
+              myData.push([myData[i].year,Number(myData[i].co2mtn),Number(angelData[i].energyUse]));
 
             var data = google.visualization.arrayToDataTable(myData);
 

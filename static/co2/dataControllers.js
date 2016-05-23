@@ -1,6 +1,6 @@
 function charge_pages(){
   var request = $.ajax({
-    url:"/api/v1/co2?apikey=vdcgrc",
+    url:"/api/v1/co2?apikey="+$("#apikey").val(),
     type:"GET",
     contentType : "application/json"
   });
