@@ -15,9 +15,9 @@ function search() {
   request.execute(function(response) {
     var str = JSON.stringify(response.result);
     console.log(response.result);
-
+    recived= response.result;
     mycontainer = $('#search-container');
-    $('<div class="row"><div class="col s12 m7"><div class="card"><div class="card-image"><img src='+reponse.result.items.snippet.thumbnails.medium.url+'></div><div class="card-content"><p>'+reponse.result.items.snippet.title+'</p></div><div class="card-action"><a href='+reponse.result.items+'>Link</a></div></div></div></div>')
+    $('<div class="row"><div class="col s12 m7"><div class="card"><div class="card-image"><img src='+recived.items[0].snippet.thumbnails.medium.url+'></div><div class="card-content"><p>'+recived.items[0].snippet.title+'</p></div><div class="card-action"><a href='+recived.result.items[0]+'>Link</a></div></div></div></div>')
     for(i=0;i<reponse.result.items.length;i++){
     }
     //$('#search-container').html('<pre>' + str + '</pre>');
