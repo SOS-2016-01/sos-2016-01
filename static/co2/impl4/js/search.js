@@ -22,7 +22,7 @@ function search() {
     mycontainer = $('<div id="search-container"></div>');
     //recived.items[0]
     for(i=0;i<length;i++){
-      $('<div class="row" id="videos"><div class="col s12 m7"><div class="card"><div class="card-image"><img src='+recived.items[i].snippet.thumbnails.medium.url+'></div><div class="card-content"><p>'+recived.items[i].snippet.title+'</p></div><div class="card-action"><a href="https://www.youtube.com/watch?v="'+recived.items[i].id.videoId+'>Link</a></div></div></div></div>').appendTo(mycontainer);
+      $('<div class="row" id="videos"><div class="col s12 m7"><div class="card"><div class="card-image"><img src='+recived.items[i].snippet.thumbnails.medium.url+'></div><div class="card-content"><p>'+recived.items[i].snippet.title+'</p></div><div class="card-action"><a href="https://www.youtube.com/watch?v='+recived.items[i].id.videoId+'">Link</a></div></div></div></div>').appendTo(mycontainer);
     }
     mycontainer.appendTo("#results");
   //$('#search-container').html('<pre>' + str + '</pre>');
