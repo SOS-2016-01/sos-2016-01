@@ -21,12 +21,14 @@
              request1.done(function (data1){
                var dataToMap1=[];
                for (i=0;i<data1.length;i++){
-                 dataToMap1.push([data1[i].maleathletesnumber]);
+                 dataToMap1.push(data1[i].maleathletesnumber);
                }
+
                request.done(function (data){
+
                  var dataToMap = [["Year","Electrical Consume", "Participant Number"]];
                  for (i=0;i<dataToMap1.length;i++){
-                   console.log(dataToMap1[i]);
+                   dataToMap.push([data[i].year, Number(data[i].energyUse), Number(dataToMap1[i])]);
                  }
              var data = new google.visualization.arrayToDataTable(dataToMap);
              var options = {
