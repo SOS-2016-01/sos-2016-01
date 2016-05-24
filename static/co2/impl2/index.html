@@ -9,27 +9,27 @@
     <script type="text/javascript">
     $("body").ready(function (){
       var requestMyAPI = $.ajax({
-        url:"/api/v1/co2/spain?apikey=multiPlan_C4_sos-2016-01-grc_ag",
+        url:"/api/v1/co2/brazil?apikey=multiPlan_C4_sos-2016-01-grc_ag",
         type:"GET",
         contentType : "application/json"
       });
 
-      var requestAngelAPI = $.ajax({
-        url:"/api/v1/electrical-consume/spain?apikey=multiPlan_C4_sos-2016-01-asm_ag",
+      var requestPatriAPI = $.ajax({
+        url:"/api/v1/mort-sickness/brazil?apikey=multiPlan_C4_sos-2016-03-pgs_ag",
         type:"GET"
       });
 
       requestMyAPI.done(function (myData){
-        requestAngelAPI.done(function(angelData){
+        requestPatriAPI.done(function(patriData){
           google.charts.load('current', {'packages':['corechart']});
           google.charts.setOnLoadCallback(drawChart);
           function drawChart() {
             var myDataMap = [];
-            myDataMap.push(['Year', 'CO2mtn', 'energyUse']);
+            myDataMap.push(['Year', 'CO2mtn', 'Total Mortality']);
             console.log(myData);
-            console.log(angelData);
+            console.log(patriData);
             for(i=0;i<myData.length;i++)
-              myDataMap.push([myData[i].year,Number(myData[i].co2mtn),Number(angelData[i].energyUse/1000000)]);
+              myDataMap.push([myData[i].year,Number(myData[i].co2mtn*0.01),Number(patriData[i].totalMortality)]);
 
 
             var data = google.visualization.arrayToDataTable(myDataMap);
@@ -37,7 +37,7 @@
             var options = {
               chart: {
                 title: 'Patri integration',
-                subtitle: 'CO2 and energy use integration',
+                subtitle: 'CO2 and total mortality',
               }
             };
             var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
