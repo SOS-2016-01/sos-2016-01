@@ -51,6 +51,7 @@ $("body").ready(function (){
       var list;
       console.log("Handling request (OK)");
       console.log("Status: "+jqXHR.status);
+      charge_pages();
       loadTable();
     });
 
