@@ -1,4 +1,4 @@
-  // 
+  //
   // console.log("Handling request");
   //
   // var request = $.ajax({
@@ -28,13 +28,13 @@
 
   $(document).ready(function () {
       // prepare the data
-      var url = "/ajax/services/feed/find?v=1.0&q=Official%20Google%20Blogs";
+      var url = "http://localhost:8081/ajax/services/feed/find?v=1.0&q=Official%20Google%20Blogs";
 
       var source =
                 {
                     datatype: "json",
                     datafields: [
-                          { name: 'url' },
+                          { name: 'responseData.entries.url' },
                           { name: 'title' },
                           { name: 'contentSnippet'},
                           { name: 'link' }
@@ -47,11 +47,14 @@
                     loadComplete: function (data) { },
                     loadError: function (xhr, status, error) { }
       });
+
+      console.log(dataAdapter);
+
       $("#jqxgrid").jqxGrid(
       {
           source: dataAdapter,
           columns: [
-            { text: 'url', datafield: 'url'},
+            { text: 'url', datafield: 'responseData.entries.url'},
             { text: 'title', datafield: 'title'},
             { text: 'contentSnippet', datafield: 'contentSnippet'},
             { text: 'link', datafield: 'link'}
