@@ -1,78 +1,25 @@
-<html>
-  <head>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
-    <script src="../materialize/js/materialize.min.js"></script>
-    <link rel="stylesheet" href="../materialize/css/materialize.min.css">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="jqwidgets/jqwidgets/styles/jqx.base.css" type="text/css" />
+    <script type="text/javascript" src="jqwidgets/scripts/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="jqwidgets/jqwidgets/jqxcore.js"></script>
+    <script type="text/javascript" src="jqwidgets/jqwidgets/jqxdata.js"></script>
+    <script type="text/javascript" src="jqwidgets/jqwidgets/jqxbuttons.js"></script>
+    <script type="text/javascript" src="jqwidgets/jqwidgets/jqxscrollbar.js"></script>
+    <script type="text/javascript" src="jqwidgets/jqwidgets/jqxmenu.js"></script>
+    <script type="text/javascript" src="jqwidgets/jqwidgets/jqxgrid.js"></script>
+    <script type="text/javascript" src="jqwidgets/jqwidgets/jqxgrid.selection.js"></script>
+    <script src="functions.js"></script>
 
-      <script type="text/javascript">
-           google.charts.load('current', {'packages':['bar']});
-           google.charts.setOnLoadCallback(drawStuff);
+</head>
+<body class='default' style="background-color:#A9E2F3;">
 
-           function drawStuff() {
-
-             $(document).ready(function () {
-             var request = $.ajax({
-               url:"/api/v1/electrical-consume/brazil?apikey=multiPlan_C4_sos-2016-01-asm_ag",
-               type:"GET"
-             })
-             var request1 = $.ajax({
-               url:"/api/v1/oil/Brazil?apikey=multiPlan_C4_sos-2016-01-fjfr_ag",
-               type:"GET"
-             });
-
-             request1.done(function (data1){
-
-               var dataToMap1=[];
-
-               for (i=0;i<data1.length;i++){
-                 dataToMap1.push([data1[i].diesel]);
-               }
-
-               request.done(function (data){
-
-                 var dataToMap = [["Year","Electrical Consume", "Oil"]];
-
-                 for (i=0;i<dataToMap1.length;i++){
-                   dataToMap.push([data[i].year, Number(data[i].ePowerConsum), Number(dataToMap1[i])]);
-                 }
+<h1>Google books</h1>
 
 
-
-
-             var data = new google.visualization.arrayToDataTable(dataToMap);
-
-             var options = {
-               width: 800,
-               chart: {
-               },
-               bars: 'horizontal', // Required for Material Bar Charts.
-               series: {
-                 0: { axis: 'distance' }, // Bind series 0 to an axis named 'distance'.
-                 1: { axis: 'brightness' } // Bind series 1 to an axis named 'brightness'.
-               },
-               axes: {
-                 x: {
-                   distance: {label: 'parsecs'}, // Bottom x-axis.
-                   brightness: {side: 'top', label: 'apparent magnitude'} // Top x-axis.
-                 }
-               }
-             };
-
-           var chart = new google.charts.Bar(document.getElementById('dual_x_div'));
-           chart.draw(data, options);
-         });
-       });
-
-       });
-     }
-         </script>
-
-  </head>
-  <body>
-    <div class="card-panel"><center><h3>Integration 1: API Oil & my API(Elec.Consume) for Brazil</h3></center></div>
-    <div class="card-panel" style="padding-left: 20%;">
-        <div id="dual_x_div" style="width: 900px; height: 500px;"></div>
-      </div>
-    </body>
-  </html>
+    <div id='jqxWidget' style="font-size: 13px; font-family: Verdana; float: left;">
+        <div id="jqxgrid"></div>
+    </div>
+</body>
+</html>
