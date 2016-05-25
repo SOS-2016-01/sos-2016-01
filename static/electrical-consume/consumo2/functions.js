@@ -1,43 +1,14 @@
-  //
-  // console.log("Handling request");
-  //
-  // var request = $.ajax({
-  //   url:"https://www.googleapis.com/books/v1/volumes?q=harry+potter&callback=handleResponse",
-  //   type:"GET"
-  // });
-  // request.done(function (data){
-  //   console.log("Handling request (OK)");
-  //   console.log("Data received: ");
-  //   console.log(JSON.stringify(data));
-  //   //array = JSON.parse(data);
-  //   mytable = $('<tbody></tbody>')
-  //   for (i=0;i<data.length;i++){
-  //     var row = $('<tr></tr>').appendTo(mytable);
-  //     $('<td></td>').text(data[i].title).appendTo(row);
-  //     $('<td></td>').text(data[i].listPrice.amount).appendTo(row);
-  //   }
-  //   console.log("TTTTT:"+mytable.html());
-  //   mytable.appendTo("#t1");
-  //
-  // });
-  //
-  // request.always(function (jqXHR,status){
-  //   if(status=="error")
-  //     console.log("Status: "+jqXHR.status);
-  // });
-
   $(document).ready(function () {
       // prepare the data
-      var url = "http://localhost:8081/ajax/services/feed/find?v=1.0&q=Official%20Google%20Blogs";
+      var url = "https://restcountries.eu/rest/v1/all";
 
       var source =
                 {
                     datatype: "json",
                     datafields: [
-                          { name: 'responseData.entries.url' },
-                          { name: 'title' },
-                          { name: 'contentSnippet'},
-                          { name: 'link' }
+                          { name: 'name' },
+                          { name: 'capital' },
+                          { name: 'region'}
                       ],
                     id: 'id',
                     url: url
@@ -54,10 +25,9 @@
       {
           source: dataAdapter,
           columns: [
-            { text: 'url', datafield: 'responseData.entries.url'},
-            { text: 'title', datafield: 'title'},
-            { text: 'contentSnippet', datafield: 'contentSnippet'},
-            { text: 'link', datafield: 'link'}
+            { text: 'name', datafield: 'name'},
+            { text: 'capital', datafield: 'capital'},
+            { text: 'region', datafield: 'region'}
           ]
       });
   });
