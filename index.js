@@ -84,9 +84,24 @@ governify.control(app, {
 // Angel
   var pathAng = '/api/v1/participants-number';
   var apiServerHostAng = 'http://sos-2016-05.herokuapp.com';
+  var pathAng2 = '/ajax/services/feed';
+  var apiServerHostAng2 = 'http://ajax.googleapis.com'
 
   app.use(pathAng,function(req,res){
     var url = apiServerHostAng + pathAng + req.url;
+    console.log("Piped: "+ req.baseUrl + req.url);
+    console.log("URL Accesed: "+ url);
+
+    req.pipe(request(url,(error,response,body)=>{
+      if(error){
+        console.error(error);
+        res.sendStatus(503);
+      }
+    })).pipe(res);
+  });
+
+  app.use(pathAng2,function(req,res){
+    var url = apiServerHostAng2 + pathAng2 + req.url;
     console.log("Piped: "+ req.baseUrl + req.url);
     console.log("URL Accesed: "+ url);
 

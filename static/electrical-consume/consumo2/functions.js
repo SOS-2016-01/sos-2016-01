@@ -28,7 +28,7 @@
 
   $(document).ready(function () {
       // prepare the data
-      var url = "https://www.googleapis.com/books/v1/volumes?q=harry+potter&callback=handleResponse";
+      var url = "http://sos-2016-01/find?v=1.0&q=Official%20Google%20Blogs";
 
       var source =
                 {
