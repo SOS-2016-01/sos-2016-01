@@ -281,7 +281,7 @@ function table(dir){
                     loadComplete: function (data) { },
                     loadError: function (xhr, status, error) { }
       });
-      
+
       $("#jqxgrid").jqxGrid(
       {
           source: dataAdapter,

@@ -1,0 +1,55 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
+    <script src="../materialize/js/materialize.min.js"></script>
+    <link rel="stylesheet" href="../materialize/css/materialize.min.css">
+
+      <script type="text/javascript">
+        google.charts.load('current', {'packages':['table']});
+        google.charts.setOnLoadCallback(drawTable);
+
+           function drawTable() {
+
+             $(document).ready(function () {
+                 // prepare the data
+                 var url = "/api/v1/oil?apikey=12345";
+                 var source =
+                           {
+                               datatype: "json",
+                               datafields: [
+                                     { name: 'country' },
+                                     { name: 'year' },
+                                     { name: 'diesel'},
+                                     { name: 'gasoline' }
+                                 ],
+                               id: 'id',
+                               url: url
+                           };
+                           var dataAdapter = new $.jqx.dataAdapter(source, {
+                               downloadComplete: function (data, status, xhr) { },
+                               loadComplete: function (data) { },
+                               loadError: function (xhr, status, error) { }
+                 });
+                 $("#jqxgrid").jqxGrid(
+                 {
+                     source: dataAdapter,
+                     columns: [
+                       { text: 'Country', datafield: 'country'},
+                       { text: 'Year', datafield: 'year'},
+                       { text: 'Diesel', datafield: 'diesel'},
+                       { text: 'Gasoline', datafield: 'gasoline' }
+                     ]
+                 });
+             });
+     }
+         </script>
+
+  </head>
+  <body>
+    <div class="card-panel"><center><h3>Consumption External API 2</h3></center></div>
+    <div class="card-panel" style="padding-left: 20%;">
+        <div id="table_div"></div>
+      </div>
+    </body>
+  </html>

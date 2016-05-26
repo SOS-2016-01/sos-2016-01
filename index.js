@@ -56,6 +56,19 @@ governify.control(app, {
     var apiServerHostJav = 'http://sos-2016-08.herokuapp.com';
     var pathJav2 = '/data/2.5/box/city';
     var apiServerHostJav2 = 'http://api.openweathermap.org';
+    var apiServerHostJav3 = 'http://www.fitbit.com/apis.json';
+
+    app.use('/fitbit',function(req,res){
+      var url = apiServerHostJav3 + req.url;
+      console.log("Piped: "+ req.baseUrl + req.url);
+      console.log("URL Accesed: "+ url);
+      req.pipe(request(url,(error,response,body)=>{
+        if(error){
+          console.error(error);
+          res.sendStatus(503);
+        }
+      })).pipe(res);
+    });
 
     app.use(pathJav2,function(req,res){
       var url = apiServerHostJav2 + pathJav2 + req.url;
