@@ -6,10 +6,10 @@
     <link rel="stylesheet" href="../materialize/css/materialize.min.css">
 
       <script type="text/javascript">
-        google.charts.load('current', {'packages':['table']});
-        google.charts.setOnLoadCallback(drawTable);
+           google.charts.load('current', {'packages':['bar']});
+           google.charts.setOnLoadCallback(drawStuff);
 
-           function drawTable() {
+           function drawStuff() {
 
              $(document).ready(function () {
              var request = $.ajax({
@@ -18,27 +18,43 @@
              })
 
 
-
-
                request.done(function (data){
+                 var area = 0;
+                 var dataToMap = [["Country", "Area"]];
 
-                 var data1 = new google.visualization.DataTable();
-                  data1.addColumn('string', 'Country');
-                  data1.addColumn('string', 'Capital');
-                  data1.addColumn('string', 'Region');
-
-
-
-                 for (i=0;i<data.length-1;i=i+2){
-                  data1.addRows([[data[i].name, data[i].capital,data[i].region],
-                [data[i+1].name, data[i+1].capital,data[i+1].region]]  );
-
+                 for (i=0;i<15;i++){
+                   if(Number(data[i].area)<3000 ){
+                     area = Number(data[i].area)*1000;
+                   }else{
+                     area = Number(data[i].area);
+                   }
+                   dataToMap.push([data[i].name, area]);
                  }
-                 var table = new google.visualization.Table(document.getElementById('table_div'));
-
-        table.draw(data1, {showRowNumber: true, width: '100%', height: '100%'});
 
 
+
+
+             var data = new google.visualization.arrayToDataTable(dataToMap);
+
+             var options = {
+               width: 800,
+               chart: {
+               },
+               bars: 'horizontal', // Required for Material Bar Charts.
+               series: {
+                 0: { axis: 'distance' }, // Bind series 0 to an axis named 'distance'.
+                 1: { axis: 'brightness' } // Bind series 1 to an axis named 'brightness'.
+               },
+               axes: {
+                 x: {
+                   distance: {label: 'parsecs'}, // Bottom x-axis.
+                   brightness: {side: 'top', label: 'apparent magnitude'} // Top x-axis.
+                 }
+               }
+             };
+
+           var chart = new google.charts.Bar(document.getElementById('dual_x_div'));
+           chart.draw(data, options);
          });
 
 
@@ -48,9 +64,9 @@
 
   </head>
   <body>
-    <div class="card-panel"><center><h3>Consumption External API 2</h3></center></div>
+    <div class="card-panel"><center><h3>Integration 1: API Oil & my API(Elec.Consume) for Brazil</h3></center></div>
     <div class="card-panel" style="padding-left: 20%;">
-        <div id="table_div"></div>
+        <div id="dual_x_div" style="width: 900px; height: 500px;"></div>
       </div>
     </body>
   </html>
