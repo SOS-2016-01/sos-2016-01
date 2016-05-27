@@ -1,26 +1,58 @@
-<!DOCTYPE html>
 <html>
   <head>
-    <style type="text/css">
-      html, body { height: 100%; margin: 0; padding: 0; }
-      #map { height: 100%; }
-    </style>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.3.min.js"></script>
+    <script src="../materialize/js/materialize.min.js"></script>
+    <link rel="stylesheet" href="../materialize/css/materialize.min.css">
+
+      <script type="text/javascript">
+        google.charts.load('current', {'packages':['table']});
+        google.charts.setOnLoadCallback(drawTable);
+
+           function drawTable() {
+
+             $(document).ready(function () {
+             var request = $.ajax({
+               url:"https://jsonplaceholder.typicode.com/posts",
+               type:"GET",
+               dataType : 'json',
+             })
+
+
+
+
+               request.done(function (data){
+                 console.log("hola");
+
+                 var data1 = new google.visualization.DataTable();
+                  data1.addColumn('string', 'Title');
+                  data1.addColumn('string', 'Body');
+                  data1.addColumn('number', 'ID');
+
+
+
+                 for (i=0;i<data.length-1;i=i+2){
+                  data1.addRows([[data[i].title, data[i].body,data[i].id],
+                [data[i+1].title, data[i+1].body,data[i+1].id]]  );
+
+                 }
+                 var table = new google.visualization.Table(document.getElementById('table_div'));
+
+        table.draw(data1, {showRowNumber: true, width: '100%', height: '100%'});
+
+
+         });
+
+
+       });
+     }
+         </script>
+
   </head>
   <body>
-    <div id="map"></div>
-    <script type="text/javascript">
-
-var map;
-function initMap() {
-  map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: 38.345646307093666, lng: -6.43021003750005},
-    zoom: 6
-  });
-}
-
-    </script>
-    <script async defer
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAaepgDnJRV-8qN3zZW_0YJQF0gvRhWVF8&callback=initMap">
-    </script>
-  </body>
-</html>
+    <div class="card-panel"><center><h3>Consumption External API 2</h3></center></div>
+    <div class="card-panel" style="padding-left: 20%;">
+        <div id="table_div"></div>
+      </div>
+    </body>
+  </html>
