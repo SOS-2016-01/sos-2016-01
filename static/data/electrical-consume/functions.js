@@ -2,7 +2,7 @@
   console.log("Handling request");
 
   var request = $.ajax({
-    url:"/api/v1/electrical-consume?apikey=multiPlan_C4-sos-2016-01-asm_ag",
+    url:"/api/v1/electrical-consume?apikey=multiPlan_C4_sos-2016-01-asm_ag",
     type:"GET"
   });
 
